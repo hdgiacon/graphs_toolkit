@@ -1,9 +1,10 @@
-import 'package:proj/proj.dart';
+import 'package:proj/graph.dart';
 import 'package:test/test.dart';
 
 void main() {
   test('bfs test', () {
     final myGraph = Graph(
+      edges: [],
       vertices: [
         Vertex(
           label: "1",
