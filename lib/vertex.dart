@@ -1,20 +1,22 @@
 part of "graph.dart";
 
+///
 class Vertex {
-  int value;
+  double value;
 
   List<Vertex> edgesList;
 
-  Vertex? ancestor; // null for root
+  /// null for root
+  Vertex? ancestor;
   bool visited;
 
   String? label;
 
   Vertex({
     this.value = 0,
+    List<Vertex>? edgesList,
     this.label,
-    required this.edgesList,
     this.ancestor,
     this.visited = false,
-  });
+  }) : edgesList = edgesList ?? [];
 }

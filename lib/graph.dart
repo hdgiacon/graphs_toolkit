@@ -3,14 +3,35 @@ import 'dart:collection';
 part "vertex.dart";
 part "edge.dart";
 
+///
 class Graph {
   List<Vertex> vertices;
   List<Edge> edges;
 
-  Graph({
-    required this.vertices,
-    required this.edges,
-  });
+  Graph({List<Vertex>? vertices, List<Edge>? edges})
+      : vertices = vertices ?? [],
+        edges = edges ?? [];
+
+  ///
+  void addVertex({
+    required Vertex newVertex,
+    Vertex? connectedFrom,
+    double value = 0,
+    bool isOriented = false,
+  }) {
+    vertices.add(newVertex);
+
+    if (connectedFrom != null) {
+      final newEdge = Edge(
+        source: connectedFrom,
+        destiny: newVertex,
+        value: value,
+        isOriented: isOriented,
+      );
+
+      edges.add(newEdge);
+    }
+  }
 
   /// Calculates distance to all reachable vertices from a vertex of origin s
   ///
@@ -42,11 +63,11 @@ class Graph {
   /// returns the vertex with the greatest distance
   ///
   /// Input must be a tree
-  Vertex largest() {
+  Vertex get largest {
     assert(
-        (isTree()), 'to find the largest vertex, the graph needs to be a tree');
+        (isTree), 'to find the largest vertex, the graph needs to be a tree');
 
-    var largest = Vertex(edgesList: []);
+    var largest = Vertex();
 
     largest.value = 0;
 
@@ -60,7 +81,7 @@ class Graph {
   }
 
   ///
-  bool isConnected() {
+  bool get isConnected {
     for (var vertex in vertices) {
       if (!vertex.visited) {
         return false;
@@ -71,15 +92,21 @@ class Graph {
   }
 
   ///
-  bool isTree() {
+  bool get isTree {
     if (edges.length != vertices.length - 1) {
       return false;
     }
 
     bfs(vertices[0]);
 
-    return isConnected();
+    return isConnected;
   }
+
+  ///
+  bool get isSinkhole => true;
+
+  ///
+  bool get isGenerator => true;
 
   @override
   String toString() {
