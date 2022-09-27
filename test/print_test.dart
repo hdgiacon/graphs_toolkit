@@ -2,14 +2,14 @@ import 'package:proj/graph.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test('bfs test', () {
+  test('print function - toString - test', () {
     final myGraph = NotOrientedGraph();
 
     myGraph.addVertex(newVertex: Vertex(label: '1'));
     myGraph.addVertex(
-        newVertex: Vertex(label: '2'), connectedFrom: myGraph.vertices[0]);
+        newVertex: Vertex(label: '2'), connectedFrom: [myGraph.getV('1')]);
     myGraph.addVertex(
-        newVertex: Vertex(label: '3'), connectedFrom: myGraph.vertices[0]);
+        newVertex: Vertex(label: '3'), connectedFrom: [myGraph.getV('1')]);
 
     myGraph.toString();
 

@@ -6,20 +6,25 @@ part "edge.dart";
 part 'oriented_graph.dart';
 part 'not_oriented_graph.dart';
 
-///
+/// graph model for oriented and not oriented, with the common functionalities to both
 class _Graph {
   List<Vertex> vertices;
 
   _Graph._({required this.vertices});
 
-  ///
+  /// model function that is overridden for both oriented and not oriented graphs
   void addVertex({
     required Vertex newVertex,
-    Vertex? connectedFrom,
-    double value = 0,
+    List<Vertex>? connectedFrom,
+    List<double>? value,
   }) {}
 
-  ///
+  /// returns a vertex according to its label
+  Vertex getV(String label) {
+    return vertices.firstWhere((element) => element.label == label);
+  }
+
+  /// set the graph to its initial values
   void reset() {
     for (var vertex in vertices) {
       vertex
@@ -29,9 +34,10 @@ class _Graph {
     }
   }
 
-  ///
+  /// Calculates distance to all reachable vertices from a vertex of origin
   void bfs(Vertex initialNode) {
-    // dar o reset aqui
+    reset();
+
     initialNode.visited = true;
 
     final queueWait = ListQueue<Vertex>();
@@ -56,18 +62,20 @@ class _Graph {
     }
   }
 
+  ///
   void dfs() {
-    // dar o reset aqui
+    reset();
+
     var tempo = 0.0;
 
     for (var vertex in vertices) {
       if (!vertex.visited) {
-        tempo += dfsVisit(vertex, tempo);
+        tempo += _dfsVisit(vertex, tempo);
       }
     }
   }
 
-  double dfsVisit(Vertex actual, double tempo) {
+  double _dfsVisit(Vertex actual, double tempo) {
     tempo += 1;
     actual.value = tempo;
     actual.visited = true;
@@ -75,7 +83,7 @@ class _Graph {
     for (var vertex in actual.verticesOfEdgesList) {
       if (!vertex.visited) {
         vertex.ancestor = actual;
-        dfsVisit(actual, tempo);
+        _dfsVisit(actual, tempo);
       }
     }
 
@@ -90,12 +98,10 @@ class _Graph {
     var graphString = "";
 
     for (var vertex in vertices) {
-      graphString =
-          "$graphString(${vertex.label ?? vertex.value.toString()}) - [";
+      graphString = "$graphString(${vertex.label}) - [";
 
       for (var adj in vertex.edgesList) {
-        graphString =
-            "$graphString (${adj.destiny.label ?? adj.destiny.value.toString()})";
+        graphString = "$graphString (${adj.destiny.label})";
       }
 
       graphString = "$graphString ]\n";

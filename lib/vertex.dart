@@ -10,24 +10,28 @@ class Vertex {
   Vertex? ancestor;
   bool visited;
 
-  String? label;
+  String label;
 
   Vertex({
+    required this.label,
     this.value = 0,
     List<Edge>? edgesList,
-    this.label,
     this.ancestor,
     this.visited = false,
   }) : edgesList = edgesList ?? [];
 
-  ///
+  /// adds an edge across the current and an existing vertex
+  void addEdge({required Vertex connectedFrom, double? value}) {
+    final newEdge = Edge(
+      destiny: this,
+      value: value ?? 0.0,
+    );
+
+    connectedFrom.edgesList.add(newEdge);
+  }
+
+  /// returns vertex adjacency list from edge list
   List<Vertex> get verticesOfEdgesList {
-    final lista = <Vertex>[];
-
-    for (var edge in edgesList) {
-      lista.add(edge.destiny);
-    }
-
-    return lista;
+    return [for (var edge in edgesList) edge.destiny];
   }
 }
