@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   test('bfs test', () {
-    final myGraph = Graph();
+    final myGraph = NotOrientedGraph();
 
     myGraph.addVertex(newVertex: Vertex(label: '1'));
     myGraph.addVertex(
@@ -11,11 +11,11 @@ void main() {
     myGraph.addVertex(
         newVertex: Vertex(label: '3'), connectedFrom: myGraph.vertices[0]);
 
-    myGraph.bfs(myGraph.vertices[0]);
+    //myGraph.bfs(myGraph.vertices[0]);
 
     expect(
       myGraph,
-      Graph(),
+      NotOrientedGraph(),
     );
   });
 }

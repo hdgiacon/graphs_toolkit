@@ -3,40 +3,35 @@ import 'dart:collection';
 part "vertex.dart";
 part "edge.dart";
 
-///
-class Graph {
-  List<Vertex> vertices;
-  List<Edge> edges;
+part 'oriented_graph.dart';
+part 'not_oriented_graph.dart';
 
-  Graph({List<Vertex>? vertices, List<Edge>? edges})
-      : vertices = vertices ?? [],
-        edges = edges ?? [];
+///
+class _Graph {
+  List<Vertex> vertices;
+
+  _Graph._({required this.vertices});
 
   ///
   void addVertex({
     required Vertex newVertex,
     Vertex? connectedFrom,
     double value = 0,
-    bool isOriented = false,
-  }) {
-    vertices.add(newVertex);
+  }) {}
 
-    if (connectedFrom != null) {
-      final newEdge = Edge(
-        source: connectedFrom,
-        destiny: newVertex,
-        value: value,
-        isOriented: isOriented,
-      );
-
-      edges.add(newEdge);
+  ///
+  void reset() {
+    for (var vertex in vertices) {
+      vertex
+        ..visited = false
+        ..ancestor = null
+        ..value = 0;
     }
   }
 
-  /// Calculates distance to all reachable vertices from a vertex of origin s
-  ///
   ///
   void bfs(Vertex initialNode) {
+    // dar o reset aqui
     initialNode.visited = true;
 
     final queueWait = ListQueue<Vertex>();
@@ -47,7 +42,8 @@ class Graph {
     while (queueWait.isNotEmpty) {
       dequeuedVertex = queueWait.removeFirst();
 
-      for (var vertex in dequeuedVertex.edgesList) {
+      //TODO: talvez o deep copy nao esta funcionando por conta disso
+      for (var vertex in dequeuedVertex.verticesOfEdgesList) {
         if (!vertex.visited) {
           vertex
             ..visited = true
@@ -60,54 +56,35 @@ class Graph {
     }
   }
 
-  /// returns the vertex with the greatest distance
-  ///
-  /// Input must be a tree
-  Vertex get largest {
-    assert(
-        (isTree), 'to find the largest vertex, the graph needs to be a tree');
+  void dfs() {
+    // dar o reset aqui
+    var tempo = 0.0;
 
-    var largest = Vertex();
-
-    largest.value = 0;
-
-    for (var vertex in vertices) {
-      if (vertex.value >= largest.value) {
-        largest = vertex;
-      }
-    }
-
-    return largest;
-  }
-
-  ///
-  bool get isConnected {
     for (var vertex in vertices) {
       if (!vertex.visited) {
-        return false;
+        tempo += dfsVisit(vertex, tempo);
+      }
+    }
+  }
+
+  double dfsVisit(Vertex actual, double tempo) {
+    tempo += 1;
+    actual.value = tempo;
+    actual.visited = true;
+
+    for (var vertex in actual.verticesOfEdgesList) {
+      if (!vertex.visited) {
+        vertex.ancestor = actual;
+        dfsVisit(actual, tempo);
       }
     }
 
-    return true;
+    tempo += 1;
+
+    return tempo;
   }
 
-  ///
-  bool get isTree {
-    if (edges.length != vertices.length - 1) {
-      return false;
-    }
-
-    bfs(vertices[0]);
-
-    return isConnected;
-  }
-
-  ///
-  bool get isSinkhole => true;
-
-  ///
-  bool get isGenerator => true;
-
+  //TODO: criar um pra orientado e um pra não orientado, colocar opção de ter o peso das atestas ou não (peso dos vertices tambem?)
   @override
   String toString() {
     var graphString = "";
@@ -117,7 +94,8 @@ class Graph {
           "$graphString(${vertex.label ?? vertex.value.toString()}) - [";
 
       for (var adj in vertex.edgesList) {
-        graphString = "$graphString (${adj.label ?? adj.value.toString()})";
+        graphString =
+            "$graphString (${adj.destiny.label ?? adj.destiny.value.toString()})";
       }
 
       graphString = "$graphString ]\n";

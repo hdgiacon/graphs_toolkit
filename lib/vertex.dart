@@ -1,10 +1,10 @@
-part of "graph.dart";
+part of 'graph.dart';
 
 ///
 class Vertex {
   double value;
 
-  List<Vertex> edgesList;
+  List<Edge> edgesList;
 
   /// null for root
   Vertex? ancestor;
@@ -14,9 +14,20 @@ class Vertex {
 
   Vertex({
     this.value = 0,
-    List<Vertex>? edgesList,
+    List<Edge>? edgesList,
     this.label,
     this.ancestor,
     this.visited = false,
   }) : edgesList = edgesList ?? [];
+
+  ///
+  List<Vertex> get verticesOfEdgesList {
+    final lista = <Vertex>[];
+
+    for (var edge in edgesList) {
+      lista.add(edge.destiny);
+    }
+
+    return lista;
+  }
 }
