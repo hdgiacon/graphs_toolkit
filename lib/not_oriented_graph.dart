@@ -10,11 +10,11 @@ class NotOrientedGraph extends _Graph {
   @override
   void addVertex({
     required Vertex newVertex,
-    List<Vertex>? connectedFrom,
+    List<Vertex>? connectedTo,
     List<double>? value,
     List<double>? value2,
   }) {
-    if (connectedFrom != null) {
+    if (connectedTo != null) {
       value = value ?? [];
       value2 = value2 ?? [];
 
@@ -23,20 +23,20 @@ class NotOrientedGraph extends _Graph {
         'value and value2 lists must have the same number of elements',
       );
 
-      for (int k = 0; k < connectedFrom.length; k++) {
+      for (int k = 0; k < connectedTo.length; k++) {
         var newEdge = Edge(
+          destiny: connectedTo[k],
+          value: value2.isEmpty ? 0.0 : value[k],
+        );
+
+        var newEdgeFromConnected = Edge(
           destiny: newVertex,
-          value: value.isEmpty ? 0.0 : value[k],
+          value: value.isEmpty ? 0.0 : value2[k],
         );
 
-        var newEdgeToAcestor = Edge(
-          destiny: connectedFrom[k],
-          value: value2.isEmpty ? 0.0 : value2[k],
-        );
+        connectedTo[k].edgesList.add(newEdge);
 
-        newVertex.edgesList.add(newEdgeToAcestor);
-
-        connectedFrom[k].edgesList.add(newEdge);
+        newVertex.edgesList.add(newEdgeFromConnected);
       }
     }
 

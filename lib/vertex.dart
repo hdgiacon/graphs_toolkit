@@ -20,14 +20,15 @@ class Vertex {
     this.visited = false,
   }) : edgesList = edgesList ?? [];
 
+  //TODO: adaptar para orientado e nao orientado
   /// adds an edge across the current and an existing vertex
-  void addEdge({required Vertex connectedFrom, double? value}) {
+  void addEdge({required Vertex connectedTo, double? value}) {
     final newEdge = Edge(
-      destiny: this,
+      destiny: connectedTo,
       value: value ?? 0.0,
     );
 
-    connectedFrom.edgesList.add(newEdge);
+    edgesList.add(newEdge);
   }
 
   /// returns vertex adjacency list from edge list

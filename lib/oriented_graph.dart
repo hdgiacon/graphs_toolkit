@@ -10,19 +10,19 @@ class OrientedGraph extends _Graph {
   @override
   void addVertex({
     required Vertex newVertex,
-    List<Vertex>? connectedFrom,
+    List<Vertex>? connectedTo,
     List<double>? value,
   }) {
-    if (connectedFrom != null) {
+    if (connectedTo != null) {
       value = value ?? [];
 
-      for (int k = 0; k < connectedFrom.length; k++) {
+      for (int k = 0; k < connectedTo.length; k++) {
         var newEdge = Edge(
-          destiny: newVertex,
+          destiny: connectedTo[k],
           value: value.isEmpty ? 0.0 : value[k],
         );
 
-        connectedFrom[k].edgesList.add(newEdge);
+        newVertex.edgesList.add(newEdge);
       }
     }
 
