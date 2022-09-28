@@ -13,16 +13,13 @@ class OrientedGraph extends _Graph {
     List<Vertex>? connectedFrom,
     List<double>? value,
   }) {
-    if (connectedFrom != null && value != null) {
-      assert(
-        (connectedFrom.length == value.length),
-        'connectedFrom and value lists must have the same number of elements',
-      );
+    if (connectedFrom != null) {
+      value = value ?? [];
 
       for (int k = 0; k < connectedFrom.length; k++) {
         var newEdge = Edge(
           destiny: newVertex,
-          value: value[k],
+          value: value.isEmpty ? 0.0 : value[k],
         );
 
         connectedFrom[k].edgesList.add(newEdge);

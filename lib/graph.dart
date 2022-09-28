@@ -12,6 +12,7 @@ class _Graph {
 
   _Graph._({required this.vertices});
 
+  //TODO: considerar trocar connectedFrom para connectedTo
   /// model function that is overridden for both oriented and not oriented graphs
   void addVertex({
     required Vertex newVertex,

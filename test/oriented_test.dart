@@ -14,8 +14,7 @@ void main() {
     myGraph.addVertex(
         newVertex: Vertex(label: 'y'), connectedFrom: [myGraph.getV('v')]);
     myGraph.getV('x').addEdge(connectedFrom: myGraph.getV('y'));
-    myGraph.addVertex(
-        newVertex: Vertex(label: 'w'), connectedFrom: [myGraph.getV('y')]);
+    myGraph.addVertex(newVertex: Vertex(label: 'w'));
     myGraph.getV('y').addEdge(connectedFrom: myGraph.getV('w'));
     myGraph.addVertex(
         newVertex: Vertex(label: 'z'), connectedFrom: [myGraph.getV('w')]);
@@ -23,7 +22,48 @@ void main() {
 
     expect(
       myGraph,
-      NotOrientedGraph(),
+      OrientedGraph(
+        vertices: [
+          Vertex(
+            label: 'u',
+            edgesList: [
+              Edge(destiny: myGraph.vertices[1]),
+              Edge(destiny: myGraph.vertices[2]),
+            ],
+          ),
+          Vertex(
+            label: 'v',
+            edgesList: [
+              Edge(destiny: myGraph.vertices[3]),
+            ],
+          ),
+          Vertex(
+            label: 'x',
+            edgesList: [
+              Edge(destiny: myGraph.vertices[1]),
+            ],
+          ),
+          Vertex(
+            label: 'y',
+            edgesList: [
+              Edge(destiny: myGraph.vertices[2]),
+            ],
+          ),
+          Vertex(
+            label: 'w',
+            edgesList: [
+              Edge(destiny: myGraph.vertices[3]),
+              Edge(destiny: myGraph.vertices[5]),
+            ],
+          ),
+          Vertex(
+            label: 'z',
+            edgesList: [
+              Edge(destiny: myGraph.vertices[5]),
+            ],
+          ),
+        ],
+      ),
     );
   });
 }

@@ -14,22 +14,24 @@ class NotOrientedGraph extends _Graph {
     List<double>? value,
     List<double>? value2,
   }) {
-    if (connectedFrom != null && value != null && value2 != null) {
+    if (connectedFrom != null) {
+      value = value ?? [];
+      value2 = value2 ?? [];
+
       assert(
-        (connectedFrom.length == value.length &&
-            connectedFrom.length == value2.length),
-        'connectedFrom, value and value 2 lists must have the same number of elements',
+        (value.length == value2.length),
+        'value and value2 lists must have the same number of elements',
       );
 
       for (int k = 0; k < connectedFrom.length; k++) {
         var newEdge = Edge(
           destiny: newVertex,
-          value: value[k],
+          value: value.isEmpty ? 0.0 : value[k],
         );
 
         var newEdgeToAcestor = Edge(
           destiny: connectedFrom[k],
-          value: value2[k],
+          value: value2.isEmpty ? 0.0 : value2[k],
         );
 
         newVertex.edgesList.add(newEdgeToAcestor);
