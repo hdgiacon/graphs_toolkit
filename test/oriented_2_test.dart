@@ -2,29 +2,22 @@ import 'package:proj/graph.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test('oriented graph add vertex basic test', () {
+  test('oriented graph tunned add vertex test', () {
     final myGraph = OrientedGraph();
 
-    myGraph.vertices.add(Vertex(label: 'u'));
-    myGraph.vertices.add(Vertex(label: 'v'));
-    myGraph.vertices.add(Vertex(label: 'y'));
-    myGraph.vertices.add(Vertex(label: 'x'));
-    myGraph.vertices.add(Vertex(label: 'w'));
-    myGraph.vertices.add(Vertex(label: 'z'));
+    myGraph.addVertexTunned(
+        newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
 
-    myGraph.getV('u').addEdge(connectedTo: myGraph.getV('v'));
-    myGraph.getV('u').addEdge(connectedTo: myGraph.getV('x'));
+    myGraph.addVertexTunned(newVertex: Vertex(label: 'v'), connectedTo: ['y']);
 
-    myGraph.getV('v').addEdge(connectedTo: myGraph.getV('y'));
+    myGraph.addVertexTunned(newVertex: Vertex(label: 'y'), connectedTo: ['x']);
 
-    myGraph.getV('y').addEdge(connectedTo: myGraph.getV('x'));
+    myGraph.addVertexTunned(newVertex: Vertex(label: 'x'), connectedTo: ['v']);
 
-    myGraph.getV('x').addEdge(connectedTo: myGraph.getV('v'));
+    myGraph.addVertexTunned(
+        newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z']);
 
-    myGraph.getV('w').addEdge(connectedTo: myGraph.getV('y'));
-    myGraph.getV('w').addEdge(connectedTo: myGraph.getV('z'));
-
-    myGraph.getV('z').addEdge(connectedTo: myGraph.getV('z'));
+    myGraph.addVertexTunned(newVertex: Vertex(label: 'z'), connectedTo: ['z']);
 
     expect(
       myGraph,

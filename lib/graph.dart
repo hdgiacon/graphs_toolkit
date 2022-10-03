@@ -10,6 +10,8 @@ part 'not_oriented_graph.dart';
 class _Graph {
   List<Vertex> vertices;
 
+  final _waitList = <_WaitListElement>[];
+
   _Graph._({required this.vertices});
 
   /// model function that is overridden for both oriented and not oriented graphs
@@ -21,7 +23,10 @@ class _Graph {
 
   /// returns a vertex according to its label
   Vertex getV(String label) {
-    return vertices.firstWhere((element) => element.label == label);
+    return vertices.firstWhere(
+      (element) => element.label == label,
+      orElse: () => NullVertex(),
+    );
   }
 
   /// set the graph to its initial values
@@ -109,4 +114,21 @@ class _Graph {
 
     return graphString.substring(0, graphString.length - 1);
   }
+
+  // TODO: usar map para mapear connectedTo com value?
+  void addVertexTunned({
+    required Vertex newVertex,
+    List<String>? connectedTo,
+    List<double>? value,
+  }) {}
+}
+
+class _WaitListElement {
+  Vertex vertex;
+  Vertex connectedFrom;
+
+  _WaitListElement({
+    required this.vertex,
+    required this.connectedFrom,
+  });
 }

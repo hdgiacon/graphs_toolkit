@@ -5,9 +5,9 @@ void main() {
   test('not oriented graph test', () {
     final myGraph = NotOrientedGraph();
 
-    myGraph.addVertex(newVertex: Vertex(label: '1'));
-    myGraph.addVertex(newVertex: Vertex(label: '2'));
-    myGraph.addVertex(newVertex: Vertex(label: '3'));
+    myGraph.vertices.add(Vertex(label: '1'));
+    myGraph.vertices.add(Vertex(label: '2'));
+    myGraph.vertices.add(Vertex(label: '3'));
 
     myGraph.getV('1').addEdge(connectedTo: myGraph.getV('2'));
     myGraph.getV('1').addEdge(connectedTo: myGraph.getV('3'));

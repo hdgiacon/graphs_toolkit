@@ -20,7 +20,6 @@ class Vertex {
     this.visited = false,
   }) : edgesList = edgesList ?? [];
 
-  //TODO: adaptar para orientado e nao orientado
   /// adds an edge across the current and an existing vertex
   void addEdge({required Vertex connectedTo, double? value}) {
     final newEdge = Edge(
@@ -35,4 +34,9 @@ class Vertex {
   List<Vertex> get verticesOfEdgesList {
     return [for (var edge in edgesList) edge.destiny];
   }
+}
+
+///
+class NullVertex extends Vertex {
+  NullVertex({super.label = '0xff2e2e2e'});
 }
