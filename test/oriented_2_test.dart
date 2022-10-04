@@ -5,19 +5,12 @@ void main() {
   test('oriented graph tunned add vertex test', () {
     final myGraph = OrientedGraph();
 
-    myGraph.addVertexTunned(
-        newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
-
-    myGraph.addVertexTunned(newVertex: Vertex(label: 'v'), connectedTo: ['y']);
-
-    myGraph.addVertexTunned(newVertex: Vertex(label: 'y'), connectedTo: ['x']);
-
-    myGraph.addVertexTunned(newVertex: Vertex(label: 'x'), connectedTo: ['v']);
-
-    myGraph.addVertexTunned(
-        newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z']);
-
-    myGraph.addVertexTunned(newVertex: Vertex(label: 'z'), connectedTo: ['z']);
+    myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
+    myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y']);
+    myGraph.addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x']);
+    myGraph.addVertex(newVertex: Vertex(label: 'x'), connectedTo: ['v']);
+    myGraph.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z']);
+    myGraph.addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z']);
 
     expect(
       myGraph,

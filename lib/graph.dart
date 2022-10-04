@@ -14,10 +14,12 @@ class _Graph {
 
   _Graph._({required this.vertices});
 
+  // TODO: usar map para mapear connectedTo com value?
+
   /// model function that is overridden for both oriented and not oriented graphs
   void addVertex({
     required Vertex newVertex,
-    List<Vertex>? connectedTo,
+    List<String>? connectedTo,
     List<double>? value,
   }) {}
 
@@ -114,13 +116,6 @@ class _Graph {
 
     return graphString.substring(0, graphString.length - 1);
   }
-
-  // TODO: usar map para mapear connectedTo com value?
-  void addVertexTunned({
-    required Vertex newVertex,
-    List<String>? connectedTo,
-    List<double>? value,
-  }) {}
 
   bool _searchWaitList(String label) {
     for (var elem in _waitList) {

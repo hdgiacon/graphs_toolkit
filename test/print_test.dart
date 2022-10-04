@@ -25,10 +25,9 @@ void main() {
   test('print function - oriented - test', () {
     final myGraph = OrientedGraph();
 
-    myGraph.addVertexTunned(
-        newVertex: Vertex(label: '1'), connectedTo: ['2', '3']);
-    myGraph.addVertexTunned(newVertex: Vertex(label: '2'));
-    myGraph.addVertexTunned(newVertex: Vertex(label: '3'));
+    myGraph.addVertex(newVertex: Vertex(label: '1'), connectedTo: ['2', '3']);
+    myGraph.addVertex(newVertex: Vertex(label: '2'));
+    myGraph.addVertex(newVertex: Vertex(label: '3'));
 
     myGraph.toString();
 
