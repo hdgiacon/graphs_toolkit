@@ -10,7 +10,8 @@ part 'not_oriented_graph.dart';
 class _Graph {
   List<Vertex> vertices;
 
-  final _waitList = <_WaitListElement>[];
+  /// <Vertex,ConnectedFrom>
+  final _waitList = <Vertex, Vertex>{};
 
   _Graph._({required this.vertices});
 
@@ -118,22 +119,11 @@ class _Graph {
   }
 
   bool _searchWaitList(String label) {
-    for (var elem in _waitList) {
-      if (elem.vertex.label == label) {
+    for (var elem in _waitList.keys) {
+      if (elem.label == label) {
         return true;
       }
     }
     return false;
   }
-}
-
-//TODO: usar map em vez de classe?
-class _WaitListElement {
-  Vertex vertex;
-  Vertex connectedFrom;
-
-  _WaitListElement({
-    required this.vertex,
-    required this.connectedFrom,
-  });
 }

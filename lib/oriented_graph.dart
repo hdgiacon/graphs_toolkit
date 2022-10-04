@@ -14,9 +14,9 @@ class OrientedGraph extends _Graph {
     List<double>? value,
   }) {
     if (_searchWaitList(newVertex.label)) {
-      _waitList.removeWhere((element) {
-        if (element.vertex.label == newVertex.label) {
-          element.connectedFrom.addEdge(connectedTo: newVertex);
+      _waitList.removeWhere((vertex, connectedFrom) {
+        if (vertex.label == newVertex.label) {
+          connectedFrom.addEdge(connectedTo: newVertex);
           return true;
         }
         return false;
@@ -30,10 +30,7 @@ class OrientedGraph extends _Graph {
 
       for (var k = 0; k < connectedTo.length; k++) {
         if (getV(connectedTo[k]) is NullVertex) {
-          _waitList.add(_WaitListElement(
-            vertex: Vertex(label: connectedTo[k]),
-            connectedFrom: newVertex,
-          ));
+          _waitList[Vertex(label: connectedTo[k])] = newVertex;
         } else {
           newVertex.addEdge(
             connectedTo: getV(connectedTo[k]),

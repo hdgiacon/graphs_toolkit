@@ -14,10 +14,10 @@ class NotOrientedGraph extends _Graph {
     List<double>? value,
   }) {
     if (_searchWaitList(newVertex.label)) {
-      _waitList.removeWhere((element) {
-        if (element.vertex.label == newVertex.label) {
-          element.connectedFrom.addEdge(connectedTo: newVertex);
-          newVertex.addEdge(connectedTo: element.connectedFrom);
+      _waitList.removeWhere((vertex, connectedFrom) {
+        if (vertex.label == newVertex.label) {
+          connectedFrom.addEdge(connectedTo: newVertex);
+          newVertex.addEdge(connectedTo: connectedFrom);
           return true;
         }
         return false;
@@ -31,10 +31,7 @@ class NotOrientedGraph extends _Graph {
 
       for (var k = 0; k < connectedTo.length; k++) {
         if (getV(connectedTo[k]) is NullVertex) {
-          _waitList.add(_WaitListElement(
-            vertex: Vertex(label: connectedTo[k]),
-            connectedFrom: newVertex,
-          ));
+          _waitList[Vertex(label: connectedTo[k])] = newVertex;
         } else {
           newVertex.addEdge(
             connectedTo: getV(connectedTo[k]),

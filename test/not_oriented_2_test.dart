@@ -34,8 +34,8 @@ void main() {
           Vertex(
             label: 'y',
             edgesList: [
-              Edge(destiny: myGraph.vertices[3]),
               Edge(destiny: myGraph.vertices[1]),
+              Edge(destiny: myGraph.vertices[3]),
               Edge(destiny: myGraph.vertices[4]),
             ],
           ),
@@ -43,8 +43,8 @@ void main() {
             label: 'x',
             edgesList: [
               Edge(destiny: myGraph.vertices[0]),
-              Edge(destiny: myGraph.vertices[1]),
               Edge(destiny: myGraph.vertices[2]),
+              Edge(destiny: myGraph.vertices[1]),
             ],
           ),
           Vertex(
