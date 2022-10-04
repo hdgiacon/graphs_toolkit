@@ -2,7 +2,7 @@ import 'package:proj/graph.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test('not oriented graph test', () {
+  test('not oriented graph add vertex basic test', () {
     final myGraph = NotOrientedGraph();
 
     myGraph.vertices.add(Vertex(label: '1'));

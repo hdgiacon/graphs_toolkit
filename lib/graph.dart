@@ -121,8 +121,18 @@ class _Graph {
     List<String>? connectedTo,
     List<double>? value,
   }) {}
+
+  bool _searchWaitList(String label) {
+    for (var elem in _waitList) {
+      if (elem.vertex.label == label) {
+        return true;
+      }
+    }
+    return false;
+  }
 }
 
+//TODO: usar map em vez de classe?
 class _WaitListElement {
   Vertex vertex;
   Vertex connectedFrom;

@@ -46,25 +46,12 @@ class OrientedGraph extends _Graph {
   ///
   bool get isGenerator => true;
 
-  bool _searchWaitList(String label) {
-    for (var elem in _waitList) {
-      if (elem.vertex.label == label) {
-        return true;
-      }
-    }
-    return false;
-  }
-
   @override
   void addVertexTunned({
     required Vertex newVertex,
     List<String>? connectedTo,
     List<double>? value,
   }) {
-    // se newVertex esta na lista de espera
-    // retirar da lista de espera
-    // adicionar na lista de vertices
-
     if (_searchWaitList(newVertex.label)) {
       _waitList.removeWhere((element) {
         if (element.vertex.label == newVertex.label) {
@@ -80,12 +67,6 @@ class OrientedGraph extends _Graph {
     if (connectedTo != null) {
       value = value ?? [];
 
-      // for indo de k = 0 ate connectedTo.length
-      // se getV em connectedTo[k] não retornar um vertice
-      // adicionar connectedTo[k] na lista de espera
-      // se não
-      // criar uma aresta entre newVertex e connectedTo[k]
-
       for (var k = 0; k < connectedTo.length; k++) {
         if (getV(connectedTo[k]) is NullVertex) {
           _waitList.add(_WaitListElement(
@@ -93,12 +74,10 @@ class OrientedGraph extends _Graph {
             connectedFrom: newVertex,
           ));
         } else {
-          var newEdge = Edge(
-            destiny: getV(connectedTo[k]),
+          newVertex.addEdge(
+            connectedTo: getV(connectedTo[k]),
             value: value.isEmpty ? 0.0 : value[k],
           );
-
-          newVertex.edgesList.add(newEdge);
         }
       }
     }

@@ -2,7 +2,7 @@ import 'package:proj/graph.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test('print function - toString - test', () {
+  test('print function - not oriented - test', () {
     final myGraph = NotOrientedGraph();
 
     myGraph.vertices.add(Vertex(label: '1'));
@@ -22,7 +22,7 @@ void main() {
     );
   });
 
-  test('print function - toString - test', () {
+  test('print function - oriented - test', () {
     final myGraph = OrientedGraph();
 
     myGraph.addVertexTunned(
