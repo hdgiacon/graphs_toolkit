@@ -1,5 +1,7 @@
 import 'dart:collection';
 
+import 'package:tuple/tuple.dart';
+
 part "vertex.dart";
 part "edge.dart";
 
@@ -15,13 +17,11 @@ class _Graph {
 
   _Graph._({required this.vertices});
 
-  // TODO: usar map para mapear connectedTo com value?
-
   /// model function that is overridden for both oriented and not oriented graphs
   void addVertex({
     required Vertex newVertex,
     List<String>? connectedTo,
-    List<double>? value,
+    List<double>? weigth,
   }) {}
 
   /// returns a vertex according to its label

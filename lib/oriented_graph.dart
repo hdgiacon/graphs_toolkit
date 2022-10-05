@@ -6,12 +6,11 @@ class OrientedGraph extends _Graph {
     List<Vertex>? vertices,
   }) : super._(vertices: vertices ?? []);
 
-  ///
   @override
   void addVertex({
     required Vertex newVertex,
     List<String>? connectedTo,
-    List<double>? value,
+    List<double>? weigth,
   }) {
     if (_searchWaitList(newVertex.label)) {
       _waitList.removeWhere((vertex, connectedFrom) {
@@ -26,18 +25,20 @@ class OrientedGraph extends _Graph {
     vertices.add(newVertex);
 
     if (connectedTo != null) {
-      value = value ?? [];
+      final connectedToAsMap = {
+        for (var k = 0; k < connectedTo.length; k++) connectedTo[k]: weigth?[k]
+      };
 
-      for (var k = 0; k < connectedTo.length; k++) {
-        if (getV(connectedTo[k]) is NullVertex) {
-          _waitList[Vertex(label: connectedTo[k])] = newVertex;
+      connectedToAsMap.forEach((connectedTo, weigth) {
+        if (getV(connectedTo) is NullVertex) {
+          _waitList[Vertex(label: connectedTo)] = newVertex;
         } else {
           newVertex.addEdge(
-            connectedTo: getV(connectedTo[k]),
-            value: value.isEmpty ? 0.0 : value[k],
+            connectedTo: getV(connectedTo),
+            weigth: weigth,
           );
         }
-      }
+      });
     }
   }
 

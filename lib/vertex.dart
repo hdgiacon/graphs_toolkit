@@ -21,10 +21,10 @@ class Vertex {
   }) : edgesList = edgesList ?? [];
 
   /// adds an edge across the current and an existing vertex
-  void addEdge({required Vertex connectedTo, double? value}) {
+  void addEdge({required Vertex connectedTo, double? weigth}) {
     final newEdge = Edge(
       destiny: connectedTo,
-      value: value ?? 0.0,
+      weigth: weigth,
     );
 
     edgesList.add(newEdge);

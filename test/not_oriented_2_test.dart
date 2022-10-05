@@ -14,7 +14,7 @@ void main() {
 
     expect(
       myGraph,
-      OrientedGraph(
+      NotOrientedGraph(
         vertices: [
           Vertex(
             label: 'u',

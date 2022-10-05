@@ -11,7 +11,8 @@ class NotOrientedGraph extends _Graph {
   void addVertex({
     required Vertex newVertex,
     List<String>? connectedTo,
-    List<double>? value,
+    List<double>? weigth,
+    List<double>? weigth2,
   }) {
     if (_searchWaitList(newVertex.label)) {
       _waitList.removeWhere((vertex, connectedFrom) {
@@ -27,20 +28,23 @@ class NotOrientedGraph extends _Graph {
     vertices.add(newVertex);
 
     if (connectedTo != null) {
-      value = value ?? [];
+      final connectedToAsTriple = [
+        for (var k = 0; k < connectedTo.length; k++)
+          Tuple3(connectedTo[k], weigth?[k], weigth2?[k])
+      ];
 
-      for (var k = 0; k < connectedTo.length; k++) {
-        if (getV(connectedTo[k]) is NullVertex) {
-          _waitList[Vertex(label: connectedTo[k])] = newVertex;
+      for (var t in connectedToAsTriple) {
+        if (getV(t.item1) is NullVertex) {
+          _waitList[Vertex(label: t.item1)] = newVertex;
         } else {
           newVertex.addEdge(
-            connectedTo: getV(connectedTo[k]),
-            value: value.isEmpty ? 0.0 : value[k],
+            connectedTo: getV(t.item1),
+            weigth: t.item2,
           );
 
-          getV(connectedTo[k]).addEdge(
+          getV(t.item1).addEdge(
             connectedTo: newVertex,
-            value: value.isEmpty ? 0.0 : value[k],
+            weigth: t.item3,
           );
         }
       }

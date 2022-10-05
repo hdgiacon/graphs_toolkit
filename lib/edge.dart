@@ -6,10 +6,10 @@ part of 'graph.dart';
 class Edge {
   Vertex destiny;
 
-  double? value;
+  double? weigth;
 
   Edge({
     required this.destiny,
-    this.value,
+    this.weigth,
   });
 }
