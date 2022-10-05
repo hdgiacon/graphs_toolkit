@@ -1,12 +1,12 @@
 import 'dart:collection';
-
+import 'package:collection/collection.dart';
 import 'package:tuple/tuple.dart';
 
-part "vertex.dart";
 part "edge.dart";
+part "vertex.dart";
 
-part 'oriented_graph.dart';
 part 'not_oriented_graph.dart';
+part 'oriented_graph.dart';
 
 /// graph model for oriented and not oriented, with the common functionalities to both
 class _Graph {
@@ -100,6 +100,26 @@ class _Graph {
     return tempo;
   }
 
+  bool _searchWaitList(String label) {
+    for (var elem in _waitList.keys) {
+      if (elem.label == label) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    final listEquals = const DeepCollectionEquality().equals;
+
+    return other is _Graph && listEquals(other.vertices, vertices);
+  }
+
+  @override
+  int get hashCode => vertices.hashCode;
+
   //TODO: criar um pra orientado e um pra não orientado, colocar opção de ter o peso das atestas ou não (peso dos vertices tambem?)
   @override
   String toString() {
@@ -116,14 +136,5 @@ class _Graph {
     }
 
     return graphString.substring(0, graphString.length - 1);
-  }
-
-  bool _searchWaitList(String label) {
-    for (var elem in _waitList.keys) {
-      if (elem.label == label) {
-        return true;
-      }
-    }
-    return false;
   }
 }

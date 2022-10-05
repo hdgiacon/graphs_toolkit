@@ -34,6 +34,26 @@ class Vertex {
   List<Vertex> get verticesOfEdgesList {
     return [for (var edge in edgesList) edge.destiny];
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    final listEquals = const DeepCollectionEquality().equals;
+
+    return other is Vertex &&
+        other.value == value &&
+        listEquals(other.edgesList, edgesList) &&
+        other.visited == visited &&
+        other.label == label;
+  }
+
+  @override
+  int get hashCode {
+    return value.hashCode ^
+        edgesList.hashCode ^
+        visited.hashCode ^
+        label.hashCode;
+  }
 }
 
 ///
