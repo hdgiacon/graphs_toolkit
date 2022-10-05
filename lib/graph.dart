@@ -12,8 +12,8 @@ part 'oriented_graph.dart';
 class _Graph {
   List<Vertex> vertices;
 
-  /// <Vertex,ConnectedFrom>
-  final _waitList = <Vertex, Vertex>{};
+  /// <Vertex,ConnectedFrom,Weigth>
+  final _waitList = <Tuple4<Vertex, Vertex, double?, double?>>[];
 
   _Graph._({required this.vertices});
 
@@ -101,8 +101,8 @@ class _Graph {
   }
 
   bool _searchWaitList(String label) {
-    for (var elem in _waitList.keys) {
-      if (elem.label == label) {
+    for (var elem in _waitList) {
+      if (elem.item1.label == label) {
         return true;
       }
     }

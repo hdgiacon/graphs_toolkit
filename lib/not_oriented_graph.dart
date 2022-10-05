@@ -11,14 +11,14 @@ class NotOrientedGraph extends _Graph {
   void addVertex({
     required Vertex newVertex,
     List<String>? connectedTo,
-    List<double>? weigth,
-    List<double>? weigth2,
+    List<double?>? weigth,
+    List<double?>? weigth2,
   }) {
     if (_searchWaitList(newVertex.label)) {
-      _waitList.removeWhere((vertex, connectedFrom) {
-        if (vertex.label == newVertex.label) {
-          connectedFrom.addEdge(connectedTo: newVertex);
-          newVertex.addEdge(connectedTo: connectedFrom);
+      _waitList.removeWhere((element) {
+        if (element.item1.label == newVertex.label) {
+          element.item2.addEdge(connectedTo: newVertex, weigth: element.item3);
+          newVertex.addEdge(connectedTo: element.item2, weigth: element.item4);
           return true;
         }
         return false;
@@ -35,7 +35,8 @@ class NotOrientedGraph extends _Graph {
 
       for (var t in connectedToAsTriple) {
         if (getV(t.item1) is NullVertex) {
-          _waitList[Vertex(label: t.item1)] = newVertex;
+          _waitList
+              .add(Tuple4(Vertex(label: t.item1), newVertex, t.item2, t.item3));
         } else {
           newVertex.addEdge(
             connectedTo: getV(t.item1),

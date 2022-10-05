@@ -10,18 +10,17 @@ class OrientedGraph extends _Graph {
   void addVertex({
     required Vertex newVertex,
     List<String>? connectedTo,
-    List<double>? weigth,
+    List<double?>? weigth,
   }) {
     if (_searchWaitList(newVertex.label)) {
-      _waitList.removeWhere((vertex, connectedFrom) {
-        if (vertex.label == newVertex.label) {
-          connectedFrom.addEdge(connectedTo: newVertex);
+      _waitList.removeWhere((element) {
+        if (element.item1.label == newVertex.label) {
+          element.item2.addEdge(connectedTo: newVertex, weigth: element.item3);
           return true;
         }
         return false;
       });
     }
-
     vertices.add(newVertex);
 
     if (connectedTo != null) {
@@ -31,7 +30,8 @@ class OrientedGraph extends _Graph {
 
       connectedToAsMap.forEach((connectedTo, weigth) {
         if (getV(connectedTo) is NullVertex) {
-          _waitList[Vertex(label: connectedTo)] = newVertex;
+          _waitList
+              .add(Tuple4(Vertex(label: connectedTo), newVertex, weigth, null));
         } else {
           newVertex.addEdge(
             connectedTo: getV(connectedTo),
