@@ -6,7 +6,7 @@ part of 'graph.dart';
 class Edge {
   Vertex destiny;
 
-  double? weigth;
+  num? weigth;
 
   Edge({
     required this.destiny,

@@ -13,7 +13,7 @@ class _Graph {
   List<Vertex> vertices;
 
   /// <Vertex,ConnectedFrom,Weigth>
-  final _waitList = <Tuple4<Vertex, Vertex, double?, double?>>[];
+  final _waitList = <Tuple4<Vertex, Vertex, num?, num?>>[];
 
   _Graph._({required this.vertices});
 
@@ -119,22 +119,4 @@ class _Graph {
 
   @override
   int get hashCode => vertices.hashCode;
-
-  //TODO: criar um pra orientado e um pra não orientado, colocar opção de ter o peso das atestas ou não (peso dos vertices tambem?)
-  @override
-  String toString() {
-    var graphString = "";
-
-    for (var vertex in vertices) {
-      graphString = "$graphString(${vertex.label}) - [";
-
-      for (var adj in vertex.edgesList) {
-        graphString = "$graphString (${adj.destiny.label})";
-      }
-
-      graphString = "$graphString ]\n";
-    }
-
-    return graphString.substring(0, graphString.length - 1);
-  }
 }

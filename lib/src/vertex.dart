@@ -2,7 +2,7 @@ part of 'graph.dart';
 
 ///
 class Vertex {
-  double value;
+  num value;
 
   List<Edge> edgesList;
 
@@ -21,7 +21,7 @@ class Vertex {
   }) : edgesList = edgesList ?? [];
 
   /// adds an edge across the current and an existing vertex
-  void addEdge({required Vertex connectedTo, double? weigth}) {
+  void addEdge({required Vertex connectedTo, num? weigth}) {
     final newEdge = Edge(
       destiny: connectedTo,
       weigth: weigth,
