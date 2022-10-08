@@ -1,6 +1,6 @@
-import 'dart:collection';
-import 'package:collection/collection.dart';
-import 'package:tuple/tuple.dart';
+import 'dart:collection' show ListQueue;
+import 'package:collection/collection.dart' show DeepCollectionEquality;
+import 'package:tuple/tuple.dart' show Tuple3, Tuple4;
 
 part "edge.dart";
 part "vertex.dart";
@@ -8,12 +8,14 @@ part "vertex.dart";
 part 'not_oriented_graph.dart';
 part 'oriented_graph.dart';
 
+typedef WaitType = Tuple4<Vertex, Vertex, num?, num?>;
+
 /// graph model for oriented and not oriented, with the common functionalities to both
 class _Graph {
   List<Vertex> vertices;
 
-  /// <Vertex,ConnectedFrom,Weigth>
-  final _waitList = <Tuple4<Vertex, Vertex, num?, num?>>[];
+  /// <Vertex,ConnectedFrom,Weigth,Weigth2>
+  final _waitList = <WaitType>[];
 
   _Graph._({required this.vertices});
 
@@ -21,7 +23,7 @@ class _Graph {
   void addVertex({
     required Vertex newVertex,
     List<String>? connectedTo,
-    List<double>? weigth,
+    List<num>? weigth,
   }) {}
 
   /// returns a vertex according to its label
@@ -56,7 +58,6 @@ class _Graph {
     while (queueWait.isNotEmpty) {
       dequeuedVertex = queueWait.removeFirst();
 
-      //TODO: talvez o deep copy nao esta funcionando por conta disso
       for (var vertex in dequeuedVertex.verticesOfEdgesList) {
         if (!vertex.visited) {
           vertex
@@ -68,36 +69,6 @@ class _Graph {
         }
       }
     }
-  }
-
-  ///
-  void dfs() {
-    reset();
-
-    var tempo = 0.0;
-
-    for (var vertex in vertices) {
-      if (!vertex.visited) {
-        tempo += _dfsVisit(vertex, tempo);
-      }
-    }
-  }
-
-  double _dfsVisit(Vertex actual, double tempo) {
-    tempo += 1;
-    actual.value = tempo;
-    actual.visited = true;
-
-    for (var vertex in actual.verticesOfEdgesList) {
-      if (!vertex.visited) {
-        vertex.ancestor = actual;
-        _dfsVisit(actual, tempo);
-      }
-    }
-
-    tempo += 1;
-
-    return tempo;
   }
 
   bool _searchWaitList(String label) {
