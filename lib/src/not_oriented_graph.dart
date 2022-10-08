@@ -16,9 +16,11 @@ class NotOrientedGraph extends _Graph {
   }) {
     if (_searchWaitList(newVertex.label)) {
       _waitList.removeWhere((element) {
-        if (element.item1.label == newVertex.label) {
-          element.item2.addEdge(connectedTo: newVertex, weigth: element.item3);
-          newVertex.addEdge(connectedTo: element.item2, weigth: element.item4);
+        if (element.vertex.label == newVertex.label) {
+          element.connectedFrom
+              .addEdge(connectedTo: newVertex, weigth: element.weigth);
+          newVertex.addEdge(
+              connectedTo: element.connectedFrom, weigth: element.weigth2);
           return true;
         }
         return false;
@@ -34,18 +36,18 @@ class NotOrientedGraph extends _Graph {
       ];
 
       for (var t in connectedToAsTriple) {
-        if (getV(t.item1) is NullVertex) {
-          _waitList
-              .add(Tuple4(Vertex(label: t.item1), newVertex, t.item2, t.item3));
+        if (getV(t.connectedTo) is NullVertex) {
+          _waitList.add(Tuple4(
+              Vertex(label: t.connectedTo), newVertex, t.weigth, t.weigth2));
         } else {
           newVertex.addEdge(
-            connectedTo: getV(t.item1),
-            weigth: t.item2,
+            connectedTo: getV(t.connectedTo),
+            weigth: t.weigth,
           );
 
-          getV(t.item1).addEdge(
+          getV(t.connectedTo).addEdge(
             connectedTo: newVertex,
-            weigth: t.item3,
+            weigth: t.weigth2,
           );
         }
       }
@@ -116,4 +118,17 @@ class NotOrientedGraph extends _Graph {
     }
     return null;
   }
+}
+
+extension Tuple4Extension on WaitType {
+  Vertex get vertex => item1;
+  Vertex get connectedFrom => item2;
+  num? get weigth => item3;
+  num? get weigth2 => item4;
+}
+
+extension Tuple3Extension on Tuple3<String, num?, num?> {
+  String get connectedTo => item1;
+  num? get weigth => item2;
+  num? get weigth2 => item3;
 }
