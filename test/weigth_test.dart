@@ -25,39 +25,39 @@ void main() {
           Vertex(
             label: 'u',
             edgesList: [
-              Edge(destiny: myGraph.vertices[1], weigth: 1),
-              Edge(destiny: myGraph.vertices[3], weigth: 2),
+              Edge(destiny: myGraph.getV('v'), weigth: 1),
+              Edge(destiny: myGraph.getV('x'), weigth: 2),
             ],
           ),
           Vertex(
             label: 'v',
             edgesList: [
-              Edge(destiny: myGraph.vertices[2], weigth: 3),
+              Edge(destiny: myGraph.getV('y'), weigth: 3),
             ],
           ),
           Vertex(
             label: 'y',
             edgesList: [
-              Edge(destiny: myGraph.vertices[3], weigth: 4),
+              Edge(destiny: myGraph.getV('x'), weigth: 4),
             ],
           ),
           Vertex(
             label: 'x',
             edgesList: [
-              Edge(destiny: myGraph.vertices[1], weigth: 5),
+              Edge(destiny: myGraph.getV('v'), weigth: 5),
             ],
           ),
           Vertex(
             label: 'w',
             edgesList: [
-              Edge(destiny: myGraph.vertices[2], weigth: 6),
-              Edge(destiny: myGraph.vertices[5], weigth: 7),
+              Edge(destiny: myGraph.getV('y'), weigth: 6),
+              Edge(destiny: myGraph.getV('z'), weigth: 7),
             ],
           ),
           Vertex(
             label: 'z',
             edgesList: [
-              Edge(destiny: myGraph.vertices[5], weigth: 8),
+              Edge(destiny: myGraph.getV('z'), weigth: 8),
             ],
           ),
         ],
@@ -92,39 +92,39 @@ void main() {
           Vertex(
             label: 'u',
             edgesList: [
-              Edge(destiny: myGraph.vertices[1], weigth: null),
-              Edge(destiny: myGraph.vertices[3], weigth: 2),
+              Edge(destiny: myGraph.getV('v'), weigth: null),
+              Edge(destiny: myGraph.getV('x'), weigth: 2),
             ],
           ),
           Vertex(
             label: 'v',
             edgesList: [
-              Edge(destiny: myGraph.vertices[2], weigth: 3),
+              Edge(destiny: myGraph.getV('y'), weigth: 3),
             ],
           ),
           Vertex(
             label: 'y',
             edgesList: [
-              Edge(destiny: myGraph.vertices[3], weigth: null),
+              Edge(destiny: myGraph.getV('x'), weigth: null),
             ],
           ),
           Vertex(
             label: 'x',
             edgesList: [
-              Edge(destiny: myGraph.vertices[1], weigth: 5),
+              Edge(destiny: myGraph.getV('v'), weigth: 5),
             ],
           ),
           Vertex(
             label: 'w',
             edgesList: [
-              Edge(destiny: myGraph.vertices[2], weigth: 6),
-              Edge(destiny: myGraph.vertices[5], weigth: null),
+              Edge(destiny: myGraph.getV('y'), weigth: 6),
+              Edge(destiny: myGraph.getV('z'), weigth: null),
             ],
           ),
           Vertex(
             label: 'z',
             edgesList: [
-              Edge(destiny: myGraph.vertices[5], weigth: 8),
+              Edge(destiny: myGraph.getV('z'), weigth: 8),
             ],
           ),
         ],
@@ -165,45 +165,45 @@ void main() {
           Vertex(
             label: 'u',
             edgesList: [
-              Edge(destiny: myGraph.vertices[1], weigth: 1),
-              Edge(destiny: myGraph.vertices[3], weigth: 2),
+              Edge(destiny: myGraph.getV('v'), weigth: 1),
+              Edge(destiny: myGraph.getV('x'), weigth: 2),
             ],
           ),
           Vertex(
             label: 'v',
             edgesList: [
-              Edge(destiny: myGraph.vertices[0], weigth: 1),
-              Edge(destiny: myGraph.vertices[2], weigth: 3),
-              Edge(destiny: myGraph.vertices[3], weigth: 4),
+              Edge(destiny: myGraph.getV('u'), weigth: 1),
+              Edge(destiny: myGraph.getV('y'), weigth: 3),
+              Edge(destiny: myGraph.getV('x'), weigth: 4),
             ],
           ),
           Vertex(
             label: 'y',
             edgesList: [
-              Edge(destiny: myGraph.vertices[1], weigth: 3),
-              Edge(destiny: myGraph.vertices[3], weigth: 5),
-              Edge(destiny: myGraph.vertices[4], weigth: 6),
+              Edge(destiny: myGraph.getV('v'), weigth: 3),
+              Edge(destiny: myGraph.getV('x'), weigth: 5),
+              Edge(destiny: myGraph.getV('w'), weigth: 6),
             ],
           ),
           Vertex(
             label: 'x',
             edgesList: [
-              Edge(destiny: myGraph.vertices[0], weigth: 2),
-              Edge(destiny: myGraph.vertices[1], weigth: 4),
-              Edge(destiny: myGraph.vertices[2], weigth: 5),
+              Edge(destiny: myGraph.getV('u'), weigth: 2),
+              Edge(destiny: myGraph.getV('v'), weigth: 4),
+              Edge(destiny: myGraph.getV('y'), weigth: 5),
             ],
           ),
           Vertex(
             label: 'w',
             edgesList: [
-              Edge(destiny: myGraph.vertices[2], weigth: 6),
-              Edge(destiny: myGraph.vertices[5], weigth: 7),
+              Edge(destiny: myGraph.getV('y'), weigth: 6),
+              Edge(destiny: myGraph.getV('z'), weigth: 7),
             ],
           ),
           Vertex(
             label: 'z',
             edgesList: [
-              Edge(destiny: myGraph.vertices[4], weigth: 7),
+              Edge(destiny: myGraph.getV('w'), weigth: 7),
             ],
           ),
         ],
@@ -244,45 +244,45 @@ void main() {
           Vertex(
             label: 'u',
             edgesList: [
-              Edge(destiny: myGraph.vertices[1], weigth: 1),
-              Edge(destiny: myGraph.vertices[3], weigth: null),
+              Edge(destiny: myGraph.getV('v'), weigth: 1),
+              Edge(destiny: myGraph.getV('x'), weigth: null),
             ],
           ),
           Vertex(
             label: 'v',
             edgesList: [
-              Edge(destiny: myGraph.vertices[0], weigth: null),
-              Edge(destiny: myGraph.vertices[2], weigth: null),
-              Edge(destiny: myGraph.vertices[3], weigth: null),
+              Edge(destiny: myGraph.getV('u'), weigth: null),
+              Edge(destiny: myGraph.getV('y'), weigth: null),
+              Edge(destiny: myGraph.getV('x'), weigth: null),
             ],
           ),
           Vertex(
             label: 'y',
             edgesList: [
-              Edge(destiny: myGraph.vertices[1], weigth: 3),
-              Edge(destiny: myGraph.vertices[3], weigth: 5),
-              Edge(destiny: myGraph.vertices[4], weigth: 6),
+              Edge(destiny: myGraph.getV('v'), weigth: 3),
+              Edge(destiny: myGraph.getV('x'), weigth: 5),
+              Edge(destiny: myGraph.getV('w'), weigth: 6),
             ],
           ),
           Vertex(
             label: 'x',
             edgesList: [
-              Edge(destiny: myGraph.vertices[0], weigth: 2),
-              Edge(destiny: myGraph.vertices[1], weigth: 4),
-              Edge(destiny: myGraph.vertices[2], weigth: 5),
+              Edge(destiny: myGraph.getV('u'), weigth: 2),
+              Edge(destiny: myGraph.getV('v'), weigth: 4),
+              Edge(destiny: myGraph.getV('y'), weigth: 5),
             ],
           ),
           Vertex(
             label: 'w',
             edgesList: [
-              Edge(destiny: myGraph.vertices[2], weigth: 6),
-              Edge(destiny: myGraph.vertices[5], weigth: 7),
+              Edge(destiny: myGraph.getV('y'), weigth: 6),
+              Edge(destiny: myGraph.getV('z'), weigth: 7),
             ],
           ),
           Vertex(
             label: 'z',
             edgesList: [
-              Edge(destiny: myGraph.vertices[4], weigth: null),
+              Edge(destiny: myGraph.getV('w'), weigth: null),
             ],
           ),
         ],

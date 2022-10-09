@@ -8,14 +8,14 @@ part "vertex.dart";
 part 'not_oriented_graph.dart';
 part 'oriented_graph.dart';
 
-typedef WaitType = Tuple4<Vertex, Vertex, num?, num?>;
+typedef _WaitType = Tuple4<Vertex, Vertex, num?, num?>;
 
 /// graph model for oriented and not oriented, with the common functionalities to both
 class _Graph {
   List<Vertex> vertices;
 
   /// <Vertex,ConnectedFrom,Weigth,Weigth2>
-  final _waitList = <WaitType>[];
+  final _waitList = <_WaitType>[];
 
   _Graph._({required this.vertices});
 
@@ -42,6 +42,16 @@ class _Graph {
         ..ancestor = null
         ..value = 0;
     }
+  }
+
+  ///
+  Vertex get first {
+    return vertices.first;
+  }
+
+  ///
+  Vertex get last {
+    return vertices.last;
   }
 
   /// Calculates distance to all reachable vertices from a vertex of origin
@@ -90,4 +100,17 @@ class _Graph {
 
   @override
   int get hashCode => vertices.hashCode;
+}
+
+extension _Tuple4Extension on _WaitType {
+  Vertex get vertex => item1;
+  Vertex get connectedFrom => item2;
+  num? get weigth => item3;
+  num? get weigth2 => item4;
+}
+
+extension _Tuple3Extension on Tuple3<String, num?, num?> {
+  String get connectedTo => item1;
+  num? get weigth => item2;
+  num? get weigth2 => item3;
 }

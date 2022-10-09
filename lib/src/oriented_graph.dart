@@ -14,8 +14,9 @@ class OrientedGraph extends _Graph {
   }) {
     if (_searchWaitList(newVertex.label)) {
       _waitList.removeWhere((element) {
-        if (element.item1.label == newVertex.label) {
-          element.item2.addEdge(connectedTo: newVertex, weigth: element.item3);
+        if (element.vertex.label == newVertex.label) {
+          element.connectedFrom
+              .addEdge(connectedTo: newVertex, weigth: element.weigth);
           return true;
         }
         return false;

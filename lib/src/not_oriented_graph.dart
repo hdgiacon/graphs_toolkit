@@ -119,16 +119,3 @@ class NotOrientedGraph extends _Graph {
     return null;
   }
 }
-
-extension Tuple4Extension on WaitType {
-  Vertex get vertex => item1;
-  Vertex get connectedFrom => item2;
-  num? get weigth => item3;
-  num? get weigth2 => item4;
-}
-
-extension Tuple3Extension on Tuple3<String, num?, num?> {
-  String get connectedTo => item1;
-  num? get weigth => item2;
-  num? get weigth2 => item3;
-}
