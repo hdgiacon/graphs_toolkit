@@ -12,7 +12,7 @@ typedef _WaitType = Tuple4<Vertex, Vertex, num?, num?>;
 
 /// graph model for oriented and not oriented, with the common functionalities to both
 class _Graph {
-  List<Vertex> vertices;
+  final List<Vertex> vertices;
 
   /// <Vertex,ConnectedFrom,Weigth,Weigth2>
   final _waitList = <_WaitType>[];

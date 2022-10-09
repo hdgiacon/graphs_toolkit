@@ -4,7 +4,7 @@ part of 'graph.dart';
 class Vertex {
   num value;
 
-  List<Edge> edgesList;
+  final List<Edge> edgesList;
 
   /// null for root
   Vertex? ancestor;
@@ -33,6 +33,24 @@ class Vertex {
   /// returns vertex adjacency list from edge list
   List<Vertex> get verticesOfEdgesList {
     return [for (var edge in edgesList) edge.destiny];
+  }
+
+  ///
+  bool isSinkhole(OrientedGraph graph) {
+    if (edgesList.isEmpty && ancestor != null) {
+      return true;
+    }
+
+    return false;
+  }
+
+  ///
+  bool isGenerator(OrientedGraph graph) {
+    if (edgesList.isNotEmpty && ancestor == null) {
+      return true;
+    }
+
+    return false;
   }
 
   @override

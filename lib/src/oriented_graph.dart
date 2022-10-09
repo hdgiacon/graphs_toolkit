@@ -54,12 +54,6 @@ class OrientedGraph extends _Graph {
     return cont;
   }
 
-  ///
-  bool get isSinkhole => true;
-
-  ///
-  bool get isGenerator => true;
-
   @override
   String toString() {
     var graphString = "";

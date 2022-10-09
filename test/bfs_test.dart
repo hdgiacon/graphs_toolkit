@@ -9,7 +9,7 @@ void main() {
     myGraph.addVertex(newVertex: Vertex(label: '2'));
     myGraph.addVertex(newVertex: Vertex(label: '3'));
 
-    myGraph.bfs(myGraph.vertices[0]);
+    myGraph.bfs(myGraph.first);
 
     expect(
       myGraph,
@@ -55,7 +55,7 @@ void main() {
     myGraph.addVertex(newVertex: Vertex(label: '2'));
     myGraph.addVertex(newVertex: Vertex(label: '3'));
 
-    myGraph.bfs(myGraph.vertices[0]);
+    myGraph.bfs(myGraph.first);
 
     expect(
       myGraph,
@@ -98,7 +98,7 @@ void main() {
     myGraph.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['z']);
     myGraph.addVertex(newVertex: Vertex(label: 'z'));
 
-    myGraph.bfs(myGraph.vertices[0]);
+    myGraph.bfs(myGraph.first);
 
     expect(
       myGraph,
@@ -182,7 +182,7 @@ void main() {
     myGraph.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z']);
     myGraph.addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z']);
 
-    myGraph.bfs(myGraph.vertices[0]);
+    myGraph.bfs(myGraph.first);
 
     expect(
       myGraph,
