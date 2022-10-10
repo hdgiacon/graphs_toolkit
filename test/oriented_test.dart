@@ -1,4 +1,5 @@
 import 'package:proj/graphs_toolkit.dart';
+import 'package:proj/src/graph.dart';
 import 'package:test/test.dart';
 
 void main() {

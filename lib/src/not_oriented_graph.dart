@@ -27,6 +27,7 @@ class NotOrientedGraph extends _Graph {
       });
     }
 
+    newVertex.vertexType = NotOrientedGraph;
     vertices.add(newVertex);
 
     if (connectedTo != null) {

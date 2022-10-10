@@ -1,7 +1,7 @@
 part of 'graph.dart';
 
 ///
-class Vertex {
+class Vertex{
   num value;
 
   final List<Edge> edgesList;
@@ -11,6 +11,8 @@ class Vertex {
   bool visited;
 
   String label;
+
+  late final Type vertexType;
 
   Vertex({
     required this.label,
@@ -36,7 +38,9 @@ class Vertex {
   }
 
   ///
-  bool isSinkhole(OrientedGraph graph) {
+  bool get isSinkhole {
+    assert(vertexType == OrientedGraph, 'Graph must be oriented type');
+
     if (edgesList.isEmpty && ancestor != null) {
       return true;
     }
@@ -45,7 +49,9 @@ class Vertex {
   }
 
   ///
-  bool isGenerator(OrientedGraph graph) {
+  bool get isGenerator {
+    assert(vertexType == OrientedGraph, 'Graph must be oriented type');
+
     if (edgesList.isNotEmpty && ancestor == null) {
       return true;
     }

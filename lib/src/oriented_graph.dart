@@ -22,6 +22,8 @@ class OrientedGraph extends _Graph {
         return false;
       });
     }
+
+    newVertex.vertexType = super.runtimeType;
     vertices.add(newVertex);
 
     if (connectedTo != null) {
