@@ -32,11 +32,17 @@ class Vertex{
     edgesList.add(newEdge);
   }
 
+  ///
+  void excludeEdge({required String destinyLabel}){
+    edgesList.removeWhere((edge) => edge.destiny.label == destinyLabel);
+  }
+
   /// returns vertex adjacency list from edge list
   List<Vertex> get verticesOfEdgesList {
     return [for (var edge in edgesList) edge.destiny];
   }
 
+  //TODO: reset esta privado, usar ancestor aqui tambem, quando um grafo for criado, atribuir o seu ancestral
   ///
   bool get isSinkhole {
     assert(vertexType == OrientedGraph, 'Graph must be oriented type');

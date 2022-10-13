@@ -24,7 +24,9 @@ abstract class _Graph{
     required Vertex newVertex,
     List<String>? connectedTo,
     List<num>? weigth,
-  }) {}
+  });
+
+  void excludeVertex({required String vertexLabel});
 
   /// returns a vertex according to its label
   Vertex getV(String label) {
@@ -35,7 +37,7 @@ abstract class _Graph{
   }
 
   /// set the graph to its initial values
-  void reset() {
+  void _setInitialValues() {
     for (var vertex in vertices) {
       vertex
         ..visited = false
@@ -45,18 +47,18 @@ abstract class _Graph{
   }
 
   ///
-  Vertex get first {
-    return vertices.first;
-  }
+  Vertex get first => vertices.first;
+  
 
   ///
-  Vertex get last {
-    return vertices.last;
-  }
+  Vertex get last => vertices.last;
+  
+  //TODO: atribui os valores iniciais da criacao do grafo ao atributo ancestor de cada vertice
+  void resetAncestor(){}
 
   /// Calculates distance to all reachable vertices from a vertex of origin
   void bfs(Vertex initialNode) {
-    reset();
+    _setInitialValues();
 
     initialNode.visited = true;
 
