@@ -56,7 +56,7 @@ class NotOrientedGraph extends _Graph {
   }
 
   @override
-  void excludeVertex({required String vertexLabel}){
+  void excludeVertex({required String vertexLabel}) {
     vertices.removeWhere((vertex) => vertex.label == vertexLabel);
 
     //TODO: precisa excluir as arestas que chegam no vertice excluido

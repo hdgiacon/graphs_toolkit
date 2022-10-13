@@ -6,6 +6,7 @@ class OrientedGraph extends _Graph {
     List<Vertex>? vertices,
   }) : super._(vertices: vertices ?? []);
 
+  ///
   @override
   void addVertex({
     required Vertex newVertex,
@@ -13,14 +14,7 @@ class OrientedGraph extends _Graph {
     List<num?>? weigth,
   }) {
     if (_searchWaitList(newVertex.label)) {
-      _waitList.removeWhere((element) {
-        if (element.vertex.label == newVertex.label) {
-          element.connectedFrom
-              .addEdge(connectedTo: newVertex, weigth: element.weigth);
-          return true;
-        }
-        return false;
-      });
+      _removeFromWaitList(newVertex);
     }
 
     newVertex.vertexType = super.runtimeType;
@@ -31,25 +25,55 @@ class OrientedGraph extends _Graph {
         for (var k = 0; k < connectedTo.length; k++) connectedTo[k]: weigth?[k]
       };
 
-      connectedToAsMap.forEach((connectedTo, weigth) {
-        if (getV(connectedTo) is NullVertex) {
-          _waitList
-              .add(Tuple4(Vertex(label: connectedTo), newVertex, weigth, null));
-        } else {
-          newVertex.addEdge(
-            connectedTo: getV(connectedTo),
-            weigth: weigth,
-          );
-        }
-      });
+      _connectVertexToNext(connectedToAsMap, newVertex);
     }
   }
 
+  ///
+  void _removeFromWaitList(Vertex newVertex) {
+    _waitList.removeWhere((element) {
+      if (element.vertex.label == newVertex.label) {
+        element.connectedFrom
+            .addEdge(connectedTo: newVertex, weigth: element.weigth);
+
+        newVertex.connectedFrom.add(element.connectedFrom);
+
+        return true;
+      }
+      return false;
+    });
+  }
+
+  ///
+  void _connectVertexToNext(
+    Map<String, num?> connectedToAsMap,
+    Vertex newVertex,
+  ) {
+    connectedToAsMap.forEach((connectedTo, weigth) {
+      if (getV(connectedTo) is NullVertex) {
+        _waitList.add(
+          Tuple4(Vertex(label: connectedTo), newVertex, weigth, null),
+        );
+      } else {
+        newVertex.addEdge(
+          connectedTo: getV(connectedTo),
+          weigth: weigth,
+        );
+
+        getV(connectedTo).connectedFrom.add(newVertex);
+      }
+    });
+  }
+
+  //TODO: testar a exclusao de vertices
+  ///
   @override
-  void excludeVertex({required String vertexLabel}){
+  void excludeVertex({required String vertexLabel}) {
     vertices.removeWhere((vertex) => vertex.label == vertexLabel);
 
-    //TODO: precisa excluir as arestas que chegam no vertice excluido
+    getV(vertexLabel).connectedFrom.forEach((vertex) {
+      vertex.edgesList.removeWhere((edge) => edge.destiny.label == vertexLabel);
+    });
   }
 
   /// get the number of edges on a Oriented Graph
@@ -80,6 +104,7 @@ class OrientedGraph extends _Graph {
     return graphString.substring(0, graphString.length - 1);
   }
 
+  ///
   String print({bool vertexValue = false, bool edgeWeigth = false}) {
     var graphString = "";
 
@@ -106,6 +131,7 @@ class OrientedGraph extends _Graph {
     return graphString;
   }
 
+  ///
   num? _printNum(num? num) {
     if (num != null) {
       if (num % 1 == 0) {

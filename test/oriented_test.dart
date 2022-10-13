@@ -37,11 +37,16 @@ void main() {
               Edge(destiny: myGraph.getV('v')),
               Edge(destiny: myGraph.getV('x')),
             ],
+            connectedFrom: [],
           ),
           Vertex(
             label: 'v',
             edgesList: [
               Edge(destiny: myGraph.getV('y')),
+            ],
+            connectedFrom: [
+              myGraph.getV('u'),
+              myGraph.getV('x'),
             ],
           ),
           Vertex(
@@ -49,11 +54,19 @@ void main() {
             edgesList: [
               Edge(destiny: myGraph.getV('x')),
             ],
+            connectedFrom: [
+              myGraph.getV('v'),
+              myGraph.getV('w'),
+            ],
           ),
           Vertex(
             label: 'x',
             edgesList: [
               Edge(destiny: myGraph.getV('v')),
+            ],
+            connectedFrom: [
+              myGraph.getV('u'),
+              myGraph.getV('y'),
             ],
           ),
           Vertex(
@@ -62,11 +75,16 @@ void main() {
               Edge(destiny: myGraph.getV('y')),
               Edge(destiny: myGraph.getV('z')),
             ],
+            connectedFrom: []
           ),
           Vertex(
             label: 'z',
             edgesList: [
               Edge(destiny: myGraph.getV('z')),
+            ],
+            connectedFrom: [
+              myGraph.getV('w'),
+              myGraph.getV('z'),
             ],
           ),
         ],
@@ -94,11 +112,16 @@ void main() {
               Edge(destiny: myGraph.getV('v')),
               Edge(destiny: myGraph.getV('x')),
             ],
+            connectedFrom: [],
           ),
           Vertex(
             label: 'v',
             edgesList: [
               Edge(destiny: myGraph.getV('y')),
+            ],
+            connectedFrom: [
+              myGraph.getV('u'),
+              myGraph.getV('x'),
             ],
           ),
           Vertex(
@@ -106,11 +129,19 @@ void main() {
             edgesList: [
               Edge(destiny: myGraph.getV('x')),
             ],
+            connectedFrom: [
+              myGraph.getV('v'),
+              myGraph.getV('w'),
+            ],
           ),
           Vertex(
             label: 'x',
             edgesList: [
               Edge(destiny: myGraph.getV('v')),
+            ],
+            connectedFrom: [
+              myGraph.getV('u'),
+              myGraph.getV('y'),
             ],
           ),
           Vertex(
@@ -119,11 +150,16 @@ void main() {
               Edge(destiny: myGraph.getV('y')),
               Edge(destiny: myGraph.getV('z')),
             ],
+            connectedFrom: []
           ),
           Vertex(
             label: 'z',
             edgesList: [
               Edge(destiny: myGraph.getV('z')),
+            ],
+            connectedFrom: [
+              myGraph.getV('w'),
+              myGraph.getV('z'),
             ],
           ),
         ],

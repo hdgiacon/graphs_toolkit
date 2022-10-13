@@ -1,10 +1,11 @@
 part of 'graph.dart';
 
 ///
-class Vertex{
+class Vertex {
   num value;
 
   final List<Edge> edgesList;
+  final List<Vertex> connectedFrom;
 
   /// null for root
   Vertex? ancestor;
@@ -18,9 +19,11 @@ class Vertex{
     required this.label,
     this.value = 0,
     List<Edge>? edgesList,
+    List<Vertex>? connectedFrom,
     this.ancestor,
     this.visited = false,
-  }) : edgesList = edgesList ?? [];
+  })  : edgesList = edgesList ?? [],
+        connectedFrom = connectedFrom ?? [];
 
   /// adds an edge across the current and an existing vertex
   void addEdge({required Vertex connectedTo, num? weigth}) {
@@ -33,7 +36,7 @@ class Vertex{
   }
 
   ///
-  void excludeEdge({required String destinyLabel}){
+  void excludeEdge({required String destinyLabel}) {
     edgesList.removeWhere((edge) => edge.destiny.label == destinyLabel);
   }
 
@@ -42,12 +45,11 @@ class Vertex{
     return [for (var edge in edgesList) edge.destiny];
   }
 
-  //TODO: reset esta privado, usar ancestor aqui tambem, quando um grafo for criado, atribuir o seu ancestral
   ///
   bool get isSinkhole {
     assert(vertexType == OrientedGraph, 'Graph must be oriented type');
 
-    if (edgesList.isEmpty && ancestor != null) {
+    if (edgesList.isEmpty && connectedFrom.isNotEmpty) {
       return true;
     }
 
@@ -58,12 +60,18 @@ class Vertex{
   bool get isGenerator {
     assert(vertexType == OrientedGraph, 'Graph must be oriented type');
 
-    if (edgesList.isNotEmpty && ancestor == null) {
+    if (edgesList.isNotEmpty && connectedFrom.isEmpty) {
       return true;
     }
 
     return false;
   }
+
+  ///
+  int get entryDegree => connectedFrom.length;
+
+  ///
+  int get exitDegree => edgesList.length;
 
   @override
   bool operator ==(Object other) {

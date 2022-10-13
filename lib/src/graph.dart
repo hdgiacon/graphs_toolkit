@@ -8,10 +8,11 @@ part "vertex.dart";
 part 'not_oriented_graph.dart';
 part 'oriented_graph.dart';
 
+/// <Vertex,ConnectedFrom,Weigth,Weigth2>
 typedef _WaitType = Tuple4<Vertex, Vertex, num?, num?>;
 
 /// graph model for oriented and not oriented, with the common functionalities to both
-abstract class _Graph{
+abstract class _Graph {
   final List<Vertex> vertices;
 
   /// <Vertex,ConnectedFrom,Weigth,Weigth2>
@@ -26,6 +27,7 @@ abstract class _Graph{
     List<num>? weigth,
   });
 
+  ///
   void excludeVertex({required String vertexLabel});
 
   /// returns a vertex according to its label
@@ -48,13 +50,9 @@ abstract class _Graph{
 
   ///
   Vertex get first => vertices.first;
-  
 
   ///
   Vertex get last => vertices.last;
-  
-  //TODO: atribui os valores iniciais da criacao do grafo ao atributo ancestor de cada vertice
-  void resetAncestor(){}
 
   /// Calculates distance to all reachable vertices from a vertex of origin
   void bfs(Vertex initialNode) {
@@ -83,6 +81,7 @@ abstract class _Graph{
     }
   }
 
+  ///
   bool _searchWaitList(String label) {
     for (var elem in _waitList) {
       if (elem.item1.label == label) {
