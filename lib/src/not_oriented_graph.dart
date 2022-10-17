@@ -89,6 +89,30 @@ class NotOrientedGraph extends _Graph {
     return cont ~/ 2;
   }
 
+  ///
+  bool get isConnected {
+    bfs(first);
+
+    for (var vertex in vertices) {
+      if (!vertex.visited) {
+        return false;
+      }
+    }
+
+    _setInitialValues();
+
+    return true;
+  }
+
+  ///
+  bool get isTree {
+    if (numOfEdges != vertices.length - 1) {
+      return false;
+    }
+
+    return isConnected;
+  }
+
   @override
   String toString() {
     var graphString = "";

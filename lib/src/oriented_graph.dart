@@ -87,6 +87,8 @@ class OrientedGraph extends _Graph {
     return cont;
   }
 
+  bool get isStronglyConnected => true;
+
   @override
   String toString() {
     var graphString = "";
