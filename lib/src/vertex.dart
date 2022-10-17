@@ -5,6 +5,8 @@ class Vertex {
   num value;
 
   final List<Edge> edgesList;
+
+  /// in not oriented graphs, the edgesList itself is the previously connected list
   final List<Vertex> connectedFrom;
 
   /// null for root
@@ -68,7 +70,13 @@ class Vertex {
   }
 
   ///
-  int get entryDegree => connectedFrom.length;
+  int get entryDegree {
+    if (vertexType == NotOrientedGraph) {
+      return edgesList.length;
+    } else {
+      return connectedFrom.length;
+    }
+  }
 
   ///
   int get exitDegree => edgesList.length;

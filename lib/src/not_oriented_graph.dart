@@ -15,16 +15,7 @@ class NotOrientedGraph extends _Graph {
     List<num?>? weigth2,
   }) {
     if (_searchWaitList(newVertex.label)) {
-      _waitList.removeWhere((element) {
-        if (element.vertex.label == newVertex.label) {
-          element.connectedFrom
-              .addEdge(connectedTo: newVertex, weigth: element.weigth);
-          newVertex.addEdge(
-              connectedTo: element.connectedFrom, weigth: element.weigth2);
-          return true;
-        }
-        return false;
-      });
+      _removeFromWaitList(newVertex);
     }
 
     newVertex.vertexType = NotOrientedGraph;
@@ -36,30 +27,55 @@ class NotOrientedGraph extends _Graph {
           Tuple3(connectedTo[k], weigth?[k], weigth2?[k])
       ];
 
-      for (var t in connectedToAsTriple) {
-        if (getV(t.connectedTo) is NullVertex) {
-          _waitList.add(Tuple4(
-              Vertex(label: t.connectedTo), newVertex, t.weigth, t.weigth2));
-        } else {
-          newVertex.addEdge(
-            connectedTo: getV(t.connectedTo),
-            weigth: t.weigth,
-          );
+      _connectVertices(connectedToAsTriple, newVertex);
+    }
+  }
 
-          getV(t.connectedTo).addEdge(
-            connectedTo: newVertex,
-            weigth: t.weigth2,
-          );
-        }
+  ///
+  void _removeFromWaitList(Vertex newVertex) {
+    _waitList.removeWhere((element) {
+      if (element.vertex.label == newVertex.label) {
+        element.connectedFrom
+            .addEdge(connectedTo: newVertex, weigth: element.weigth);
+        newVertex.addEdge(
+            connectedTo: element.connectedFrom, weigth: element.weigth2);
+        return true;
+      }
+      return false;
+    });
+  }
+
+  ///
+  void _connectVertices(
+      List<Tuple3<String, num?, num?>> connectedToAsTriple, Vertex newVertex) {
+    for (var t in connectedToAsTriple) {
+      if (getV(t.connectedTo) is NullVertex) {
+        _waitList.add(Tuple4(
+            Vertex(label: t.connectedTo), newVertex, t.weigth, t.weigth2));
+      } else {
+        newVertex.addEdge(
+          connectedTo: getV(t.connectedTo),
+          weigth: t.weigth,
+        );
+
+        getV(t.connectedTo).addEdge(
+          connectedTo: newVertex,
+          weigth: t.weigth2,
+        );
       }
     }
   }
 
+  //TODO: testar a exclusao de vertices
+  ///
   @override
   void excludeVertex({required String vertexLabel}) {
-    vertices.removeWhere((vertex) => vertex.label == vertexLabel);
+    getV(vertexLabel).edgesList.forEach((edge) {
+      getV(edge.destiny.label).edgesList.removeWhere(
+          (edgeNeighbor) => edgeNeighbor.destiny.label == vertexLabel);
+    });
 
-    //TODO: precisa excluir as arestas que chegam no vertice excluido
+    vertices.removeWhere((vertex) => vertex.label == vertexLabel);
   }
 
   /// get the number of edges on a Not Oriented Graph

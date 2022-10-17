@@ -30,7 +30,7 @@ abstract class _Graph {
   ///
   void excludeVertex({required String vertexLabel});
 
-  /// returns a vertex according to its label
+  /// returns a vertex from vertices list according to its label
   Vertex getV(String label) {
     return vertices.firstWhere(
       (element) => element.label == label,
