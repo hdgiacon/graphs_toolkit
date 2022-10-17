@@ -87,7 +87,23 @@ class OrientedGraph extends _Graph {
     return cont;
   }
 
-  bool get isStronglyConnected => true;
+  bool get isStronglyConnected {
+    bfs(first);
+
+    for (var vertex in vertices) {
+      if (!vertex.visited) {
+        return false;
+      }
+    }
+
+    _setInitialValues();
+
+    return true;
+  }
+
+  bool get hasCicle => true;
+
+  bool get isDAG => true;
 
   @override
   String toString() {

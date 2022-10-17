@@ -113,6 +113,10 @@ class NotOrientedGraph extends _Graph {
     return isConnected;
   }
 
+  bool get isForest => true;
+
+  bool get hasCicle => true;
+
   @override
   String toString() {
     var graphString = "";
