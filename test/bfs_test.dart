@@ -171,7 +171,6 @@ void main() {
     );
   });
 
-  //TODO: bfs pode ser usado em grafos orientados?
   test('bfs - oriented graph - test', () {
     final myGraph = OrientedGraph();
 

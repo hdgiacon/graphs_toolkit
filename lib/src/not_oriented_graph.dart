@@ -90,11 +90,13 @@ class NotOrientedGraph extends _Graph {
   }
 
   ///
-  bool get isConnected {
+  bool isConnected() {
     bfs(first);
 
     for (var vertex in vertices) {
       if (!vertex.visited) {
+        _setInitialValues();
+
         return false;
       }
     }
@@ -105,17 +107,22 @@ class NotOrientedGraph extends _Graph {
   }
 
   ///
-  bool get isTree {
-    if (numOfEdges != vertices.length - 1) {
+  bool isTree() {
+    if (hasCicle()) {
       return false;
     }
 
-    return isConnected;
+    return isConnected();
   }
 
-  bool get isForest => true;
+  ///
+  bool isForest() {
+    if (hasCicle()) {
+      return false;
+    }
 
-  bool get hasCicle => true;
+    return true;
+  }
 
   @override
   String toString() {

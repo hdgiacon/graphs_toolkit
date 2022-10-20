@@ -87,6 +87,7 @@ class OrientedGraph extends _Graph {
     return cont;
   }
 
+  ///
   bool get isStronglyConnected {
     bfs(first);
 
@@ -101,9 +102,14 @@ class OrientedGraph extends _Graph {
     return true;
   }
 
-  bool get hasCicle => true;
+  ///
+  bool isDAG() {
+    if (hasCicle()) {
+      return false;
+    }
 
-  bool get isDAG => true;
+    return true;
+  }
 
   @override
   String toString() {

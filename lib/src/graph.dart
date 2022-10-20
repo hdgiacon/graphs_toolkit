@@ -82,6 +82,62 @@ abstract class _Graph {
   }
 
   ///
+  void dfs() {
+    _setInitialValues();
+
+    var time = 0;
+
+    for (var vertex in vertices) {
+      if (!vertex.visited) {
+        _dfsVisit(vertex, time, false);
+      }
+    }
+  }
+
+  ///
+  int _dfsVisit(Vertex actual, int time, bool cicleSearch) {
+    time += 1;
+    actual.value = time;
+    actual.visited = true;
+
+    for (var vertexAdj in actual.verticesOfEdgesList) {
+      if (!vertexAdj.visited) {
+        vertexAdj.ancestor = actual;
+        time = _dfsVisit(vertexAdj, time, cicleSearch);
+      } else if (cicleSearch && vertexAdj.visited) {
+        return -1;
+      }
+    }
+
+    actual.visited = true;
+    time += 1;
+    actual.value = time;
+
+    return time;
+  }
+
+  ///
+  bool hasCicle() {
+    _setInitialValues();
+
+    var time = 0;
+
+    for (var vertex in vertices) {
+      if (!vertex.visited) {
+        if (_dfsVisit(vertex, time, true) == -1) {
+          _setInitialValues();
+
+          return true;
+        }
+      }
+    }
+
+    _setInitialValues();
+
+    return false;
+  }
+
+  ///
   bool _searchWaitList(String label) {
     for (var elem in _waitList) {
       if (elem.item1.label == label) {
