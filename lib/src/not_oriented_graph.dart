@@ -66,7 +66,6 @@ class NotOrientedGraph extends _Graph {
     }
   }
 
-  //TODO: testar a exclusao de vertices
   ///
   @override
   void excludeVertex({required String vertexLabel}) {

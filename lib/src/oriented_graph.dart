@@ -65,15 +65,14 @@ class OrientedGraph extends _Graph {
     });
   }
 
-  //TODO: testar a exclusao de vertices
   ///
   @override
   void excludeVertex({required String vertexLabel}) {
-    vertices.removeWhere((vertex) => vertex.label == vertexLabel);
-
     getV(vertexLabel).connectedFrom.forEach((vertex) {
       vertex.edgesList.removeWhere((edge) => edge.destiny.label == vertexLabel);
     });
+
+    vertices.removeWhere((vertex) => vertex.label == vertexLabel);
   }
 
   /// get the number of edges on a Oriented Graph
