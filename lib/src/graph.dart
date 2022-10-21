@@ -8,7 +8,7 @@ part "vertex.dart";
 part 'not_oriented_graph.dart';
 part 'oriented_graph.dart';
 
-/// <Vertex,ConnectedFrom,Weigth,Weigth2>
+/// <Vertex,ConnectedFrom,EdgeWeigth,EdgeWeigthBack>
 typedef _WaitType = Tuple4<Vertex, Vertex, num?, num?>;
 
 /// Graph model for oriented and not oriented, with the common functionalities to both
@@ -16,12 +16,11 @@ abstract class _Graph {
   /// List containing all existing `vertices` in the graph
   final List<Vertex> vertices;
 
+  _Graph._({required this.vertices});
+
   /// List used for the `addVertex` method, in which a `vertex` not yet created is added here
   final _waitList = <_WaitType>[];
 
-  _Graph._({required this.vertices});
-
-  /// Model function that is overridden for both `oriented` and `not oriented` graphs
   void addVertex({
     required Vertex newVertex,
     List<String>? connectedTo,
@@ -31,6 +30,8 @@ abstract class _Graph {
   void excludeVertex({required String vertexLabel});
 
   /// Returns a `vertex` from vertices list according to its label
+  ///
+  /// If the searched vertex is not found, returns a `NullVertex`
   Vertex getV(String label) {
     return vertices.firstWhere(
       (element) => element.label == label,
@@ -118,6 +119,27 @@ abstract class _Graph {
   }
 
   /// Checks if there are any cycles in the whole graph
+  ///
+  /// valid for Not Oriented Graphs
+  /// ```
+  ///   | u |----| v |    | w |
+  ///     |      / |      / |
+  ///     |    /   |    /   |
+  ///     |  /     |  /     |
+  ///   | x |----| y |    | z |
+  ///
+  ///
+  /// ```
+  /// and Oriented Graphs
+  /// ```
+  ///   | u |---->| v |      | w |
+  ///     ^      /> |        / ^
+  ///     |    /    |      /   |
+  ///     |  /     \ /  </     |
+  ///   | x |<----| y |      | z |
+  ///
+  ///
+  /// ```
   bool hasCicle() {
     _setInitialValues();
 

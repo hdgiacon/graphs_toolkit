@@ -136,7 +136,7 @@ void main() {
     );
   });
 
-  //TODO: se eu nao passar um valor para o peso e houver uma aresta, deve ser nulo (testar isso)
+  //TODO: se eu nao passar um valor para o peso e houver uma aresta, deve ser nulo (ta dandoe erro)
   test('not oriented graph with edge weigth - test', () {
     final myGraph = NotOrientedGraph();
 

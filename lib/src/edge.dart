@@ -1,13 +1,13 @@
 part of 'graph.dart';
 
-/// Connect two vertices
-///
-/// can have a weight value, default is null
 class Edge {
   Vertex destiny;
 
   num? weigth;
 
+  /// Connect two vertices
+  ///
+  /// can have a weight value, default is `null`
   Edge({
     required this.destiny,
     this.weigth,

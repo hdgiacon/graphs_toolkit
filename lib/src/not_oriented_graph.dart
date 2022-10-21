@@ -1,21 +1,21 @@
 part of 'graph.dart';
 
-/// Type of graph in which the edges have no definite way
-/// ```
-/// | u |----| v |
-///   |
-///   |
-/// | w |
-/// ```
-/// can be declared without vertices:
-/// ```dart
-/// final myGraph = NotOrientedGraph()
-/// ```
-/// or with pre-defined vertices:
-/// ```dart
-/// final myGraph = NotOrientedGraph(vertices:[Vertex(label: 'u'), Vertex(label: 'v')])
-/// ```
 class NotOrientedGraph extends _Graph {
+  /// Type of graph in which the edges have no definite way
+  /// ```
+  /// | u |----| v |
+  ///   |
+  ///   |
+  /// | w |
+  /// ```
+  /// can be declared without vertices:
+  /// ```
+  /// final myGraph = NotOrientedGraph()
+  /// ```
+  /// or with pre-defined vertices:
+  /// ```
+  /// final myGraph = NotOrientedGraph(vertices:[Vertex(label: 'u'), Vertex(label: 'v')])
+  /// ```
   NotOrientedGraph({
     List<Vertex>? vertices,
   }) : super._(vertices: vertices ?? []);
@@ -27,24 +27,57 @@ class NotOrientedGraph extends _Graph {
   /// edges will be created automatically
   /// ```
   ///
-  /// myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
-  /// myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['x']);
-  /// myGraph.addVertex(newVertex: Vertex(label: 'x'));
+  ///   myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
+  ///   myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['x']);
+  ///   myGraph.addVertex(newVertex: Vertex(label: 'x'));
   ///
   ///
   /// ```
-  /// the weights of both forward and back edges can be passed in `edgeWeight` and `edgeWeigthBack` respectively
+  /// The weights of both forward and back edges can be passed in `edgeWeight` and `edgeWeigthBack` respectively
   /// ```
-  /// myGraph.addVertex(newVertex: Vertex(label: 'u'),
-  ///      connectedTo: ['v', 'x'],
-  ///      edgeWeigth: [1, 2],
-  ///      edgeWeigthBack: [3, 4]);
+  ///   myGraph.addVertex(newVertex: Vertex(label: 'u'),
+  ///        connectedTo: ['v', 'x'],
+  ///        edgeWeigth: [1, 2],
+  ///        edgeWeigthBack: [3, 4]);
+  /// ```
+  /// The values ​​are processed positionally, so:
+  /// ```
+  ///   | u |--1--| v |
+  ///   | u |--2--| x |
+  ///
+  ///   | v |--3--| u |
+  ///   | x |--4--| u |
+  /// ```
+  /// Weights can take on `null` values explicitly
+  /// ```
+  ///   myGraph.addVertex(newVertex: Vertex(label: 'u'),
+  ///        connectedTo: ['v', 'x'],
+  ///        edgeWeigth: [1, null],
+  ///        edgeWeigthBack: [3, 4]);
+  /// ```
+  /// So
+  /// ```
+  ///   | u |--1--| v |
+  ///   | u |--null--| x |
+  ///
+  ///   | v |--3--| u |
+  ///   | x |--4--| u |
+  /// ```
+  /// Or omitting the `null` value at the end
+  /// ```
+  ///   myGraph.addVertex(newVertex: Vertex(label: 'u'),
+  ///        connectedTo: ['v', 'x'],
+  ///        edgeWeigth: [1, 2],
+  ///        edgeWeigthBack: [3]);
+  ///
+  ///   | u |--1--| v |
+  ///   | u |--2--| x |
+  ///
+  ///   | v |--3--| u |
+  ///   | x |--null--| u |
   ///
   ///
   /// ```
-  /// weights can take on `null` values
-  ///
-  /// example...
   @override
   void addVertex({
     required Vertex newVertex,
@@ -102,12 +135,11 @@ class NotOrientedGraph extends _Graph {
     }
   }
 
-  /// removes a vertex along with the edges that arrived at it from its adjacent ones
+  /// Removes a vertex by its `label` along with the edges that arrived at it from its adjacent ones
   @override
   void excludeVertex({required String vertexLabel}) {
     getV(vertexLabel).edgesList.forEach((edge) {
-      getV(edge.destiny.label).edgesList.removeWhere(
-          (edgeNeighbor) => edgeNeighbor.destiny.label == vertexLabel);
+      edge.destiny.excludeEdge(destinyLabel: vertexLabel);
     });
 
     vertices.removeWhere((vertex) => vertex.label == vertexLabel);
@@ -126,11 +158,11 @@ class NotOrientedGraph extends _Graph {
 
   /// An unoriented graph is said to be connected if from one vertex it can be reached all others.
   /// ```
-  /// | u |----| v |    | w |
-  ///   |      / |      / |
-  ///   |    /   |    /   |
-  ///   |  /     |  /     |
-  /// | x |----| y |    | z |
+  ///   | u |----| v |    | w |
+  ///     |      / |      / |
+  ///     |    /   |    /   |
+  ///     |  /     |  /     |
+  ///   | x |----| y |    | z |
   /// ```
   ///
   bool isConnected() {
@@ -149,7 +181,7 @@ class NotOrientedGraph extends _Graph {
     return true;
   }
 
-  /// Is a not oriented, acyclic and connected graph
+  /// If its a not oriented, acyclic and connected graph
   /// ```
   ///
   ///       | u |-----| t |
@@ -168,7 +200,7 @@ class NotOrientedGraph extends _Graph {
     return isConnected();
   }
 
-  /// Is a not oriented and acyclic graph
+  /// If its a not oriented and acyclic graph
   /// ```
   ///
   ///       | u |             | y |----| b |
@@ -204,7 +236,39 @@ class NotOrientedGraph extends _Graph {
     return graphString.substring(0, graphString.length - 1);
   }
 
+  /// Show the graph in ajacencies list mode, `null` values ​​are not shown
+  /// ```
+  ///   myGraph.print();
   ///
+  ///   (1) ----- (2)
+  ///       ----- (3)
+  ///
+  ///   (2) ----- (1)
+  ///
+  ///   (3) ----- (1)
+  /// ```
+  /// The values ​​contained in the vertices can be shown with vertexValue -> `(label,value)`
+  /// ```
+  ///   myGraph.print(vertexValue: true);
+  ///
+  ///   (1:5) ----- (2:4)
+  ///         ----- (3:10)
+  ///
+  ///   (2:4) ----- (1:5)
+  ///
+  ///   (3:10) ----- (1:5)
+  /// ```
+  /// Edge weights can be shown with edgeWeight
+  /// ```
+  ///   myGraph.print(edgeWeigth: true);
+  ///
+  ///   (1) --1-- (2)
+  ///       --2-- (3)
+  ///
+  ///   (2) --5-- (1)
+  ///
+  ///   (3) --10-- (1)
+  /// ```
   String print({bool vertexValue = false, bool edgeWeigth = false}) {
     var graphString = "";
 
