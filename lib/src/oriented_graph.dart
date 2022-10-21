@@ -11,7 +11,7 @@ class OrientedGraph extends _Graph {
   void addVertex({
     required Vertex newVertex,
     List<String>? connectedTo,
-    List<num?>? weigth,
+    List<num?>? edgeWeigth,
   }) {
     if (_searchWaitList(newVertex.label)) {
       _removeFromWaitList(newVertex);
@@ -22,7 +22,8 @@ class OrientedGraph extends _Graph {
 
     if (connectedTo != null) {
       final connectedToAsMap = {
-        for (var k = 0; k < connectedTo.length; k++) connectedTo[k]: weigth?[k]
+        for (var k = 0; k < connectedTo.length; k++)
+          connectedTo[k]: edgeWeigth?[k]
       };
 
       _connectVertexToNext(connectedToAsMap, newVertex);
@@ -34,7 +35,7 @@ class OrientedGraph extends _Graph {
     _waitList.removeWhere((element) {
       if (element.vertex.label == newVertex.label) {
         element.connectedFrom
-            .addEdge(connectedTo: newVertex, weigth: element.weigth);
+            .addEdge(connectedTo: newVertex, weigth: element.edgeWeigth);
 
         newVertex.connectedFrom.add(element.connectedFrom);
 

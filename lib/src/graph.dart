@@ -11,26 +11,26 @@ part 'oriented_graph.dart';
 /// <Vertex,ConnectedFrom,Weigth,Weigth2>
 typedef _WaitType = Tuple4<Vertex, Vertex, num?, num?>;
 
-/// graph model for oriented and not oriented, with the common functionalities to both
+/// Graph model for oriented and not oriented, with the common functionalities to both
 abstract class _Graph {
+  /// List containing all existing `vertices` in the graph
   final List<Vertex> vertices;
 
-  /// <Vertex,ConnectedFrom,Weigth,Weigth2>
+  /// List used for the `addVertex` method, in which a `vertex` not yet created is added here
   final _waitList = <_WaitType>[];
 
   _Graph._({required this.vertices});
 
-  /// model function that is overridden for both oriented and not oriented graphs
+  /// Model function that is overridden for both `oriented` and `not oriented` graphs
   void addVertex({
     required Vertex newVertex,
     List<String>? connectedTo,
-    List<num>? weigth,
+    List<num>? edgeWeigth,
   });
 
-  ///
   void excludeVertex({required String vertexLabel});
 
-  /// returns a vertex from vertices list according to its label
+  /// Returns a `vertex` from vertices list according to its label
   Vertex getV(String label) {
     return vertices.firstWhere(
       (element) => element.label == label,
@@ -38,7 +38,6 @@ abstract class _Graph {
     );
   }
 
-  /// set the graph to its initial values
   void _setInitialValues() {
     for (var vertex in vertices) {
       vertex
@@ -48,13 +47,15 @@ abstract class _Graph {
     }
   }
 
-  ///
+  /// First vertex of the list of vertices
   Vertex get first => vertices.first;
 
-  ///
+  /// Last vertex of the list of vertices
   Vertex get last => vertices.last;
 
   /// Calculates distance to all reachable vertices from a vertex of origin
+  ///
+  ///
   void bfs(Vertex initialNode) {
     _setInitialValues();
 
@@ -116,7 +117,7 @@ abstract class _Graph {
     return time;
   }
 
-  ///
+  /// Checks if there are any cycles in the whole graph
   bool hasCicle() {
     _setInitialValues();
 
@@ -137,7 +138,6 @@ abstract class _Graph {
     return false;
   }
 
-  ///
   bool _searchWaitList(String label) {
     for (var elem in _waitList) {
       if (elem.item1.label == label) {
@@ -162,12 +162,12 @@ abstract class _Graph {
 extension _Tuple4Extension on _WaitType {
   Vertex get vertex => item1;
   Vertex get connectedFrom => item2;
-  num? get weigth => item3;
-  num? get weigth2 => item4;
+  num? get edgeWeigth => item3;
+  num? get edgeWeigthBack => item4;
 }
 
 extension _Tuple3Extension on Tuple3<String, num?, num?> {
   String get connectedTo => item1;
-  num? get weigth => item2;
-  num? get weigth2 => item3;
+  num? get edgeWeigth => item2;
+  num? get edgeWeigthBack => item3;
 }

@@ -21,7 +21,9 @@ void main() {
     final myGraph = OrientedGraph();
 
     myGraph.addVertex(
-        newVertex: Vertex(label: '1'), connectedTo: ['2', '3'], weigth: [1, 2]);
+        newVertex: Vertex(label: '1'),
+        connectedTo: ['2', '3'],
+        edgeWeigth: [1, 2]);
     myGraph.addVertex(newVertex: Vertex(label: '2'));
     myGraph.addVertex(newVertex: Vertex(label: '3'));
 
@@ -54,8 +56,8 @@ void main() {
     myGraph.addVertex(
         newVertex: Vertex(label: '1'),
         connectedTo: ['2', '3'],
-        weigth: [1, 2],
-        weigth2: [1, 2]);
+        edgeWeigth: [1, 2],
+        edgeWeigthBack: [1, 2]);
     myGraph.addVertex(newVertex: Vertex(label: '2'));
     myGraph.addVertex(newVertex: Vertex(label: '3'));
 
@@ -89,7 +91,7 @@ void main() {
     myGraph.addVertex(
         newVertex: Vertex(label: '1', value: 1),
         connectedTo: ['2', '3'],
-        weigth: [1, 2]);
+        edgeWeigth: [1, 2]);
     myGraph.addVertex(newVertex: Vertex(label: '2', value: 2));
     myGraph.addVertex(newVertex: Vertex(label: '3', value: 3));
 
@@ -123,8 +125,8 @@ void main() {
     myGraph.addVertex(
         newVertex: Vertex(label: '1', value: 1),
         connectedTo: ['2', '3'],
-        weigth: [1, 2],
-        weigth2: [1, 2]);
+        edgeWeigth: [1, 2],
+        edgeWeigthBack: [1, 2]);
     myGraph.addVertex(newVertex: Vertex(label: '2', value: 2));
     myGraph.addVertex(newVertex: Vertex(label: '3', value: 3));
 

@@ -1,18 +1,56 @@
 part of 'graph.dart';
 
-///
+/// Type of graph in which the edges have no definite way
+/// ```
+/// | u |----| v |
+///   |
+///   |
+/// | w |
+/// ```
+/// can be declared without vertices:
+/// ```dart
+/// final myGraph = NotOrientedGraph()
+/// ```
+/// or with pre-defined vertices:
+/// ```dart
+/// final myGraph = NotOrientedGraph(vertices:[Vertex(label: 'u'), Vertex(label: 'v')])
+/// ```
 class NotOrientedGraph extends _Graph {
   NotOrientedGraph({
     List<Vertex>? vertices,
   }) : super._(vertices: vertices ?? []);
 
+  /// Add a new vertex to the graph
   ///
+  /// if it has adjacents, their `labels` can be passed in `connectedTo`
+  /// if such vertices have not yet been created, they will be stored in a waiting list until their declaration occurs,
+  /// edges will be created automatically
+  /// ```
+  ///
+  /// myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
+  /// myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['x']);
+  /// myGraph.addVertex(newVertex: Vertex(label: 'x'));
+  ///
+  ///
+  /// ```
+  /// the weights of both forward and back edges can be passed in `edgeWeight` and `edgeWeigthBack` respectively
+  /// ```
+  /// myGraph.addVertex(newVertex: Vertex(label: 'u'),
+  ///      connectedTo: ['v', 'x'],
+  ///      edgeWeigth: [1, 2],
+  ///      edgeWeigthBack: [3, 4]);
+  ///
+  ///
+  /// ```
+  /// weights can take on `null` values
+  ///
+  /// example...
   @override
   void addVertex({
     required Vertex newVertex,
     List<String>? connectedTo,
-    List<num?>? weigth,
-    List<num?>? weigth2,
+    List<num?>? edgeWeigth,
+    List<num?>? edgeWeigthBack,
   }) {
     if (_searchWaitList(newVertex.label)) {
       _removeFromWaitList(newVertex);
@@ -24,49 +62,47 @@ class NotOrientedGraph extends _Graph {
     if (connectedTo != null) {
       final connectedToAsTriple = [
         for (var k = 0; k < connectedTo.length; k++)
-          Tuple3(connectedTo[k], weigth?[k], weigth2?[k])
+          Tuple3(connectedTo[k], edgeWeigth?[k], edgeWeigthBack?[k])
       ];
 
       _connectVertices(connectedToAsTriple, newVertex);
     }
   }
 
-  ///
   void _removeFromWaitList(Vertex newVertex) {
     _waitList.removeWhere((element) {
       if (element.vertex.label == newVertex.label) {
         element.connectedFrom
-            .addEdge(connectedTo: newVertex, weigth: element.weigth);
+            .addEdge(connectedTo: newVertex, weigth: element.edgeWeigth);
         newVertex.addEdge(
-            connectedTo: element.connectedFrom, weigth: element.weigth2);
+            connectedTo: element.connectedFrom, weigth: element.edgeWeigthBack);
         return true;
       }
       return false;
     });
   }
 
-  ///
   void _connectVertices(
       List<Tuple3<String, num?, num?>> connectedToAsTriple, Vertex newVertex) {
     for (var t in connectedToAsTriple) {
       if (getV(t.connectedTo) is NullVertex) {
-        _waitList.add(Tuple4(
-            Vertex(label: t.connectedTo), newVertex, t.weigth, t.weigth2));
+        _waitList.add(Tuple4(Vertex(label: t.connectedTo), newVertex,
+            t.edgeWeigth, t.edgeWeigthBack));
       } else {
         newVertex.addEdge(
           connectedTo: getV(t.connectedTo),
-          weigth: t.weigth,
+          weigth: t.edgeWeigth,
         );
 
         getV(t.connectedTo).addEdge(
           connectedTo: newVertex,
-          weigth: t.weigth2,
+          weigth: t.edgeWeigthBack,
         );
       }
     }
   }
 
-  ///
+  /// removes a vertex along with the edges that arrived at it from its adjacent ones
   @override
   void excludeVertex({required String vertexLabel}) {
     getV(vertexLabel).edgesList.forEach((edge) {
@@ -88,6 +124,14 @@ class NotOrientedGraph extends _Graph {
     return cont ~/ 2;
   }
 
+  /// An unoriented graph is said to be connected if from one vertex it can be reached all others.
+  /// ```
+  /// | u |----| v |    | w |
+  ///   |      / |      / |
+  ///   |    /   |    /   |
+  ///   |  /     |  /     |
+  /// | x |----| y |    | z |
+  /// ```
   ///
   bool isConnected() {
     bfs(first);
@@ -105,7 +149,17 @@ class NotOrientedGraph extends _Graph {
     return true;
   }
 
+  /// Is a not oriented, acyclic and connected graph
+  /// ```
   ///
+  ///       | u |-----| t |
+  ///       /   \
+  ///      /     \
+  ///   | v |   | w |
+  ///              \
+  ///               \
+  ///             | x |
+  /// ```
   bool isTree() {
     if (hasCicle()) {
       return false;
@@ -114,7 +168,17 @@ class NotOrientedGraph extends _Graph {
     return isConnected();
   }
 
+  /// Is a not oriented and acyclic graph
+  /// ```
   ///
+  ///       | u |             | y |----| b |
+  ///       /   \             /   \
+  ///      /     \           /     \
+  ///   | v |   | w |     | z |   | a |
+  ///              \
+  ///               \
+  ///             | x |
+  /// ```
   bool isForest() {
     if (hasCicle()) {
       return false;
@@ -140,6 +204,7 @@ class NotOrientedGraph extends _Graph {
     return graphString.substring(0, graphString.length - 1);
   }
 
+  ///
   String print({bool vertexValue = false, bool edgeWeigth = false}) {
     var graphString = "";
 

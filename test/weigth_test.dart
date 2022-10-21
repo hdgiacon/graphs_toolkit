@@ -6,17 +6,21 @@ void main() {
     final myGraph = OrientedGraph();
 
     myGraph.addVertex(
-        newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x'], weigth: [1, 2]);
+        newVertex: Vertex(label: 'u'),
+        connectedTo: ['v', 'x'],
+        edgeWeigth: [1, 2]);
     myGraph.addVertex(
-        newVertex: Vertex(label: 'v'), connectedTo: ['y'], weigth: [3]);
+        newVertex: Vertex(label: 'v'), connectedTo: ['y'], edgeWeigth: [3]);
     myGraph.addVertex(
-        newVertex: Vertex(label: 'y'), connectedTo: ['x'], weigth: [4]);
+        newVertex: Vertex(label: 'y'), connectedTo: ['x'], edgeWeigth: [4]);
     myGraph.addVertex(
-        newVertex: Vertex(label: 'x'), connectedTo: ['v'], weigth: [5]);
+        newVertex: Vertex(label: 'x'), connectedTo: ['v'], edgeWeigth: [5]);
     myGraph.addVertex(
-        newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z'], weigth: [6, 7]);
+        newVertex: Vertex(label: 'w'),
+        connectedTo: ['y', 'z'],
+        edgeWeigth: [6, 7]);
     myGraph.addVertex(
-        newVertex: Vertex(label: 'z'), connectedTo: ['z'], weigth: [8]);
+        newVertex: Vertex(label: 'z'), connectedTo: ['z'], edgeWeigth: [8]);
 
     expect(
       myGraph,
@@ -71,19 +75,19 @@ void main() {
     myGraph.addVertex(
         newVertex: Vertex(label: 'u'),
         connectedTo: ['v', 'x'],
-        weigth: [null, 2]);
+        edgeWeigth: [null, 2]);
     myGraph.addVertex(
-        newVertex: Vertex(label: 'v'), connectedTo: ['y'], weigth: [3]);
+        newVertex: Vertex(label: 'v'), connectedTo: ['y'], edgeWeigth: [3]);
     myGraph.addVertex(
-        newVertex: Vertex(label: 'y'), connectedTo: ['x'], weigth: [null]);
+        newVertex: Vertex(label: 'y'), connectedTo: ['x'], edgeWeigth: [null]);
     myGraph.addVertex(
-        newVertex: Vertex(label: 'x'), connectedTo: ['v'], weigth: [5]);
+        newVertex: Vertex(label: 'x'), connectedTo: ['v'], edgeWeigth: [5]);
     myGraph.addVertex(
         newVertex: Vertex(label: 'w'),
         connectedTo: ['y', 'z'],
-        weigth: [6, null]);
+        edgeWeigth: [6, null]);
     myGraph.addVertex(
-        newVertex: Vertex(label: 'z'), connectedTo: ['z'], weigth: [8]);
+        newVertex: Vertex(label: 'z'), connectedTo: ['z'], edgeWeigth: [8]);
 
     expect(
       myGraph,
@@ -132,30 +136,31 @@ void main() {
     );
   });
 
+  //TODO: se eu nao passar um valor para o peso e houver uma aresta, deve ser nulo (testar isso)
   test('not oriented graph with edge weigth - test', () {
     final myGraph = NotOrientedGraph();
 
     myGraph.addVertex(
         newVertex: Vertex(label: 'u'),
         connectedTo: ['v', 'x'],
-        weigth: [1, 2],
-        weigth2: [1, 2]);
+        edgeWeigth: [1, 2],
+        edgeWeigthBack: [1, 2]);
     myGraph.addVertex(
         newVertex: Vertex(label: 'v'),
         connectedTo: ['y', 'x'],
-        weigth: [3, 4],
-        weigth2: [3, 4]);
+        edgeWeigth: [3, 4],
+        edgeWeigthBack: [3, 4]);
     myGraph.addVertex(
         newVertex: Vertex(label: 'y'),
         connectedTo: ['x', 'w'],
-        weigth: [5, 6],
-        weigth2: [5, 6]);
+        edgeWeigth: [5, 6],
+        edgeWeigthBack: [5, 6]);
     myGraph.addVertex(newVertex: Vertex(label: 'x'));
     myGraph.addVertex(
         newVertex: Vertex(label: 'w'),
         connectedTo: ['z'],
-        weigth: [7],
-        weigth2: [7]);
+        edgeWeigth: [7],
+        edgeWeigthBack: [7]);
     myGraph.addVertex(newVertex: Vertex(label: 'z'));
 
     expect(
@@ -217,24 +222,24 @@ void main() {
     myGraph.addVertex(
         newVertex: Vertex(label: 'u'),
         connectedTo: ['v', 'x'],
-        weigth: [1, null],
-        weigth2: [null, 2]);
+        edgeWeigth: [1, null],
+        edgeWeigthBack: [null, 2]);
     myGraph.addVertex(
         newVertex: Vertex(label: 'v'),
         connectedTo: ['y', 'x'],
-        weigth: [null, null],
-        weigth2: [3, 4]);
+        edgeWeigth: [null, null],
+        edgeWeigthBack: [3, 4]);
     myGraph.addVertex(
         newVertex: Vertex(label: 'y'),
         connectedTo: ['x', 'w'],
-        weigth: [5, 6],
-        weigth2: [5, 6]);
+        edgeWeigth: [5, 6],
+        edgeWeigthBack: [5, 6]);
     myGraph.addVertex(newVertex: Vertex(label: 'x'));
     myGraph.addVertex(
         newVertex: Vertex(label: 'w'),
         connectedTo: ['z'],
-        weigth: [7],
-        weigth2: [null]);
+        edgeWeigth: [7],
+        edgeWeigthBack: [null]);
     myGraph.addVertex(newVertex: Vertex(label: 'z'));
 
     expect(
