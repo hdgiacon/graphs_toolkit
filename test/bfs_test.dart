@@ -226,9 +226,9 @@ void main() {
           ),
           Vertex(
             label: 'w',
-            value: 3,
+            value: 0,
             ancestor: null,
-            visited: true,
+            visited: false,
             edgesList: [
               Edge(destiny: myGraph.getV('y')),
               Edge(destiny: myGraph.getV('z')),
@@ -236,9 +236,9 @@ void main() {
           ),
           Vertex(
             label: 'z',
-            value: 4,
-            ancestor: myGraph.getV('w'),
-            visited: true,
+            value: 0,
+            ancestor: null,
+            visited: false,
             edgesList: [
               Edge(destiny: myGraph.getV('z')),
             ],
