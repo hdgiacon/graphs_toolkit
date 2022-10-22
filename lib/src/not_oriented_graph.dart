@@ -93,6 +93,10 @@ class NotOrientedGraph extends _Graph {
     vertices.add(newVertex);
 
     if (connectedTo != null) {
+      edgeWeigth = _listFillIfNecessaryWithNull(connectedTo, edgeWeigth);
+      edgeWeigthBack =
+          _listFillIfNecessaryWithNull(connectedTo, edgeWeigthBack);
+
       final connectedToAsTriple = [
         for (var k = 0; k < connectedTo.length; k++)
           Tuple3(connectedTo[k], edgeWeigth?[k], edgeWeigthBack?[k])
@@ -100,6 +104,17 @@ class NotOrientedGraph extends _Graph {
 
       _connectVertices(connectedToAsTriple, newVertex);
     }
+  }
+
+  List<num?>? _listFillIfNecessaryWithNull(
+      List<String>? connectedTo, List<num?>? edgeWeigth) {
+    if (edgeWeigth != null && connectedTo!.length != edgeWeigth.length) {
+      while (edgeWeigth.length != connectedTo.length) {
+        edgeWeigth.add(null);
+      }
+    }
+
+    return edgeWeigth;
   }
 
   void _removeFromWaitList(Vertex newVertex) {

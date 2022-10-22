@@ -59,8 +59,8 @@ class OrientedGraph extends _Graph {
   /// Or omitting the `null` value at the end
   /// ```
   /// myGraph.addVertex(newVertex: Vertex(label: 'u'),
-  ///      connectedTo: ['v', 'x'],
-  ///      edgeWeigth: [1]);
+  ///      connectedTo: ['v', 'x', 'y'],
+  ///      edgeWeigth: [1]);  // will be [1, null, null]
   ///
   ///   | u |--1-->| v |
   ///   | u |----->| x |
@@ -86,6 +86,8 @@ class OrientedGraph extends _Graph {
     vertices.add(newVertex);
 
     if (connectedTo != null) {
+      edgeWeigth = _listFillIfNecessaryWithNull(connectedTo, edgeWeigth);
+
       final connectedToAsMap = {
         for (var k = 0; k < connectedTo.length; k++)
           connectedTo[k]: edgeWeigth?[k]
@@ -93,6 +95,17 @@ class OrientedGraph extends _Graph {
 
       _connectVertexToNext(connectedToAsMap, newVertex);
     }
+  }
+
+  List<num?>? _listFillIfNecessaryWithNull(
+      List<String>? connectedTo, List<num?>? edgeWeigth) {
+    if (edgeWeigth != null && connectedTo!.length != edgeWeigth.length) {
+      while (edgeWeigth.length != connectedTo.length) {
+        edgeWeigth.add(null);
+      }
+    }
+
+    return edgeWeigth;
   }
 
   void _removeFromWaitList(Vertex newVertex) {
