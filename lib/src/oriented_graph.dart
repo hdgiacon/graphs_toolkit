@@ -243,6 +243,8 @@ class OrientedGraph extends _Graph {
   ///
   ///   (3) --8--> (3)
   /// ```
+  ///
+  /// `null` values ​​are not shown
   String print({bool vertexValue = false, bool edgeWeigth = false}) {
     var graphString = "";
 

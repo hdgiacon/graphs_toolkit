@@ -269,6 +269,7 @@ class NotOrientedGraph extends _Graph {
   ///
   ///   (3) --10-- (1)
   /// ```
+  /// `null` values ​​are not shown
   String print({bool vertexValue = false, bool edgeWeigth = false}) {
     var graphString = "";
 

@@ -54,9 +54,19 @@ abstract class _Graph {
   /// Last vertex of the list of vertices
   Vertex get last => vertices.last;
 
+  /// Breadth First Search
+  ///
   /// Calculates distance to all reachable vertices from a vertex of origin
   ///
+  /// Causes a side effect on the graph, generating a `breadth-first search tree`
   ///
+  /// The tree is defined by the `ancestor` field at each vertex
+  ///
+  /// The `distance` calculated and stored in `value`
+  ///
+  /// `ancestor` saves the previous vertex
+  ///
+  /// `visited` becomes true
   void bfs(Vertex initialNode) {
     _setInitialValues();
 
@@ -83,7 +93,19 @@ abstract class _Graph {
     }
   }
 
+  /// Depth-first search
   ///
+  /// At each vertex of the graph, explore as much as possible until going to the next unvisited vertex
+  ///
+  /// Causes a side effect on the graph, building a depth-first search forest
+  ///
+  /// Contains several depth-first search trees
+  ///
+  /// The `distance` calculated and stored in `value`
+  ///
+  /// `ancestor` saves the previous vertex
+  ///
+  /// `visited` becomes true
   void dfs() {
     _setInitialValues();
 
@@ -96,7 +118,6 @@ abstract class _Graph {
     }
   }
 
-  ///
   int _dfsVisit(Vertex actual, int time, bool cicleSearch) {
     time += 1;
     actual.value = time;
