@@ -126,15 +126,15 @@ class OrientedGraph extends _Graph {
     Map<String, num?> connectedToAsMap,
     Vertex newVertex,
   ) {
-    connectedToAsMap.forEach((connectedTo, weigth) {
+    connectedToAsMap.forEach((connectedTo, edgeWeigth) {
       if (getV(connectedTo) is NullVertex) {
         _waitList.add(
-          Tuple4(Vertex(label: connectedTo), newVertex, weigth, null),
+          Tuple3(Vertex(label: connectedTo), newVertex, edgeWeigth),
         );
       } else {
         newVertex.addEdge(
           connectedTo: getV(connectedTo),
-          weigth: weigth,
+          weigth: edgeWeigth,
         );
 
         getV(connectedTo).connectedFrom.add(newVertex);

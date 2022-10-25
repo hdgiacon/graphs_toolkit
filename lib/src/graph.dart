@@ -1,6 +1,6 @@
 import 'dart:collection' show ListQueue;
 import 'package:collection/collection.dart' show DeepCollectionEquality;
-import 'package:tuple/tuple.dart' show Tuple3, Tuple4;
+import 'package:tuple/tuple.dart' show Tuple3;
 
 part "edge.dart";
 part "vertex.dart";
@@ -8,8 +8,8 @@ part "vertex.dart";
 part 'not_oriented_graph.dart';
 part 'oriented_graph.dart';
 
-/// <Vertex,ConnectedFrom,EdgeWeigth,EdgeWeigthBack>
-typedef _WaitType = Tuple4<Vertex, Vertex, num?, num?>;
+/// <Vertex,ConnectedFrom,EdgeWeigth>
+typedef _WaitType = Tuple3<Vertex, Vertex, num?>;
 
 /// Graph model for oriented and not oriented, with the common functionalities to both
 abstract class _Graph {
@@ -202,15 +202,8 @@ abstract class _Graph {
   int get hashCode => vertices.hashCode;
 }
 
-extension _Tuple4Extension on _WaitType {
+extension _Tuple3Extension on _WaitType {
   Vertex get vertex => item1;
   Vertex get connectedFrom => item2;
   num? get edgeWeigth => item3;
-  num? get edgeWeigthBack => item4;
-}
-
-extension _Tuple3Extension on Tuple3<String, num?, num?> {
-  String get connectedTo => item1;
-  num? get edgeWeigth => item2;
-  num? get edgeWeigthBack => item3;
 }

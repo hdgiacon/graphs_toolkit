@@ -83,7 +83,6 @@ class NotOrientedGraph extends _Graph {
     required Vertex newVertex,
     List<String>? connectedTo,
     List<num?>? edgeWeigth,
-    List<num?>? edgeWeigthBack,
   }) {
     if (_searchWaitList(newVertex.label)) {
       _removeFromWaitList(newVertex);
@@ -94,15 +93,13 @@ class NotOrientedGraph extends _Graph {
 
     if (connectedTo != null) {
       edgeWeigth = _listFillIfNecessaryWithNull(connectedTo, edgeWeigth);
-      edgeWeigthBack =
-          _listFillIfNecessaryWithNull(connectedTo, edgeWeigthBack);
 
-      final connectedToAsTriple = [
+      final connectedToAsMap = {
         for (var k = 0; k < connectedTo.length; k++)
-          Tuple3(connectedTo[k], edgeWeigth?[k], edgeWeigthBack?[k])
-      ];
+          connectedTo[k]: edgeWeigth?[k]
+      };
 
-      _connectVertices(connectedToAsTriple, newVertex);
+      _connectVertices(connectedToAsMap, newVertex);
     }
   }
 
@@ -123,31 +120,30 @@ class NotOrientedGraph extends _Graph {
         element.connectedFrom
             .addEdge(connectedTo: newVertex, weigth: element.edgeWeigth);
         newVertex.addEdge(
-            connectedTo: element.connectedFrom, weigth: element.edgeWeigthBack);
+            connectedTo: element.connectedFrom, weigth: element.edgeWeigth);
         return true;
       }
       return false;
     });
   }
 
-  void _connectVertices(
-      List<Tuple3<String, num?, num?>> connectedToAsTriple, Vertex newVertex) {
-    for (var t in connectedToAsTriple) {
-      if (getV(t.connectedTo) is NullVertex) {
-        _waitList.add(Tuple4(Vertex(label: t.connectedTo), newVertex,
-            t.edgeWeigth, t.edgeWeigthBack));
+  void _connectVertices(Map<String, num?> connectedToAsMap, Vertex newVertex) {
+    connectedToAsMap.forEach((connectedTo, edgeWeigth) {
+      if (getV(connectedTo) is NullVertex) {
+        _waitList
+            .add(Tuple3(Vertex(label: connectedTo), newVertex, edgeWeigth));
       } else {
         newVertex.addEdge(
-          connectedTo: getV(t.connectedTo),
-          weigth: t.edgeWeigth,
+          connectedTo: getV(connectedTo),
+          weigth: edgeWeigth,
         );
 
-        getV(t.connectedTo).addEdge(
+        getV(connectedTo).addEdge(
           connectedTo: newVertex,
-          weigth: t.edgeWeigthBack,
+          weigth: edgeWeigth,
         );
       }
-    }
+    });
   }
 
   /// Removes a vertex by its `label` along with the edges that arrived at it from its adjacent ones

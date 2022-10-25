@@ -142,24 +142,21 @@ void main() {
     myGraph.addVertex(
         newVertex: Vertex(label: 'u'),
         connectedTo: ['v', 'x'],
-        edgeWeigth: [1, 2],
-        edgeWeigthBack: [1, 2]);
+        edgeWeigth: [1, 2]);
     myGraph.addVertex(
         newVertex: Vertex(label: 'v'),
         connectedTo: ['y', 'x'],
-        edgeWeigth: [3, 4],
-        edgeWeigthBack: [3, 4]);
+        edgeWeigth: [3, 4]);
     myGraph.addVertex(
         newVertex: Vertex(label: 'y'),
         connectedTo: ['x', 'w'],
-        edgeWeigth: [5, 6],
-        edgeWeigthBack: [5, 6]);
+        edgeWeigth: [5, 6]);
     myGraph.addVertex(newVertex: Vertex(label: 'x'));
     myGraph.addVertex(
-        newVertex: Vertex(label: 'w'),
-        connectedTo: ['z'],
-        edgeWeigth: [7],
-        edgeWeigthBack: [7]);
+      newVertex: Vertex(label: 'w'),
+      connectedTo: ['z'],
+      edgeWeigth: [7],
+    );
     myGraph.addVertex(newVertex: Vertex(label: 'z'));
 
     expect(
@@ -221,24 +218,21 @@ void main() {
     myGraph.addVertex(
         newVertex: Vertex(label: 'u'),
         connectedTo: ['v', 'x'],
-        edgeWeigth: [1, null],
-        edgeWeigthBack: [null, 2]);
+        edgeWeigth: [1, null]);
     myGraph.addVertex(
         newVertex: Vertex(label: 'v'),
         connectedTo: ['y', 'x'],
-        edgeWeigth: [null, null],
-        edgeWeigthBack: [3, 4]);
+        edgeWeigth: [null, null]);
     myGraph.addVertex(
         newVertex: Vertex(label: 'y'),
         connectedTo: ['x', 'w'],
-        edgeWeigth: [5, 6],
-        edgeWeigthBack: [5, 6]);
+        edgeWeigth: [5, 6]);
     myGraph.addVertex(newVertex: Vertex(label: 'x'));
     myGraph.addVertex(
-        newVertex: Vertex(label: 'w'),
-        connectedTo: ['z'],
-        edgeWeigth: [7],
-        edgeWeigthBack: [null]);
+      newVertex: Vertex(label: 'w'),
+      connectedTo: ['z'],
+      edgeWeigth: [7],
+    );
     myGraph.addVertex(newVertex: Vertex(label: 'z'));
 
     expect(
@@ -255,7 +249,7 @@ void main() {
           Vertex(
             label: 'v',
             edgesList: [
-              Edge(destiny: myGraph.getV('u'), weigth: null),
+              Edge(destiny: myGraph.getV('u'), weigth: 1),
               Edge(destiny: myGraph.getV('y'), weigth: null),
               Edge(destiny: myGraph.getV('x'), weigth: null),
             ],
@@ -263,7 +257,7 @@ void main() {
           Vertex(
             label: 'y',
             edgesList: [
-              Edge(destiny: myGraph.getV('v'), weigth: 3),
+              Edge(destiny: myGraph.getV('v'), weigth: null),
               Edge(destiny: myGraph.getV('x'), weigth: 5),
               Edge(destiny: myGraph.getV('w'), weigth: 6),
             ],
@@ -271,8 +265,8 @@ void main() {
           Vertex(
             label: 'x',
             edgesList: [
-              Edge(destiny: myGraph.getV('u'), weigth: 2),
-              Edge(destiny: myGraph.getV('v'), weigth: 4),
+              Edge(destiny: myGraph.getV('u'), weigth: null),
+              Edge(destiny: myGraph.getV('v'), weigth: null),
               Edge(destiny: myGraph.getV('y'), weigth: 5),
             ],
           ),
@@ -286,7 +280,7 @@ void main() {
           Vertex(
             label: 'z',
             edgesList: [
-              Edge(destiny: myGraph.getV('w'), weigth: null),
+              Edge(destiny: myGraph.getV('w'), weigth: 7),
             ],
           ),
         ],
@@ -368,24 +362,21 @@ void main() {
     myGraph.addVertex(
         newVertex: Vertex(label: 'u'),
         connectedTo: ['v', 'x'],
-        edgeWeigth: [1, 2],
-        edgeWeigthBack: [1]);
+        edgeWeigth: [1, 2]);
     myGraph.addVertex(
         newVertex: Vertex(label: 'v'),
         connectedTo: ['y', 'x'],
-        edgeWeigth: [3],
-        edgeWeigthBack: [3, 4]);
+        edgeWeigth: [3]);
     myGraph.addVertex(
         newVertex: Vertex(label: 'y'),
         connectedTo: ['x', 'w'],
-        edgeWeigth: [5, 6],
-        edgeWeigthBack: [5, 6]);
+        edgeWeigth: [5, 6]);
     myGraph.addVertex(newVertex: Vertex(label: 'x'));
     myGraph.addVertex(
-        newVertex: Vertex(label: 'w'),
-        connectedTo: ['z'],
-        edgeWeigth: [7],
-        edgeWeigthBack: [7]);
+      newVertex: Vertex(label: 'w'),
+      connectedTo: ['z'],
+      edgeWeigth: [],
+    );
     myGraph.addVertex(newVertex: Vertex(label: 'z'));
 
     expect(
@@ -418,8 +409,8 @@ void main() {
           Vertex(
             label: 'x',
             edgesList: [
-              Edge(destiny: myGraph.getV('u'), weigth: null),
-              Edge(destiny: myGraph.getV('v'), weigth: 4),
+              Edge(destiny: myGraph.getV('u'), weigth: 2),
+              Edge(destiny: myGraph.getV('v'), weigth: null),
               Edge(destiny: myGraph.getV('y'), weigth: 5),
             ],
           ),
@@ -427,13 +418,13 @@ void main() {
             label: 'w',
             edgesList: [
               Edge(destiny: myGraph.getV('y'), weigth: 6),
-              Edge(destiny: myGraph.getV('z'), weigth: 7),
+              Edge(destiny: myGraph.getV('z'), weigth: null),
             ],
           ),
           Vertex(
             label: 'z',
             edgesList: [
-              Edge(destiny: myGraph.getV('w'), weigth: 7),
+              Edge(destiny: myGraph.getV('w'), weigth: null),
             ],
           ),
         ],
