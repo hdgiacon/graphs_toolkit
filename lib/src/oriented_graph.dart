@@ -152,7 +152,7 @@ class OrientedGraph extends _Graph {
     vertices.removeWhere((vertex) => vertex.label == vertexLabel);
   }
 
-  /// List with all existing edges in the graph
+  /// get the number of edges on a Oriented Graph
   int get numOfEdges {
     var cont = 0;
 
@@ -163,7 +163,7 @@ class OrientedGraph extends _Graph {
     return cont;
   }
 
-  ///
+  /// List with all existing edges in the graph
   List<Edge> get getAllEdges {
     return [
       for (var vertex in vertices)
