@@ -167,6 +167,14 @@ class NotOrientedGraph extends _Graph {
     return cont ~/ 2;
   }
 
+  /// List with all existing edges in the graph
+  List<Edge> get getAllEdges {
+    return [
+      for (var vertex in vertices)
+        for (var edge in vertex.edgesList) edge
+    ];
+  }
+
   /// An unoriented graph is said to be connected if from one vertex it can be reached all others.
   /// ```
   ///   | u |----| v |    | w |

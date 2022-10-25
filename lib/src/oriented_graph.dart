@@ -152,7 +152,7 @@ class OrientedGraph extends _Graph {
     vertices.removeWhere((vertex) => vertex.label == vertexLabel);
   }
 
-  /// get the number of edges on a Oriented Graph
+  /// List with all existing edges in the graph
   int get numOfEdges {
     var cont = 0;
 
@@ -161,6 +161,14 @@ class OrientedGraph extends _Graph {
     }
 
     return cont;
+  }
+
+  ///
+  List<Edge> get getAllEdges {
+    return [
+      for (var vertex in vertices)
+        for (var edge in vertex.edgesList) edge
+    ];
   }
 
   /// A oriented graph is strongly connected if for every pair of `vertices(u, v)`, `v` is accessible from `u`
