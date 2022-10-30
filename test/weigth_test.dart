@@ -1,4 +1,4 @@
-import 'package:proj/graphs_toolkit.dart';
+import 'package:graphs_toolkit/graphs_toolkit.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -77,15 +77,14 @@ void main() {
         connectedTo: ['v', 'x'],
         edgeWeigth: [null, 2]);
     myGraph.addVertex(
-        newVertex: Vertex(label: 'v'), connectedTo: ['y'], edgeWeigth: [3]);
+        newVertex: Vertex(label: 'v'), connectedTo: ['y'], edgeWeigth: []);
     myGraph.addVertex(
         newVertex: Vertex(label: 'y'), connectedTo: ['x'], edgeWeigth: [null]);
-    myGraph.addVertex(
-        newVertex: Vertex(label: 'x'), connectedTo: ['v'], edgeWeigth: [5]);
+    myGraph.addVertex(newVertex: Vertex(label: 'x'), connectedTo: ['v']);
     myGraph.addVertex(
         newVertex: Vertex(label: 'w'),
         connectedTo: ['y', 'z'],
-        edgeWeigth: [6, null]);
+        edgeWeigth: [6]);
     myGraph.addVertex(
         newVertex: Vertex(label: 'z'), connectedTo: ['z'], edgeWeigth: [8]);
 

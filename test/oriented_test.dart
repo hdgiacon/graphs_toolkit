@@ -1,5 +1,4 @@
-import 'package:proj/graphs_toolkit.dart';
-import 'package:proj/src/graph.dart';
+import 'package:graphs_toolkit/graphs_toolkit.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -69,14 +68,10 @@ void main() {
               myGraph.getV('y'),
             ],
           ),
-          Vertex(
-            label: 'w',
-            edgesList: [
-              Edge(destiny: myGraph.getV('y')),
-              Edge(destiny: myGraph.getV('z')),
-            ],
-            connectedFrom: []
-          ),
+          Vertex(label: 'w', edgesList: [
+            Edge(destiny: myGraph.getV('y')),
+            Edge(destiny: myGraph.getV('z')),
+          ], connectedFrom: []),
           Vertex(
             label: 'z',
             edgesList: [
@@ -144,14 +139,10 @@ void main() {
               myGraph.getV('y'),
             ],
           ),
-          Vertex(
-            label: 'w',
-            edgesList: [
-              Edge(destiny: myGraph.getV('y')),
-              Edge(destiny: myGraph.getV('z')),
-            ],
-            connectedFrom: []
-          ),
+          Vertex(label: 'w', edgesList: [
+            Edge(destiny: myGraph.getV('y')),
+            Edge(destiny: myGraph.getV('z')),
+          ], connectedFrom: []),
           Vertex(
             label: 'z',
             edgesList: [

@@ -1,4 +1,4 @@
-part of 'graph.dart';
+part of 'graphs_toolkit_base.dart';
 
 class Vertex {
   /// A `num` value that can be stored

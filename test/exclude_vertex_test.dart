@@ -1,4 +1,4 @@
-import 'package:proj/graphs_toolkit.dart';
+import 'package:graphs_toolkit/graphs_toolkit.dart';
 import 'package:test/test.dart';
 
 void main() {

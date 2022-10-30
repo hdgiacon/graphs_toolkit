@@ -1,4 +1,4 @@
-part of 'graph.dart';
+part of 'graphs_toolkit_base.dart';
 
 class NotOrientedGraph extends _Graph {
   /// Type of graph in which the edges have no definite way
@@ -33,47 +33,44 @@ class NotOrientedGraph extends _Graph {
   ///
   ///
   /// ```
-  /// The weights of both forward and back edges can be passed in `edgeWeight` and `edgeWeigthBack` respectively
+  /// The weights of both forward and back edges can be passed in `edgeWeight`
   /// ```
   ///   myGraph.addVertex(newVertex: Vertex(label: 'u'),
   ///        connectedTo: ['v', 'x'],
-  ///        edgeWeigth: [1, 2],
-  ///        edgeWeigthBack: [3, 4]);
+  ///        edgeWeigth: [1, 2]);
   /// ```
   /// The values ​​are processed positionally, so:
   /// ```
   ///   | u |--1--| v |
   ///   | u |--2--| x |
   ///
-  ///   | v |--3--| u |
-  ///   | x |--4--| u |
+  ///   | v |--1--| u |
+  ///   | x |--2--| u |
   /// ```
   /// Weights can take on `null` values explicitly
   /// ```
   ///   myGraph.addVertex(newVertex: Vertex(label: 'u'),
   ///        connectedTo: ['v', 'x'],
-  ///        edgeWeigth: [1, null],
-  ///        edgeWeigthBack: [3, 4]);
+  ///        edgeWeigth: [1, null]);
   /// ```
   /// So
   /// ```
   ///   | u |--1--| v |
   ///   | u |--null--| x |
   ///
-  ///   | v |--3--| u |
-  ///   | x |--4--| u |
+  ///   | v |--1--| u |
+  ///   | x |--null--| u |
   /// ```
   /// Or omitting the `null` value at the end
   /// ```
   ///   myGraph.addVertex(newVertex: Vertex(label: 'u'),
   ///        connectedTo: ['v', 'x'],
-  ///        edgeWeigth: [1, 2],
-  ///        edgeWeigthBack: [3]);
+  ///        edgeWeigth: [1]);
   ///
   ///   | u |--1--| v |
-  ///   | u |--2--| x |
+  ///   | u |--null--| x |
   ///
-  ///   | v |--3--| u |
+  ///   | v |--1--| u |
   ///   | x |--null--| u |
   ///
   ///
@@ -175,7 +172,7 @@ class NotOrientedGraph extends _Graph {
     ];
   }
 
-  /// An unoriented graph is said to be connected if from one vertex it can be reached all others.
+  /// An not oriented graph is said to be connected if from one vertex it can be reached all others.
   /// ```
   ///   | u |----| v |    | w |
   ///     |      / |      / |

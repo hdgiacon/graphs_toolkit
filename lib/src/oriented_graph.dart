@@ -1,4 +1,4 @@
-part of 'graph.dart';
+part of 'graphs_toolkit_base.dart';
 
 class OrientedGraph extends _Graph {
   /// Type of graph in which the edges have a definite way
