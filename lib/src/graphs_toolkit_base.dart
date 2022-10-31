@@ -161,7 +161,7 @@ abstract class _Graph {
   ///
   ///
   /// ```
-  bool hasCicle() {
+  bool hasCycle() {
     _setInitialValues();
 
     var time = 0;

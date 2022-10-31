@@ -34,9 +34,9 @@ Conteudo
   - [Excluir um vertice](#excluir-um-vertice)
   - [First](#first)
   - [Last](#last)
-  - [Bfs](#bfs)
-  - [Dfs](#dfs)
-  - [Has cicle](#has-cicle)
+  - [Breadth First Search - Bfs](#breadth-first-search---bfs)
+  - [Depth First Search - Dfs](#depth-first-search---dfs)
+  - [Has cycle](#has-cycle)
 
 - [Metodos de um grafo orientado](#metodos-de-um-grafo-orientado)
   - [Num of edges](#num-of-edges)
@@ -63,8 +63,6 @@ Conteudo
   - [Is generator](#is-generator)
   - [Entry degree](#entry-degree)
   - [Exit degree](#exit-degree)
-
-- [Metodos de uma aresta](#metodos-de-uma-aresta)
 
 &nbsp;
 
@@ -238,25 +236,93 @@ Conteudo
 
 ### Excluir um vertice
 
+&nbsp;&nbsp;&nbsp;&nbsp;Exclui um vertice do grafo pelo seu identificador juntamente com as arestas que saem e chegam nele.
+
+```Dart
+  final myGraph = NotOrientedGraph();
+
+  myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x'], edgeWeigth: [null, 2]);
+  myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y'], edgeWeigth: []);
+  myGraph.addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x'], edgeWeigth: [null]);
+  myGraph.addVertex(newVertex: Vertex(label: 'x'), connectedTo: ['v']);
+  myGraph.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z'], edgeWeigth: [6]);
+  myGraph.addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z'], edgeWeigth: [8]);
+
+  myGraph.toString();
+
+  // colocar o output
+
+  myGraph.excludeVertex(vertexLabel: 'v');
+
+  myGraph.toString();
+
+  // colocar o output
+```
+
 &nbsp;
 
 ### First
+
+&nbsp;&nbsp;&nbsp;&nbsp;Retorna o primeiro vertice da lista de vertices do grafo.
+
+```Dart
+  final myGraph = NotOrientedGraph();
+
+  myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x'], edgeWeigth: [null, 2]);
+  myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y'], edgeWeigth: []);
+  myGraph.addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x'], edgeWeigth: [null]);
+  myGraph.addVertex(newVertex: Vertex(label: 'x'), connectedTo: ['v']);
+  myGraph.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z'], edgeWeigth: [6]);
+  myGraph.addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z'], edgeWeigth: [8]);
+
+  myGraph.first   // Vertex(label: 'u')
+```
 
 &nbsp;
 
 ### Last
 
+&nbsp;&nbsp;&nbsp;&nbsp;Retorna o ultimo vertice da lista de vertices do grafo.
+
+```Dart
+  final myGraph = NotOrientedGraph();
+
+  myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x'], edgeWeigth: [null, 2]);
+  myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y'], edgeWeigth: []);
+  myGraph.addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x'], edgeWeigth: [null]);
+  myGraph.addVertex(newVertex: Vertex(label: 'x'), connectedTo: ['v']);
+  myGraph.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z'], edgeWeigth: [6]);
+  myGraph.addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z'], edgeWeigth: [8]);
+
+  myGraph.last   // Vertex(label: 'z')
+```
+
 &nbsp;
 
-### Bfs
+### Breadth First Search - Bfs
 
 &nbsp;
 
-### Dfs
+### Depth First Search - Dfs
 
 &nbsp;
 
-### Has cicle
+### Has cycle
+
+&nbsp;&nbsp;&nbsp;&nbsp;Metodo que retorna verdadeiro se houver algum ciclo no grafo.
+
+```Dart
+  final myGraph = NotOrientedGraph();
+
+  myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x'], edgeWeigth: [null, 2]);
+  myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y'], edgeWeigth: []);
+  myGraph.addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x'], edgeWeigth: [null]);
+  myGraph.addVertex(newVertex: Vertex(label: 'x'), connectedTo: ['v']);
+  myGraph.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z'], edgeWeigth: [6]);
+  myGraph.addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z'], edgeWeigth: [8]);
+
+  myGraph.hasCycle   // true
+```
 
 &nbsp;
 
@@ -322,34 +388,121 @@ Conteudo
 
 ## Metodos de um vertice
 
+&nbsp;&nbsp;&nbsp;&nbsp;Metodos exclusivos de um vertice, alguns deles podem ser somente para grafos `orientados` e, caso sejam utilizados em grafos nao orientados, uma mensagem de erro sera retornada.
+
 &nbsp;
 
 ### Add edge
+
+&nbsp;&nbsp;&nbsp;&nbsp;Cria uma nova aresta e a adiciona na lista de arestas daquele vertice.
+
+```Dart
+    final myGraph = OrientedGraph();
+
+    myGraph.vertices.add(Vertex(label: 'u'));
+    myGraph.vertices.add(Vertex(label: 'v'));
+
+    myGraph.getV('u').addEdge(connectedTo: myGraph.getV('v'));
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;A nova aresta pode ser criada com `peso`, caso nao seja passado, sera `null`.
+
+```Dart
+    myGraph.getV('u').addEdge(connectedTo: myGraph.getV('v'), weigth: 5);
+```
 
 &nbsp;
 
 ### Exclude edge
 
+&nbsp;&nbsp;&nbsp;&nbsp;Remove uma aresta da lista de arestas deste vertice pelo identificador do vertice de destino.
+
+```Dart
+    final myGraph = OrientedGraph();
+
+    myGraph.vertices.add(Vertex(label: 'u'));
+    myGraph.vertices.add(Vertex(label: 'v'));
+
+    myGraph.getV('u').addEdge(connectedTo: myGraph.getV('v'));
+
+    myGraph.getV('u').excludeEdge('v');
+```
+
 &nbsp;
 
 ### Vertices of edges list
+
+&nbsp;&nbsp;&nbsp;&nbsp;Retorna a lista de adjacencia do vertice a partir da `edgesList`.
+
+```Dart
+    final myGraph = OrientedGraph();
+
+    myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
+
+    myGraph.getV('u').verticesOfEdgesList   //[Vertex(label: 'v'), Vertex(label: 'x')]
+```
 
 &nbsp;
 
 ### Is sinkhole
 
+&nbsp;&nbsp;&nbsp;&nbsp;Verifica se naquele vertice ha somente arestas que chegam nele, ou seja, nao ha arestas saindo. Valido somente para `grafos orientados`.
+
+```Dart
+    final myGraph = OrientedGraph();
+
+    myGraph.addVertex(newVertex: Vertex(label: '1'), connectedTo: ['2', '3']);
+    myGraph.addVertex(newVertex: Vertex(label: '2'));
+    myGraph.addVertex(newVertex: Vertex(label: '3'));
+
+    myGraph.getV('2').isSinkhole;   // true
+    myGraph.getV('3').isSinkhole;   // true
+```
+
 &nbsp;
 
 ### Is generator
+
+&nbsp;&nbsp;&nbsp;&nbsp;Verifica se naquele vertice ha somente arestas que saem dele, ou seja, nao ha arestas chegando. Valido somente para `grafos orientados`.
+
+```Dart
+    final myGraph = OrientedGraph();
+
+    myGraph.addVertex(newVertex: Vertex(label: '1'), connectedTo: ['2', '3']);
+    myGraph.addVertex(newVertex: Vertex(label: '2'));
+    myGraph.addVertex(newVertex: Vertex(label: '3'));
+
+    myGraph.getV('1').isSinkhole;   // true
+```
 
 &nbsp;
 
 ### Entry degree
 
+&nbsp;&nbsp;&nbsp;&nbsp;Numero de arestas que `entram` no vertice.
+
+```Dart
+    final myGraph = OrientedGraph();
+
+    myGraph.addVertex(newVertex: Vertex(label: '1'), connectedTo: ['2', '3']);
+    myGraph.addVertex(newVertex: Vertex(label: '2'));
+    myGraph.addVertex(newVertex: Vertex(label: '3'));
+
+    myGraph.getV('1').entryDegree;   // 0
+```
+
 &nbsp;
 
 ### Exit degree
 
-&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;Numero de arestas que `saem` do vertice.
 
-## Metodos de uma aresta
+```Dart
+    final myGraph = OrientedGraph();
+
+    myGraph.addVertex(newVertex: Vertex(label: '1'), connectedTo: ['2', '3']);
+    myGraph.addVertex(newVertex: Vertex(label: '2'));
+    myGraph.addVertex(newVertex: Vertex(label: '3'));
+
+    myGraph.getV('1').entryDegree;   // 2
+```

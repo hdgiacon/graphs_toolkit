@@ -12,7 +12,11 @@ void main() {
     myGraph.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z']);
     myGraph.addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z']);
 
+    myGraph.print();
+
     myGraph.excludeVertex(vertexLabel: 'v');
+
+    myGraph.toString();
 
     expect(
       myGraph,

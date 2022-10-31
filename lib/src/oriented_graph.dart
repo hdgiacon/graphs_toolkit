@@ -207,7 +207,7 @@ class OrientedGraph extends _Graph {
   ///
   /// ```
   bool isDAG() {
-    if (hasCicle()) {
+    if (hasCycle()) {
       return false;
     }
 

@@ -209,7 +209,7 @@ class NotOrientedGraph extends _Graph {
   ///             | x |
   /// ```
   bool isTree() {
-    if (hasCicle()) {
+    if (hasCycle()) {
       return false;
     }
 
@@ -228,7 +228,7 @@ class NotOrientedGraph extends _Graph {
   ///             | x |
   /// ```
   bool isForest() {
-    if (hasCicle()) {
+    if (hasCycle()) {
       return false;
     }
 
