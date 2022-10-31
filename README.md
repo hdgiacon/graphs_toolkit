@@ -208,9 +208,9 @@ Conteudo
     myGraph.getV('y').addEdge(connectedTo: myGraph.getV('v'));
 
     myGraph.getV('y').addEdge(connectedTo: myGraph.getV('x'));
-    myGraph.getV('x').addEdge(connectedTo: myGraph.getV('y'));
-
     myGraph.getV('x').addEdge(connectedTo: myGraph.getV('v'));
+    
+    myGraph.getV('x').addEdge(connectedTo: myGraph.getV('y'));
     myGraph.getV('v').addEdge(connectedTo: myGraph.getV('x'));
 
     myGraph.getV('w').addEdge(connectedTo: myGraph.getV('y'));
@@ -229,7 +229,7 @@ Conteudo
     myGraph2.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['z']);
     myGraph2.addVertex(newVertex: Vertex(label: 'z'));
 
-    // dar um equals aqui pra mostrar que ta igual
+    myGraph == myGraph2; // true
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;Outra vantagem que este metodo possui e a legibilidade do codigo, pois em um mesmo comando sabe qual vertice esta sendo criado, para quais outros ele possui uma aresta e os pesos declarados para cada aresta.

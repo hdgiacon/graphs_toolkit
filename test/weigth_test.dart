@@ -102,7 +102,7 @@ void main() {
           Vertex(
             label: 'v',
             edgesList: [
-              Edge(destiny: myGraph.getV('y'), weigth: 3),
+              Edge(destiny: myGraph.getV('y'), weigth: null),
             ],
           ),
           Vertex(
@@ -114,7 +114,7 @@ void main() {
           Vertex(
             label: 'x',
             edgesList: [
-              Edge(destiny: myGraph.getV('v'), weigth: 5),
+              Edge(destiny: myGraph.getV('v'), weigth: null),
             ],
           ),
           Vertex(
