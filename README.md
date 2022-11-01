@@ -70,19 +70,21 @@ Conteudo
 
 &nbsp;&nbsp;&nbsp;&nbsp;Um grafo e uma estrutura de dados composta por dois elementos, um conjunto de vertices ([ver definicao](#o-que-e-um-vertice)) e um conjunto de arestas ([ver definicao](#o-que-e-uma-aresta)). Podem ser do tipo orientado ([ver definicao](#orientado)) ou nao orientado ([ver definicao](#nao-orientado)).
 
-imagemmmmmmmmmmmmmm
-
 &nbsp;
 
 ### Orientado
 
 &nbsp;&nbsp;&nbsp;&nbsp;Grafos orientados, tambem conhecidos por digrafos, sao aqueles nos quais as suas arestas possuem um sentido definido, ou seja, de um vertice `u` podemos chegar em `v` mas oposto nao ocorre, nao ha uma relacao simetrica. Graficamente podem ser representados da seguinte forma:
 
-imagemmmmmmmmm
+<p align="center">
+  <img height="150" src="readme_resources/imgs/oriented_graph.png">
+</p>
 
 &nbsp;&nbsp;&nbsp;&nbsp;Ja que possuem um sentido definido, podem os seus vertices podem ter arestas que saem e chegam neles mesmos:
 
-imagemmmmmmmm
+<p align="center">
+  <img height="150" src="readme_resources/imgs/oriented_graph_2.png">
+</p>
 
 &nbsp;
 
@@ -90,7 +92,9 @@ imagemmmmmmmm
 
 &nbsp;&nbsp;&nbsp;&nbsp;Grafos nao orientados sao aqueles nos quais as suas arestas nao possuem um sentido definido, pode-se ir tanto de `u` para `v` quanto de `v` para `u`, ou seja, ocorre a relacao de simetria. Graficamente podem ser representados da seguinte forma:
 
-imagemmmmmmmmmmm
+<p align="center">
+  <img height="150" src="readme_resources/imgs/not_oriented_graph.png">
+</p>
 
 &nbsp;
 
@@ -98,7 +102,9 @@ imagemmmmmmmmmmm
 
 &nbsp;&nbsp;&nbsp;&nbsp;Um vertice, tambem conhecido por no, e a unidade fundamental para a composicao de um grafo. A partir das suas composicoes com arestas muitos problemas podem ser resolvidos atraves da sua modelagem. No caso da implementacao deste *`package`*, um vertice possui um identificador para diferencia-lo dos demais, pode armazenar um valor numerico em `value` e possui uma lista de arestas nos quais indica com quais outros vertices este esta conectado.
 
-imagemmmmmmmmmm
+<p align="center">
+  <img height="100" src="readme_resources/imgs/vertex.png">
+</p>
 
 &nbsp;&nbsp;&nbsp;&nbsp;Caso um `value` nao seja definido inicialmente, nesta implementacao ele tera o valor `0`.
 
@@ -110,7 +116,11 @@ imagemmmmmmmmmm
 
 &nbsp;&nbsp;&nbsp;&nbsp;Caso um vertice nulo esteja sendo adicionado a um grafo, uma `excessao` sera levantada.
 
-imagemmmmmmmmm
+&nbsp;
+
+<p align="center">
+  <img height="120" src="readme_resources/imgs/null_vertex_assert.png">
+</p>
 
 &nbsp;
 
@@ -120,15 +130,21 @@ imagemmmmmmmmm
 
 &nbsp;&nbsp;&nbsp;&nbsp;Arestas orientadas possuem um sentido definido, ou seja, ha somente um caminho a ser seguido:
 
-imagemmmmmmmmmmmmmm
+<p align="center">
+  <img height="120" src="readme_resources/imgs/oriented_edge.png">
+</p>
 
 &nbsp;&nbsp;&nbsp;&nbsp;Arestas nao orientadas nao possuem um sentido definido, podendo conectar dois vertices no sentido de ida e volta:
 
-imagemmmmmmmmmmm
+<p align="center">
+  <img height="120" src="readme_resources/imgs/not_oriented_edge.png">
+</p>
 
 &nbsp;&nbsp;&nbsp;&nbsp;Em ambos os tipos, as arestas podem armazenar um peso numerico:
 
-imagemmmmmmmmmmm
+<p align="center">
+  <img height="120" src="readme_resources/imgs/edge_weigth.png">
+</p>
 
 &nbsp;&nbsp;&nbsp;&nbsp;Caso um peso nao seja passado, nesta implementacao ele sera `nulo`.
 

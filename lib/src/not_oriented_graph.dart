@@ -81,6 +81,11 @@ class NotOrientedGraph extends _Graph {
     List<String>? connectedTo,
     List<num?>? edgeWeigth,
   }) {
+    assert(
+      newVertex.runtimeType == NullVertex,
+      '\n\nNullVertex should never be instantiated!!!!!!\n',
+    );
+
     if (_searchWaitList(newVertex.label)) {
       _removeFromWaitList(newVertex);
     }
