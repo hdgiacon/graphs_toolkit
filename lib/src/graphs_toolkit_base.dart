@@ -20,7 +20,7 @@ abstract class _Graph {
 
   /// List used for the `addVertex` method, in which a `vertex` not yet created is added here
   final _waitList = <_WaitType>[];
-
+  //TODO: levantar uma excessao caso um vertice nulo esteja sendo adicionado
   void addVertex({
     required Vertex newVertex,
     List<String>? connectedTo,
