@@ -1,6 +1,7 @@
 import 'package:graphs_toolkit/graphs_toolkit.dart';
 import 'package:test/test.dart';
 
+//TODO: teste com grafos maiores
 void main() {
   test('toString function - not oriented - test', () {
     final myGraph = NotOrientedGraph();

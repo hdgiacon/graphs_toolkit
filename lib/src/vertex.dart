@@ -74,7 +74,7 @@ class Vertex {
     return [for (var edge in edgesList) edge.destiny];
   }
 
-  /// Checks if this vertex has no edges coming out of it, used only in oriented graphs
+  /// Checks if this vertex has no edges coming out of it, used only in `oriented graphs`
   bool get isSinkhole {
     assert(vertexType == OrientedGraph, 'Graph must be oriented type');
 
@@ -85,7 +85,7 @@ class Vertex {
     return false;
   }
 
-  /// Checks if this vertex has no edges entering it, used only in oriented graphs
+  /// Checks if this vertex has no edges entering it, used only in `oriented graphs`
   bool get isGenerator {
     assert(vertexType == OrientedGraph, 'Graph must be oriented type');
 

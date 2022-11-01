@@ -328,61 +328,185 @@ Conteudo
 
 ## Metodos de um grafo orientado
 
+&nbsp;&nbsp;&nbsp;&nbsp;Grafos orientados possuem caracteristicas e metodos exclusivos de sua estrutura, nas quais serao mostradas nesta sessao.
+
 &nbsp;
 
 ### Num of edges
+
+&nbsp;&nbsp;&nbsp;&nbsp;Retorna o numero de arestas presentes em um grafo orientado, somando a quantidade de arestas presente em cada vertice.
 
 &nbsp;
 
 ### Get all edges
 
+&nbsp;&nbsp;&nbsp;&nbsp;Retorna uma lista com todas as arestas presentes em um grafo orientado.
+
 &nbsp;
 
 ### Is strongly connected
+
+&nbsp;&nbsp;&nbsp;&nbsp;Verifica se o grafo orientado e fortemente conexo, ou seja, se para cada par de vertices (`u`,`v`), `v` e acessivel a partir de `u`
+
+imagemmmmmmmmmmmmmmm
 
 &nbsp;
 
 ### Is DAG
 
+&nbsp;&nbsp;&nbsp;&nbsp;Verifica se o grafo e um DAG (grafo aciclico orientado)
+
+imagemmmmmmmmmmmm
+
 &nbsp;
 
 ### To string
+
+&nbsp;&nbsp;&nbsp;&nbsp;Metodo no qual mostra uma versao simplificada do grafo na linha de comando utilizando `listas de adjacencia`.
+
+imagemmmmmmmmmmmmmmm
 
 &nbsp;
 
 ### Print
 
+&nbsp;&nbsp;&nbsp;&nbsp;Metodo mais robusto para mostrar o conteudo de um grafo orientado na linha de comando. Mostra utilizando listas de adjacencia com alguns parametros opcionais. Valores `nulos` nao sao mostrados.
+
+```Dart
+    myGraph.print();
+
+      (1) -----> (2)
+          -----> (3)
+
+      (2)
+
+      (3) -----> (3)
+```
+
+Os valores associados a cada vertice podem ser mostrados com o parametro `vertexValue`, seguindo o padrao (`label`:`value`):
+
+```Dart
+    myGraph.print(vertexValue: true);
+      
+      (1:5) -----> (2:4)
+            -----> (3:10)
+
+      (2:4)
+
+      (3:10) -----> (3:10)
+```
+
+Os pesos de cada aresta tambem podem ser mostrados com o parametro `edgeWeigth`:
+
+```Dart
+    myGraph.print(edgeWeigth: true);
+    
+    (1) --1--> (2)
+        --2--> (3)
+
+    (2)
+
+    (3) --8--> (3)
+```
+
 &nbsp;
 
 ## Metodos de um grafo nao orientado
+
+&nbsp;&nbsp;&nbsp;&nbsp;Grafos nao orientados possuem caracteristicas e metodos exclusivos de sua estrutura, nas quais serao mostradas nesta sessao.
 
 &nbsp;
 
 ### *Num of edges*
 
+&nbsp;&nbsp;&nbsp;&nbsp;Retorna o numero de arestas presentes em um grafo nao orientado, seguindo a equacao abaixo:
+
+```Dart
+  numero_total_de_vertices ~/ 2
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;pois para grafos nao orientados, as arestas repetidas mas com sentido oposto sao consideradas as mesmas.
+
 &nbsp;
 
 ### *Get all edges*
+
+&nbsp;&nbsp;&nbsp;&nbsp;Retorna uma lista com todas as arestas presentes em um grafo nao orientado orientado, incluindo arestas de `ida` e de `volta`.
 
 &nbsp;
 
 ### Is connected
 
+&nbsp;&nbsp;&nbsp;&nbsp;Verifica se um grafo nao orientado e conexo, ou seja, se a partir de um vertice pode-se chegar a todos os outros.
+
+imagemmmmmmmmmmmm
+
 &nbsp;
 
 ### Is tree
+
+Verifica se um grafo nao orientado e aciclico e conexo.
+
+imagemmmmmmmmmmm
 
 &nbsp;
 
 ### Is forest
 
+Verifica se um grafo e nao orientado e aciclico
+
+imagemmmmmmmmmmm
+
 &nbsp;
 
 ### *To string*
 
+&nbsp;&nbsp;&nbsp;&nbsp;Metodo no qual mostra uma versao simplificada do grafo na linha de comando utilizando `listas de adjacencia`.
+
+imagemmmmmmmmmmm
+
 &nbsp;
 
 ### *Print*
+
+&nbsp;&nbsp;&nbsp;&nbsp;Metodo mais robusto para mostrar o conteudo de um grafo nao orientado na linha de comando. Mostra utilizando listas de adjacencia com alguns parametros opcionais. Valores `nulos` nao sao mostrados.
+
+```Dart
+    myGraph.print();
+  
+    (1) ----- (2)
+        ----- (3)
+
+    (2) ----- (1)
+    
+    (3) ----- (1)
+```
+
+Os valores associados a cada vertice podem ser mostrados com o parametro `vertexValue`, seguindo o padrao (`label`:`value`):
+
+```Dart
+    myGraph.print(vertexValue: true);
+    
+    (1:5) ----- (2:4)
+          ----- (3:10)
+    
+    (2:4) ----- (1:5)
+    
+    (3:10) ----- (1:5)
+```
+
+Os pesos de cada aresta tambem podem ser mostrados com o parametro `edgeWeigth`:
+
+```Dart
+    myGraph.print(edgeWeigth: true);
+  
+    (1) --1-- (2)
+        --2-- (3)
+    
+    (2) --5-- (1)
+    
+    (3) --10-- (1)
+```
 
 &nbsp;
 

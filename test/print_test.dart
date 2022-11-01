@@ -1,6 +1,8 @@
 import 'package:graphs_toolkit/graphs_toolkit.dart';
 import 'package:test/test.dart';
 
+//TODO: teste com grafos maiores
+
 void main() {
   test('print function - oriented - no weigth - test', () {
     final myGraph = OrientedGraph();
