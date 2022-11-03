@@ -79,7 +79,7 @@ class OrientedGraph extends _Graph {
     List<num?>? edgeWeigth,
   }) {
     assert(
-      newVertex.runtimeType == NullVertex,
+      newVertex is NullVertex,
       '\n\nNullVertex should never be instantiated!!!!!!\n',
     );
 

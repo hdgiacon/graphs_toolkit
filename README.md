@@ -76,14 +76,20 @@ Conteudo
 
 &nbsp;&nbsp;&nbsp;&nbsp;Grafos orientados, tambem conhecidos por digrafos, sao aqueles nos quais as suas arestas possuem um sentido definido, ou seja, de um vertice `u` podemos chegar em `v` mas oposto nao ocorre, nao ha uma relacao simetrica. Graficamente podem ser representados da seguinte forma:
 
+&nbsp;
+
 <p align="center">
-  <img height="150" src="readme_resources/imgs/oriented_graph.png">
+  <img height="180" src="readme_resources/imgs/oriented_graph.png">
 </p>
+
+&nbsp;
 
 &nbsp;&nbsp;&nbsp;&nbsp;Ja que possuem um sentido definido, podem os seus vertices podem ter arestas que saem e chegam neles mesmos:
 
+&nbsp;
+
 <p align="center">
-  <img height="150" src="readme_resources/imgs/oriented_graph_2.png">
+  <img height="200" src="readme_resources/imgs/oriented_graph_2.png">
 </p>
 
 &nbsp;
@@ -92,8 +98,10 @@ Conteudo
 
 &nbsp;&nbsp;&nbsp;&nbsp;Grafos nao orientados sao aqueles nos quais as suas arestas nao possuem um sentido definido, pode-se ir tanto de `u` para `v` quanto de `v` para `u`, ou seja, ocorre a relacao de simetria. Graficamente podem ser representados da seguinte forma:
 
+&nbsp;
+
 <p align="center">
-  <img height="150" src="readme_resources/imgs/not_oriented_graph.png">
+  <img height="180" src="readme_resources/imgs/not_oriented_graph.png">
 </p>
 
 &nbsp;
@@ -102,9 +110,13 @@ Conteudo
 
 &nbsp;&nbsp;&nbsp;&nbsp;Um vertice, tambem conhecido por no, e a unidade fundamental para a composicao de um grafo. A partir das suas composicoes com arestas muitos problemas podem ser resolvidos atraves da sua modelagem. No caso da implementacao deste *`package`*, um vertice possui um identificador para diferencia-lo dos demais, pode armazenar um valor numerico em `value` e possui uma lista de arestas nos quais indica com quais outros vertices este esta conectado.
 
+&nbsp;
+
 <p align="center">
   <img height="100" src="readme_resources/imgs/vertex.png">
 </p>
+
+&nbsp;
 
 &nbsp;&nbsp;&nbsp;&nbsp;Caso um `value` nao seja definido inicialmente, nesta implementacao ele tera o valor `0`.
 
@@ -130,21 +142,31 @@ Conteudo
 
 &nbsp;&nbsp;&nbsp;&nbsp;Arestas orientadas possuem um sentido definido, ou seja, ha somente um caminho a ser seguido:
 
+&nbsp;
+
 <p align="center">
-  <img height="120" src="readme_resources/imgs/oriented_edge.png">
+  <img height="100" src="readme_resources/imgs/oriented_edge.png">
 </p>
+
+&nbsp;
 
 &nbsp;&nbsp;&nbsp;&nbsp;Arestas nao orientadas nao possuem um sentido definido, podendo conectar dois vertices no sentido de ida e volta:
 
+&nbsp;
+
 <p align="center">
-  <img height="120" src="readme_resources/imgs/not_oriented_edge.png">
+  <img height="100" src="readme_resources/imgs/not_oriented_edge.png">
 </p>
+
+&nbsp;
 
 &nbsp;&nbsp;&nbsp;&nbsp;Em ambos os tipos, as arestas podem armazenar um peso numerico:
 
 <p align="center">
-  <img height="120" src="readme_resources/imgs/edge_weigth.png">
+  <img height="200" src="readme_resources/imgs/edge_weigth.png">
 </p>
+
+&nbsp;
 
 &nbsp;&nbsp;&nbsp;&nbsp;Caso um peso nao seja passado, nesta implementacao ele sera `nulo`.
 
@@ -416,7 +438,11 @@ Conteudo
 
 &nbsp;&nbsp;&nbsp;&nbsp;Verifica se o grafo orientado e fortemente conexo, ou seja, se para cada par de vertices (`u`,`v`), `v` e acessivel a partir de `u`
 
-imagemmmmmmmmmmmmmmm
+&nbsp;
+
+<p align="center">
+  <img height="200" src="readme_resources/imgs/strongly_connected.png">
+</p>
 
 &nbsp;
 
@@ -424,7 +450,11 @@ imagemmmmmmmmmmmmmmm
 
 &nbsp;&nbsp;&nbsp;&nbsp;Verifica se o grafo e um DAG (grafo aciclico orientado)
 
-imagemmmmmmmmmmmm
+&nbsp;
+
+<p align="center">
+  <img height="200" src="readme_resources/imgs/dag.png">
+</p>
 
 &nbsp;
 
@@ -432,7 +462,13 @@ imagemmmmmmmmmmmm
 
 &nbsp;&nbsp;&nbsp;&nbsp;Metodo no qual mostra uma versao simplificada do grafo na linha de comando utilizando `listas de adjacencia`.
 
-imagemmmmmmmmmmmmmmm
+```Dart
+    print(myGraph.toString());
+
+    (1) - [ (2) (3) ]
+    (2) - [ ]
+    (3) - [ ]
+```
 
 &nbsp;
 
@@ -507,7 +543,11 @@ Os pesos de cada aresta tambem podem ser mostrados com o parametro `edgeWeigth`:
 
 &nbsp;&nbsp;&nbsp;&nbsp;Verifica se um grafo nao orientado e conexo, ou seja, se a partir de um vertice pode-se chegar a todos os outros.
 
-imagemmmmmmmmmmmm
+&nbsp;
+
+<p align="center">
+  <img height="200" src="readme_resources/imgs/is_connected.png">
+</p>
 
 &nbsp;
 
@@ -515,7 +555,11 @@ imagemmmmmmmmmmmm
 
 Verifica se um grafo nao orientado e aciclico e conexo.
 
-imagemmmmmmmmmmm
+&nbsp;
+
+<p align="center">
+  <img height="250" src="readme_resources/imgs/is_tree.png">
+</p>
 
 &nbsp;
 
@@ -523,7 +567,11 @@ imagemmmmmmmmmmm
 
 Verifica se um grafo e nao orientado e aciclico
 
-imagemmmmmmmmmmm
+&nbsp;
+
+<p align="center">
+  <img height="200" src="readme_resources/imgs/is_forest.png">
+</p>
 
 &nbsp;
 
@@ -531,7 +579,13 @@ imagemmmmmmmmmmm
 
 &nbsp;&nbsp;&nbsp;&nbsp;Metodo no qual mostra uma versao simplificada do grafo na linha de comando utilizando `listas de adjacencia`.
 
-imagemmmmmmmmmmm
+```Dart
+    print(myGraph.toString());
+
+    (1) - [ (2) (3) ]
+    (2) - [ (1) ]
+    (3) - [ (1) ]
+```
 
 &nbsp;
 
