@@ -10,35 +10,35 @@
 
 &nbsp;
 
-Representação da estrutura de dados `grafo` por meio de `lista de adjacência`.
+&nbsp;&nbsp;&nbsp;&nbsp;Representação da estrutura de dados `grafo` por meio de `lista de adjacência`.
 
-Estrutura implementada inteiramente em `Dart` com métodos de inserção e exclusão de vértices e arestas para criação e manipulação de grafos orientados e não orientados.
+&nbsp;&nbsp;&nbsp;&nbsp;Estrutura implementada inteiramente em `Dart` com métodos de inserção e exclusão de vértices e arestas para criação e manipulação de grafos orientados e não orientados.
 
 &nbsp;
 
 Conteúdo
 
-- [O que é um grafo](#o-que-e-um-grafo)
+- [O que é um grafo](#o-que-é-um-grafo)
   - [Orientado](#orientado)
-  - [Não orientado](#nao-orientado)
+  - [Não orientado](#não-orientado)
 
-- [O que é um vértice](#o-que-e-um-vertice)
+- [O que é um vértice](#o-que-é-um-vértice)
   - [Null vertex](#null-vertex)
 
-- [O que é uma aresta](#o-que-e-uma-aresta)
+- [O que é uma aresta](#o-que-é-uma-aresta)
 
-- [Métodos básicos de um grafo](#metodos-basicos-de-um-grafo)
+- [Métodos básicos de um grafo](#métodos-básicos-de-um-grafo)
   - [GetV](#getv)
-  - [Adicionar vértices do modo básico](#adicionar-vertices-do-modo-basico)
-  - [Adicionar vértices com addVertex](#adicionar-vertices-com-addvertex)
-  - [Excluir um vértice](#excluir-um-vertice)
+  - [Adicionar vértices do modo básico](#adicionar-vértices-do-modo-básico)
+  - [Adicionar vértices com addVertex](#adicionar-vértices-com-addvertex)
+  - [Excluir um vértice](#excluir-um-vértice)
   - [First](#first)
   - [Last](#last)
   - [Breadth First Search - Bfs](#breadth-first-search---bfs)
   - [Depth First Search - Dfs](#depth-first-search---dfs)
   - [Has cycle](#has-cycle)
 
-- [Metodos de um grafo orientado](#metodos-de-um-grafo-orientado)
+- [Métodos de um grafo orientado](#métodos-de-um-grafo-orientado)
   - [Num of edges](#num-of-edges)
   - [Get all edges](#get-all-edges)
   - [Is strongly connected](#is-strongly-connected)
@@ -46,7 +46,7 @@ Conteúdo
   - [To string](#to-string)
   - [Print](#print)
 
-- [Metodos de grafo não orientado](#metodos-de-um-grafo-nao-orientado)
+- [Métodos de grafo não orientado](#métodos-de-um-grafo-não-orientado)
   - [Num of edges](#num-of-edges-1)
   - [Get all edges](#get-all-edges-1)
   - [Is connected](#is-connected)
@@ -55,7 +55,7 @@ Conteúdo
   - [To string](#to-string-1)
   - [Print](#print-1)
 
-- [Métodos de um vértice](#metodos-de-um-vertice)
+- [Métodos de um vértice](#métodos-de-um-vértice)
   - [Add edge](#add-edge)
   - [Exclude edge](#exclude-edge)
   - [Vertices of edges list](#vertices-of-edges-list)
@@ -66,9 +66,9 @@ Conteúdo
 
 &nbsp;
 
-## O que e um grafo
+## O que é um Grafo
 
-&nbsp;&nbsp;&nbsp;&nbsp;Um grafo e uma estrutura de dados composta por dois elementos, um conjunto de vértices ([ver definicao](#o-que-e-um-vertice)) e um conjunto de arestas ([ver definicao](#o-que-e-uma-aresta)). Podem ser do tipo orientado ([ver definicao](#orientado)) ou não orientado ([ver definicao](#nao-orientado)).
+&nbsp;&nbsp;&nbsp;&nbsp;Um grafo é uma estrutura de dados composta por dois elementos, um conjunto de vértices ([ver definicao](#o-que-é-um-vértice)) e um conjunto de arestas ([ver definicao](#o-que-é-uma-aresta)). Podem ser do tipo orientado ([ver definicao](#orientado)) ou não orientado ([ver definicao](#não-orientado)).
 
 &nbsp;
 
@@ -84,7 +84,7 @@ Conteúdo
 
 &nbsp;
 
-&nbsp;&nbsp;&nbsp;&nbsp;Ja que possuem um sentido definido, podem os seus vértices podem ter arestas que saem e chegam neles mesmos:
+&nbsp;&nbsp;&nbsp;&nbsp;Já que possuem um sentido definido, podem os seus vértices podem ter arestas que saem e chegam neles mesmos:
 
 &nbsp;
 
@@ -94,7 +94,7 @@ Conteúdo
 
 &nbsp;
 
-### Nao Orientado
+### Não Orientado
 
 &nbsp;&nbsp;&nbsp;&nbsp;Grafos não orientados são aqueles nos quais as suas arestas não possuem um sentido definido, pode-se ir tanto de `u` para `v` quanto de `v` para `u`, ou seja, ocorre a relação de simetria. Graficamente podem ser representados da seguinte forma:
 
@@ -106,9 +106,9 @@ Conteúdo
 
 &nbsp;
 
-## O que e um Vertice
+## O que é um Vértice
 
-&nbsp;&nbsp;&nbsp;&nbsp;Um vértice, também conhecido por nó, e a unidade fundamental para a composição de um grafo. A partir das suas composições com arestas muitos problemas podem ser resolvidos através da sua modelagem. No caso da implementação deste *`package`*, um vértice possui um identificador para diferencia-lo dos demais, pode armazenar um valor numerico em `value` e possui uma lista de arestas nos quais indica com quais outros vértices este está conectado.
+&nbsp;&nbsp;&nbsp;&nbsp;Um vértice, também conhecido por nó, e a unidade fundamental para a composição de um grafo. A partir das suas composições com arestas muitos problemas podem ser resolvidos através da sua modelagem. No caso da implementação deste *`package`*, um vértice possui um identificador para diferenciá-lo dos demais, pode armazenar um valor numérico em `value` e possui uma lista de arestas nos quais indica com quais outros vértices este está conectado.
 
 &nbsp;
 
@@ -136,7 +136,7 @@ Conteúdo
 
 &nbsp;
 
-## O que e uma aresta
+## O que é uma aresta
 
 &nbsp;&nbsp;&nbsp;&nbsp;Uma aresta tem a função de conectar dois vértices além de definir de qual tipo um grafo será, orientado ou não orientado.
 
@@ -172,7 +172,7 @@ Conteúdo
 
 &nbsp;
 
-## Metodos basicos de um grafo
+## Métodos básicos de um grafo
 
 &nbsp;&nbsp;&nbsp;&nbsp;Tanto grafos orientados quanto os não orientados possuem atributos e métodos em comum. A partir disso, muitas funcionalidades presentes neste *Package* estão implementadas para os dois tipos de estrutura, mostradas nesta sessão.
 
@@ -416,9 +416,9 @@ Conteúdo
 
 &nbsp;
 
-## Metodos de um grafo orientado
+## Métodos de um grafo orientado
 
-&nbsp;&nbsp;&nbsp;&nbsp;Grafos orientados possuem caracteristicas e métodos exclusivos de sua estrutura, nas quais serão mostradas nesta sessão.
+&nbsp;&nbsp;&nbsp;&nbsp;Grafos orientados possuem características e métodos exclusivos de sua estrutura, nas quais serão mostradas nesta sessão.
 
 &nbsp;
 
@@ -487,7 +487,7 @@ Conteúdo
       (3) -----> (3)
 ```
 
-Os valores associados a cada vértice podem ser mostrados com o parâmetro `vertexValue`, seguindo o padrão (`label`:`value`):
+&nbsp;&nbsp;&nbsp;&nbsp;Os valores associados a cada vértice podem ser mostrados com o parâmetro `vertexValue`, seguindo o padrão (`label`:`value`):
 
 ```Dart
     myGraph.print(vertexValue: true);
@@ -500,7 +500,7 @@ Os valores associados a cada vértice podem ser mostrados com o parâmetro `vert
       (3:10) -----> (3:10)
 ```
 
-Os pesos de cada aresta também podem ser mostrados com o parâmetro `edgeWeigth`:
+&nbsp;&nbsp;&nbsp;&nbsp;Os pesos de cada aresta também podem ser mostrados com o parâmetro `edgeWeigth`:
 
 ```Dart
     myGraph.print(edgeWeigth: true);
@@ -515,7 +515,7 @@ Os pesos de cada aresta também podem ser mostrados com o parâmetro `edgeWeigth
 
 &nbsp;
 
-## Metodos de um grafo não orientado
+## Métodos de um grafo não orientado
 
 &nbsp;&nbsp;&nbsp;&nbsp;Grafos não orientados possuem caracteristicas e métodos exclusivos de sua estrutura, nas quais serão mostradas nesta sessão.
 
@@ -553,7 +553,7 @@ Os pesos de cada aresta também podem ser mostrados com o parâmetro `edgeWeigth
 
 ### Is tree
 
-Verifica se um grafo não orientado é acíclico e conexo.
+&nbsp;&nbsp;&nbsp;&nbsp;Verifica se um grafo não orientado é acíclico e conexo.
 
 &nbsp;
 
@@ -565,7 +565,7 @@ Verifica se um grafo não orientado é acíclico e conexo.
 
 ### Is forest
 
-Verifica se um grafo é não orientado e acíclico
+&nbsp;&nbsp;&nbsp;&nbsp;Verifica se um grafo é não orientado e acíclico
 
 &nbsp;
 
@@ -604,7 +604,7 @@ Verifica se um grafo é não orientado e acíclico
     (3) ----- (1)
 ```
 
-Os valores associados a cada vértice podem ser mostrados com o parâmetro `vertexValue`, seguindo o padrão (`label`:`value`):
+&nbsp;&nbsp;&nbsp;&nbsp;Os valores associados a cada vértice podem ser mostrados com o parâmetro `vertexValue`, seguindo o padrão (`label`:`value`):
 
 ```Dart
     myGraph.print(vertexValue: true);
@@ -617,7 +617,7 @@ Os valores associados a cada vértice podem ser mostrados com o parâmetro `vert
     (3:10) ----- (1:5)
 ```
 
-Os pesos de cada aresta também podem ser mostrados com o parâmetro `edgeWeigth`:
+&nbsp;&nbsp;&nbsp;&nbsp;Os pesos de cada aresta também podem ser mostrados com o parâmetro `edgeWeigth`:
 
 ```Dart
     myGraph.print(edgeWeigth: true);
@@ -692,7 +692,7 @@ Os pesos de cada aresta também podem ser mostrados com o parâmetro `edgeWeigth
 
 ### Is sinkhole
 
-&nbsp;&nbsp;&nbsp;&nbsp;Verifica se naquele vértice há somente arestas que chegam nele, ou seja, não há arestas saindo. Valido somente para `grafos orientados`.
+&nbsp;&nbsp;&nbsp;&nbsp;Verifica se naquele vértice há somente arestas que chegam nele, ou seja, não há arestas saindo. Válido somente para `grafos orientados`.
 
 ```Dart
     final myGraph = OrientedGraph();
@@ -709,7 +709,7 @@ Os pesos de cada aresta também podem ser mostrados com o parâmetro `edgeWeigth
 
 ### Is generator
 
-&nbsp;&nbsp;&nbsp;&nbsp;Verifica se naquele vértice há somente arestas que saem dele, ou seja, não há arestas chegando. Valido somente para `grafos orientados`.
+&nbsp;&nbsp;&nbsp;&nbsp;Verifica se naquele vértice há somente arestas que saem dele, ou seja, não há arestas chegando. Válido somente para `grafos orientados`.
 
 ```Dart
     final myGraph = OrientedGraph();
