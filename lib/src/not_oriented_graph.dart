@@ -144,6 +144,8 @@ class NotOrientedGraph extends _Graph {
   }
 
   /// Removes a vertex by its `label` along with the edges that arrived at it from its adjacent ones
+  ///
+  /// If the vertex is `not found`, a `log` message will be displayed.
   @override
   void excludeVertex({required String vertexLabel}) {
     try {
