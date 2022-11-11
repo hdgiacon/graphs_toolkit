@@ -4,8 +4,8 @@
 
   Idiomas:
   
-  [![Português](https://img.shields.io/badge/Language-Portugues-blue?style=for-the-badge)](README.pt-br.md)
-  [![Inglês](https://img.shields.io/badge/Language-Ingles-blue?style=for-the-badge)](README.en.md)
+  [![Português](https://img.shields.io/badge/Language-Português-blue?style=for-the-badge)](README.pt-br.md)
+  [![Inglês](https://img.shields.io/badge/Language-Inglês-blue?style=for-the-badge)](README.en.md)
 </div>
 
 &nbsp;
@@ -23,7 +23,6 @@ Conteúdo
   - [Não orientado](#não-orientado)
 
 - [O que é um vértice](#o-que-é-um-vértice)
-  - [Null vertex](#null-vertex)
 
 - [O que é uma aresta](#o-que-é-uma-aresta)
 
@@ -122,20 +121,6 @@ Conteúdo
 
 &nbsp;
 
-### *Null* vertex
-
-&nbsp;&nbsp;&nbsp;&nbsp;Para esta implementação foi necessária a criação de um vértice `nulo`, ou seja, um vértice que **`jamais`** deve ser instanciado para compor um grafo, apenas utilizado para verificar a sua existência em alguns casos, como no retorno do método `getv()` ([ver método](#getv)).
-
-&nbsp;&nbsp;&nbsp;&nbsp;Caso um vértice nulo esteja sendo adicionado a um grafo, uma `excessao` será levantada.
-
-&nbsp;
-
-<p align="center">
-  <img height="120" src="readme_resources/imgs/null_vertex_assert.png">
-</p>
-
-&nbsp;
-
 ## O que é uma aresta
 
 &nbsp;&nbsp;&nbsp;&nbsp;Uma aresta tem a função de conectar dois vértices além de definir de qual tipo um grafo será, orientado ou não orientado.
@@ -180,7 +165,7 @@ Conteúdo
 
 ### GetV
 
-&nbsp;&nbsp;&nbsp;&nbsp;Este método consiste em buscar um vértice no grafo através do seu identificador. Caso exista, ele será retornado, se não, será lançado um `[StateError]`.
+&nbsp;&nbsp;&nbsp;&nbsp;Este método consiste em buscar um vértice no grafo através do seu identificador. Caso exista, ele será retornado, caso contrário, será lançado um `[StateError]`.
 
 ```Dart
   final myGraph = OrientedGraph();
@@ -330,15 +315,31 @@ Conteúdo
   myGraph.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z'], edgeWeigth: [6]);
   myGraph.addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z'], edgeWeigth: [8]);
 
-  myGraph.toString();
+  print(myGraph);
 
-  // colocar o output
+  // (u) - [ (v) (x) ]
+  // (v) - [ (y) ]
+  // (y) - [ (x) ]
+  // (x) - [ (v) ]
+  // (w) - [ (y) (z) ]
+  // (z) - [ (z) ]
 
   myGraph.excludeVertex(vertexLabel: 'v');
 
-  myGraph.toString();
+  print(myGraph);
 
-  // colocar o output
+  // (u) - [ (x) ]
+  // (y) - [ (x) ]
+  // (x) - [ ]
+  // (w) - [ (y) (z) ]
+  // (z) - [ (z) ]
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;Caso o vertice nao seja encontrado no grafo, uma mensagem de `log` sera mostrada.
+
+```Plain
+  [log] Vertex not found for exclusion!!!!!!
+  [log] StateError (Bad state: No element)
 ```
 
 &nbsp;
@@ -464,6 +465,16 @@ Conteúdo
 
 ```Dart
     print(myGraph.toString());
+
+    (1) - [ (2) (3) ]
+    (2) - [ ]
+    (3) - [ ]
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;Omitindo a chamada do metodo *`toString()`* dentro de *print* tambem funciona:
+
+```Dart
+    print(myGraph);
 
     (1) - [ (2) (3) ]
     (2) - [ ]

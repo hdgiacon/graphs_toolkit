@@ -66,6 +66,7 @@ class Vertex {
     edgesList.add(newEdge);
   }
 
+  //TODO: o que acontece se uma aresta nao for encontrada para exclusao
   /// Remove a single edge from this vertex
   void excludeEdge({required String destinyLabel}) {
     edgesList.removeWhere((edge) => edge.destiny.label == destinyLabel);
