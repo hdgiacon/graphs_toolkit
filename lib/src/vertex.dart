@@ -36,6 +36,8 @@ class Vertex {
   ///
   /// connectedFrom corresponds to the vertices that connect to this one (if it is an not oriented graph, this list will be empty)
   ///
+  /// - Both lists are auto-populated in the `addVertex` method
+  ///
   /// A type for this vertex according to the graph in which it was inserted
   ///
   /// The value, visited and ancestor parameters are used in the BFS and DFS methods and correspond to:
@@ -127,9 +129,4 @@ class Vertex {
         visited.hashCode ^
         label.hashCode;
   }
-}
-
-/// Representation of a null vertex
-class NullVertex extends Vertex {
-  NullVertex({super.label = '0xff2e2e2e'});
 }

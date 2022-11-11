@@ -180,7 +180,7 @@ Conteúdo
 
 ### GetV
 
-&nbsp;&nbsp;&nbsp;&nbsp;Este método consiste em buscar um vértice no grafo através do seu identificador. Caso exista, ele será retornado, se não, um `NullVertex` será retornado.
+&nbsp;&nbsp;&nbsp;&nbsp;Este método consiste em buscar um vértice no grafo através do seu identificador. Caso exista, ele será retornado, se não, será lançado um `[StateError]`.
 
 ```Dart
   final myGraph = OrientedGraph();
@@ -191,7 +191,7 @@ Conteúdo
 
   myGraph.getV('1');  // return Vertex(label: '1')
 
-  myGraph.getV('w');  // return NullVertex
+  myGraph.getV('w');  // throw `[StateError]`
 ```
 
 &nbsp;

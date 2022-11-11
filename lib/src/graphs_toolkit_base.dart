@@ -1,4 +1,5 @@
 import 'dart:collection' show ListQueue;
+import 'dart:developer';
 import 'package:collection/collection.dart' show DeepCollectionEquality;
 import 'package:tuple/tuple.dart' show Tuple3;
 
@@ -20,7 +21,7 @@ abstract class _Graph {
 
   /// List used for the `addVertex` method, in which a `vertex` not yet created is added here
   final _waitList = <_WaitType>[];
-  //TODO: levantar uma excessao caso um vertice nulo esteja sendo adicionado
+
   void addVertex({
     required Vertex newVertex,
     List<String>? connectedTo,
@@ -31,11 +32,10 @@ abstract class _Graph {
 
   /// Returns a `vertex` from vertices list according to its label
   ///
-  /// If the searched vertex is not found, returns a `NullVertex`
+  /// If the searched vertex is not found, throws a `[StateError]`
   Vertex getV(String label) {
     return vertices.firstWhere(
       (element) => element.label == label,
-      orElse: () => NullVertex(),
     );
   }
 
@@ -182,12 +182,13 @@ abstract class _Graph {
   }
 
   bool _searchWaitList(String label) {
-    for (var elem in _waitList) {
-      if (elem.item1.label == label) {
-        return true;
-      }
+    try {
+      _waitList.firstWhere((element) => element.vertex.label == label);
+
+      return true;
+    } on StateError catch (_) {
+      return false;
     }
-    return false;
   }
 
   @override

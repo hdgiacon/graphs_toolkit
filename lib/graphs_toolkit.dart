@@ -2,4 +2,4 @@
 library graphs_toolkit;
 
 export 'src/graphs_toolkit_base.dart'
-    show Edge, NotOrientedGraph, OrientedGraph, Vertex, NullVertex;
+    show Edge, NotOrientedGraph, OrientedGraph, Vertex;

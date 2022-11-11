@@ -39,7 +39,7 @@ class OrientedGraph extends _Graph {
   ///      connectedTo: ['v', 'x'],
   ///      edgeWeigth: [1, 2]);
   /// ```
-  /// The values ​​are processed positionally, so:
+  /// The values ​​are processed `positionally`, so:
   /// ```
   ///   | u |--1-->| v |
   ///   | u |--2-->| x |
@@ -78,11 +78,6 @@ class OrientedGraph extends _Graph {
     List<String>? connectedTo,
     List<num?>? edgeWeigth,
   }) {
-    assert(
-      newVertex is NullVertex,
-      '\n\nNullVertex should never be instantiated!!!!!!\n',
-    );
-
     if (_searchWaitList(newVertex.label)) {
       _removeFromWaitList(newVertex);
     }
@@ -132,17 +127,17 @@ class OrientedGraph extends _Graph {
     Vertex newVertex,
   ) {
     connectedToAsMap.forEach((connectedTo, edgeWeigth) {
-      if (getV(connectedTo) is NullVertex) {
-        _waitList.add(
-          Tuple3(Vertex(label: connectedTo), newVertex, edgeWeigth),
-        );
-      } else {
+      try {
         newVertex.addEdge(
           connectedTo: getV(connectedTo),
           weigth: edgeWeigth,
         );
 
         getV(connectedTo).connectedFrom.add(newVertex);
+      } on StateError catch (_) {
+        _waitList.add(
+          Tuple3(Vertex(label: connectedTo), newVertex, edgeWeigth),
+        );
       }
     });
   }
@@ -150,11 +145,15 @@ class OrientedGraph extends _Graph {
   /// removes a vertex by its `label` along with the edges that arrived at it from its adjacent ones
   @override
   void excludeVertex({required String vertexLabel}) {
-    getV(vertexLabel).connectedFrom.forEach((vertex) {
-      vertex.excludeEdge(destinyLabel: vertexLabel);
-    });
+    try {
+      getV(vertexLabel).connectedFrom.forEach((vertex) {
+        vertex.excludeEdge(destinyLabel: vertexLabel);
+      });
 
-    vertices.removeWhere((vertex) => vertex.label == vertexLabel);
+      vertices.removeWhere((vertex) => vertex.label == vertexLabel);
+    } on StateError catch (e, s) {
+      log('Vertex not found for exclusion!!!!!!', error: e, stackTrace: s);
+    }
   }
 
   /// get the number of edges on a Oriented Graph

@@ -39,7 +39,7 @@ class NotOrientedGraph extends _Graph {
   ///        connectedTo: ['v', 'x'],
   ///        edgeWeigth: [1, 2]);
   /// ```
-  /// The values ​​are processed positionally, so:
+  /// The values ​​are processed `positionally`, so:
   /// ```
   ///   | u |--1--| v |
   ///   | u |--2--| x |
@@ -81,11 +81,6 @@ class NotOrientedGraph extends _Graph {
     List<String>? connectedTo,
     List<num?>? edgeWeigth,
   }) {
-    assert(
-      newVertex.runtimeType == NullVertex,
-      '\n\nNullVertex should never be instantiated!!!!!!\n',
-    );
-
     if (_searchWaitList(newVertex.label)) {
       _removeFromWaitList(newVertex);
     }
@@ -131,10 +126,7 @@ class NotOrientedGraph extends _Graph {
 
   void _connectVertices(Map<String, num?> connectedToAsMap, Vertex newVertex) {
     connectedToAsMap.forEach((connectedTo, edgeWeigth) {
-      if (getV(connectedTo) is NullVertex) {
-        _waitList
-            .add(Tuple3(Vertex(label: connectedTo), newVertex, edgeWeigth));
-      } else {
+      try {
         newVertex.addEdge(
           connectedTo: getV(connectedTo),
           weigth: edgeWeigth,
@@ -144,6 +136,9 @@ class NotOrientedGraph extends _Graph {
           connectedTo: newVertex,
           weigth: edgeWeigth,
         );
+      } on StateError catch (_) {
+        _waitList
+            .add(Tuple3(Vertex(label: connectedTo), newVertex, edgeWeigth));
       }
     });
   }
@@ -151,11 +146,15 @@ class NotOrientedGraph extends _Graph {
   /// Removes a vertex by its `label` along with the edges that arrived at it from its adjacent ones
   @override
   void excludeVertex({required String vertexLabel}) {
-    getV(vertexLabel).edgesList.forEach((edge) {
-      edge.destiny.excludeEdge(destinyLabel: vertexLabel);
-    });
+    try {
+      getV(vertexLabel).edgesList.forEach((edge) {
+        edge.destiny.excludeEdge(destinyLabel: vertexLabel);
+      });
 
-    vertices.removeWhere((vertex) => vertex.label == vertexLabel);
+      vertices.removeWhere((vertex) => vertex.label == vertexLabel);
+    } on StateError catch (e, s) {
+      log('Vertex not found for exclusion!!!!!!', error: e, stackTrace: s);
+    }
   }
 
   /// get the number of edges on a Not Oriented Graph
