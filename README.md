@@ -18,60 +18,60 @@
 
 Conteúdo
 
-- [O que é um grafo](#o-que-é-um-grafo)
+- [O que é um Grafo](#o-que-é-um-grafo)
   - [Orientado](#orientado)
-  - [Não orientado](#não-orientado)
+  - [Não Orientado](#não-orientado)
 
-- [O que é um vértice](#o-que-é-um-vértice)
+- [O que é um Vértice](#o-que-é-um-vértice)
 
-- [O que é uma aresta](#o-que-é-uma-aresta)
+- [O que é uma Aresta](#o-que-é-uma-aresta)
 
-- [Métodos básicos de um grafo](#métodos-básicos-de-um-grafo)
+- [Métodos Básicos de um Grafo](#métodos-básicos-de-um-grafo)
   - [GetV](#getv)
-  - [Adicionar vértices do modo básico](#adicionar-vértices-do-modo-básico)
-  - [Adicionar vértices com addVertex](#adicionar-vértices-com-addvertex)
-  - [Excluir um vértice](#excluir-um-vértice)
+  - [Adicionar Vértices do Modo Básico](#adicionar-vértices-do-modo-básico)
+  - [Adicionar Vértices com *addVertex*](#adicionar-vértices-com-addvertex)
+  - [Excluir um Vértice](#excluir-um-vértice)
   - [First](#first)
   - [Last](#last)
+  - [Has Cycle](#has-cycle)
   - [Breadth First Search - Bfs](#breadth-first-search---bfs)
   - [Depth First Search - Dfs](#depth-first-search---dfs)
-  - [Has cycle](#has-cycle)
 
-- [Métodos de um grafo orientado](#métodos-de-um-grafo-orientado)
-  - [Num of edges](#num-of-edges)
-  - [Get all edges](#get-all-edges)
-  - [Is strongly connected](#is-strongly-connected)
+- [Métodos de um Grafo Orientado](#métodos-de-um-grafo-orientado)
+  - [Num of Edges](#num-of-edges)
+  - [Get all Edges](#get-all-edges)
+  - [Is Strongly Connected](#is-strongly-connected)
   - [Is DAG](#is-dag)
-  - [To string](#to-string)
+  - [To String](#to-string)
   - [Print](#print)
 
-- [Métodos de grafo não orientado](#métodos-de-um-grafo-não-orientado)
-  - [Num of edges](#num-of-edges-1)
-  - [Get all edges](#get-all-edges-1)
-  - [Is connected](#is-connected)
-  - [Is tree](#is-tree)
-  - [Is forest](#is-forest)
-  - [To string](#to-string-1)
+- [Métodos de Grafo Não Orientado](#métodos-de-um-grafo-não-orientado)
+  - [Num of Edges](#num-of-edges-1)
+  - [Get all Edges](#get-all-edges-1)
+  - [Is Connected](#is-connected)
+  - [Is Tree](#is-tree)
+  - [Is Forest](#is-forest)
+  - [To String](#to-string-1)
   - [Print](#print-1)
 
-- [Métodos de um vértice](#métodos-de-um-vértice)
-  - [Add edge](#add-edge)
-  - [Exclude edge](#exclude-edge)
-  - [Vertices of edges list](#vertices-of-edges-list)
-  - [Is sinkhole](#is-sinkhole)
-  - [Is generator](#is-generator)
-  - [Entry degree](#entry-degree)
-  - [Exit degree](#exit-degree)
+- [Métodos de um Vértice](#métodos-de-um-vértice)
+  - [Add Edge](#add-edge)
+  - [Exclude Edge](#exclude-edge)
+  - [Vertices of Edges List](#vertices-of-edges-list)
+  - [Is Sinkhole](#is-sinkhole)
+  - [Is Generator](#is-generator)
+  - [Entry Degree](#entry-degree)
+  - [Exit Degree](#exit-degree)
 
 &nbsp;
 
-## O que é um Grafo
+## **O que é um Grafo**
 
-&nbsp;&nbsp;&nbsp;&nbsp;Um grafo é uma estrutura de dados composta por dois elementos, um conjunto de vértices ([ver definicao](#o-que-é-um-vértice)) e um conjunto de arestas ([ver definicao](#o-que-é-uma-aresta)). Podem ser do tipo orientado ([ver definicao](#orientado)) ou não orientado ([ver definicao](#não-orientado)).
+&nbsp;&nbsp;&nbsp;&nbsp;Um grafo é uma estrutura de dados composta por dois elementos, um conjunto de vértices ([ver definição](#o-que-é-um-vértice)) e um conjunto de arestas ([ver definição](#o-que-é-uma-aresta)). Podem ser do tipo orientado ([ver definição](#orientado)) ou não orientado ([ver definição](#não-orientado)).
 
 &nbsp;
 
-### Orientado
+### **Orientado**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Grafos orientados, também conhecidos por digrafos, são aqueles nos quais as suas arestas possuem um sentido definido, ou seja, de um vértice `u` pode-se chegar em `v` mas oposto não ocorre, não há uma relação simétrica. Graficamente podem ser representados da seguinte forma:
 
@@ -93,7 +93,7 @@ Conteúdo
 
 &nbsp;
 
-### Não Orientado
+### **Não Orientado**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Grafos não orientados são aqueles nos quais as suas arestas não possuem um sentido definido, pode-se ir tanto de `u` para `v` quanto de `v` para `u`, ou seja, ocorre a relação de simetria. Graficamente podem ser representados da seguinte forma:
 
@@ -105,14 +105,14 @@ Conteúdo
 
 &nbsp;
 
-## O que é um Vértice
+## **O que é um Vértice**
 
-&nbsp;&nbsp;&nbsp;&nbsp;Um vértice, também conhecido por nó, e a unidade fundamental para a composição de um grafo. A partir das suas composições com arestas muitos problemas podem ser resolvidos através da sua modelagem. No caso da implementação deste *`package`*, um vértice possui um identificador para diferenciá-lo dos demais, pode armazenar um valor numérico em `value` e possui uma lista de arestas nos quais indica com quais outros vértices este está conectado.
+&nbsp;&nbsp;&nbsp;&nbsp;Um vértice, também conhecido por nó, e a unidade fundamental para a composição de um grafo. A partir das suas composições com arestas muitos problemas podem ser resolvidos através da sua modelagem. No caso da implementação deste *`package`*, um vértice possui um identificador para diferenciá-lo dos demais, representado pelo atributo `label`. Pode armazenar um valor numérico em `value` e possui uma lista de arestas nos quais indica com quais outros vértices este está conectado.
 
 &nbsp;
 
 <p align="center">
-  <img height="100" src="readme_resources/imgs/vertex.png">
+  <img height="150" src="readme_resources/imgs/vertex.png">
 </p>
 
 &nbsp;
@@ -121,7 +121,7 @@ Conteúdo
 
 &nbsp;
 
-## O que é uma aresta
+## **O que é uma Aresta**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Uma aresta tem a função de conectar dois vértices além de definir de qual tipo um grafo será, orientado ou não orientado.
 
@@ -157,13 +157,13 @@ Conteúdo
 
 &nbsp;
 
-## Métodos básicos de um grafo
+## **Métodos Básicos de um Grafo**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Tanto grafos orientados quanto os não orientados possuem atributos e métodos em comum. A partir disso, muitas funcionalidades presentes neste *Package* estão implementadas para os dois tipos de estrutura, mostradas nesta sessão.
 
 &nbsp;
 
-### GetV
+### **GetV**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Este método consiste em buscar um vértice no grafo através do seu identificador. Caso exista, ele será retornado, caso contrário, será lançado um `[StateError]`.
 
@@ -181,7 +181,7 @@ Conteúdo
 
 &nbsp;
 
-### Adicionar vértices do modo básico
+### **Adicionar Vértices do Modo Básico**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Como a estrutura padrão para grafos são listas, então adicionando novos vértices e arestas a elas, o grafo será modelado. Um primeiro método para isso consiste em primeiramente adicionar os vértices necessários ao grafo:
 
@@ -218,7 +218,7 @@ Conteúdo
 
 &nbsp;
 
-### Adicionar vértices com addVertex
+### **Adicionar Vértices com *addVertex***
 
 &nbsp;&nbsp;&nbsp;&nbsp;Uma segunda maneira de se povoar um grafo e através do método `addVertex`. Esta função consiste em encapsular toda a criação de um vértice e criação das suas arestas para outros vértices mesmo que eles ainda não tenham sido criados.
 
@@ -301,7 +301,7 @@ Conteúdo
 
 &nbsp;
 
-### Excluir um vértice
+### **Excluir um Vértice**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Exclui um vértice do grafo pelo seu identificador juntamente com as arestas que saem e chegam nele.
 
@@ -344,7 +344,7 @@ Conteúdo
 
 &nbsp;
 
-### First
+### **First**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Retorna o primeiro vértice da lista de vértices do grafo.
 
@@ -363,7 +363,7 @@ Conteúdo
 
 &nbsp;
 
-### Last
+### **Last**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Retorna o ultimo vértice da lista de vértices do grafo.
 
@@ -382,23 +382,7 @@ Conteúdo
 
 &nbsp;
 
-### Breadth First Search - Bfs
-
-&nbsp;&nbsp;&nbsp;&nbsp;`Busca em largura` em um grafo consiste em calcular a distância para todos os vértices alcançáveis a partir de um vértice de origem. Esse método causa um efeito colateral no grafo, gerando uma `árvore de busca em largura`.
-
-&nbsp;&nbsp;&nbsp;&nbsp;A árvore resultante e definida através do parâmetro `ancestor` em cada vértice, no qual armazena o vértice anterior e a distância calculada e guardada em `value`. Conforme o algoritmo percorre o grafo, o parâmetro `visited` em cada vértice se torna verdadeiro.
-
-&nbsp;
-
-### Depth First Search - Dfs
-
-&nbsp;&nbsp;&nbsp;&nbsp;`Busca em profundidade` em um grafo consiste em, a cada vértice do grafo, explorar o quanto for possível as suas listas de adjacência até ir para o próximo vértice não visitado. Esse método causa um efeito colateral no grafo, gerando uma `floresta de busca em profundidade`, ou seja, contém várias árvores de busca em profundidade.
-
-&nbsp;&nbsp;&nbsp;&nbsp;Os parâmetros `value`, `ancestor` e `visited` armazenam a distância calculada, o vértice anterior e a identificação de visitado respectivamente.
-
-&nbsp;
-
-### Has cycle
+### **Has Cycle**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Método que retorna verdadeiro se houver algum ciclo no grafo.
 
@@ -417,25 +401,41 @@ Conteúdo
 
 &nbsp;
 
-## Métodos de um grafo orientado
+### **Breadth First Search - Bfs**
+
+&nbsp;&nbsp;&nbsp;&nbsp;`Busca em largura` em um grafo consiste em calcular a distância para todos os vértices alcançáveis a partir de um vértice de origem. Esse método causa um efeito colateral no grafo, gerando uma `árvore de busca em largura`.
+
+&nbsp;&nbsp;&nbsp;&nbsp;A árvore resultante e definida através do parâmetro `ancestor` em cada vértice, no qual armazena o vértice anterior e a distância calculada e guardada em `value`. Conforme o algoritmo percorre o grafo, o parâmetro `visited` em cada vértice se torna verdadeiro.
+
+&nbsp;
+
+### **Depth First Search - Dfs**
+
+&nbsp;&nbsp;&nbsp;&nbsp;`Busca em profundidade` em um grafo consiste em, a cada vértice do grafo, explorar o quanto for possível as suas listas de adjacência até ir para o próximo vértice não visitado. Esse método causa um efeito colateral no grafo, gerando uma `floresta de busca em profundidade`, ou seja, contém várias árvores de busca em profundidade.
+
+&nbsp;&nbsp;&nbsp;&nbsp;Os parâmetros `value`, `ancestor` e `visited` armazenam a distância calculada, o vértice anterior e a identificação de visitado respectivamente.
+
+&nbsp;
+
+## **Métodos de um Grafo Orientado**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Grafos orientados possuem características e métodos exclusivos de sua estrutura, nas quais serão mostradas nesta sessão.
 
 &nbsp;
 
-### Num of edges
+### **Num of Edges**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Retorna o número de arestas presentes em um grafo orientado, somando a quantidade de arestas presente em cada vértice.
 
 &nbsp;
 
-### Get all edges
+### **Get all Edges**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Retorna uma lista com todas as arestas presentes em um grafo orientado.
 
 &nbsp;
 
-### Is strongly connected
+### **Is Strongly Connected**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Verifica se o grafo orientado é fortemente conexo, ou seja, se para cada par de vértices (`u`,`v`), `v` e acessível a partir de `u`
 
@@ -447,7 +447,7 @@ Conteúdo
 
 &nbsp;
 
-### Is DAG
+### **Is DAG**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Verifica se o grafo é um DAG (grafo acíclico orientado)
 
@@ -459,7 +459,7 @@ Conteúdo
 
 &nbsp;
 
-### To string
+### **To String**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Método no qual mostra uma versão simplificada do grafo na linha de comando utilizando `listas de adjacência`.
 
@@ -471,7 +471,7 @@ Conteúdo
     (3) - [ ]
 ```
 
-&nbsp;&nbsp;&nbsp;&nbsp;Omitindo a chamada do metodo *`toString()`* dentro de *print* tambem funciona:
+&nbsp;&nbsp;&nbsp;&nbsp;Omitindo a chamada do método *`toString()`* dentro de *print* também funciona:
 
 ```Dart
     print(myGraph);
@@ -483,7 +483,7 @@ Conteúdo
 
 &nbsp;
 
-### Print
+### **Print**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Método mais robusto para mostrar o conteudo de um grafo orientado na linha de comando. Mostra utilizando listas de adjacência com alguns parâmetros opcionais. Valores `nulos` não são mostrados.
 
@@ -526,13 +526,13 @@ Conteúdo
 
 &nbsp;
 
-## Métodos de um grafo não orientado
+## **Métodos de um Grafo Não Orientado**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Grafos não orientados possuem caracteristicas e métodos exclusivos de sua estrutura, nas quais serão mostradas nesta sessão.
 
 &nbsp;
 
-### *Num of edges*
+### ***Num of Edges***
 
 &nbsp;&nbsp;&nbsp;&nbsp;Retorna o número de arestas presentes em um grafo não orientado, seguindo a equacao abaixo:
 
@@ -544,13 +544,13 @@ Conteúdo
 
 &nbsp;
 
-### *Get all edges*
+### ***Get all Edges***
 
 &nbsp;&nbsp;&nbsp;&nbsp;Retorna uma lista com todas as arestas presentes em um grafo não orientado orientado, incluindo arestas de `ida` e de `volta`.
 
 &nbsp;
 
-### Is connected
+### **Is Connected**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Verifica se um grafo não orientado e conexo, ou seja, se a partir de um vértice pode-se chegar a todos os outros.
 
@@ -562,7 +562,7 @@ Conteúdo
 
 &nbsp;
 
-### Is tree
+### **Is Tree**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Verifica se um grafo não orientado é acíclico e conexo.
 
@@ -574,7 +574,7 @@ Conteúdo
 
 &nbsp;
 
-### Is forest
+### **Is Forest**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Verifica se um grafo é não orientado e acíclico
 
@@ -586,7 +586,7 @@ Conteúdo
 
 &nbsp;
 
-### *To string*
+### ***To String***
 
 &nbsp;&nbsp;&nbsp;&nbsp;Método no qual mostra uma versão simplificada do grafo na linha de comando utilizando `listas de adjacência`.
 
@@ -598,9 +598,19 @@ Conteúdo
     (3) - [ (1) ]
 ```
 
+&nbsp;&nbsp;&nbsp;&nbsp;Omitindo a chamada do método *`toString()`* dentro de *print* também funciona:
+
+```Dart
+    print(myGraph);
+
+    (1) - [ (2) (3) ]
+    (2) - [ (1) ]
+    (3) - [ (1) ]
+```
+
 &nbsp;
 
-### *Print*
+### ***Print***
 
 &nbsp;&nbsp;&nbsp;&nbsp;Método mais robusto para mostrar o conteudo de um grafo não orientado na linha de comando. Mostra utilizando listas de adjacência com alguns parâmetros opcionais. Valores `nulos` não são mostrados.
 
@@ -643,13 +653,13 @@ Conteúdo
 
 &nbsp;
 
-## Métodos de um vértice
+## **Métodos de um Vértice**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Métodos exclusivos de um vértice, alguns deles podem ser somente para grafos `orientados` e, caso sejam utilizados em grafos não orientados, uma mensagem de erro será retornada.
 
 &nbsp;
 
-### Add edge
+### **Add Edge**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Cria uma nova aresta e a adiciona na lista de arestas daquele vértice.
 
@@ -670,7 +680,7 @@ Conteúdo
 
 &nbsp;
 
-### Exclude edge
+### **Exclude Edge**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Remove uma aresta da lista de arestas deste vértice pelo identificador do vértice de destino.
 
@@ -687,7 +697,7 @@ Conteúdo
 
 &nbsp;
 
-### Vertices of edges list
+### **Vertices of Edges List**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Retorna a lista de adjacência do vértice a partir da `edgesList`.
 
@@ -701,7 +711,7 @@ Conteúdo
 
 &nbsp;
 
-### Is sinkhole
+### **Is Sinkhole**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Verifica se naquele vértice há somente arestas que chegam nele, ou seja, não há arestas saindo. Válido somente para `grafos orientados`.
 
@@ -718,7 +728,7 @@ Conteúdo
 
 &nbsp;
 
-### Is generator
+### **Is Generator**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Verifica se naquele vértice há somente arestas que saem dele, ou seja, não há arestas chegando. Válido somente para `grafos orientados`.
 
@@ -734,7 +744,7 @@ Conteúdo
 
 &nbsp;
 
-### Entry degree
+### **Entry Degree**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Número de arestas que `entram` no vértice.
 
@@ -750,7 +760,7 @@ Conteúdo
 
 &nbsp;
 
-### Exit degree
+### **Exit Degree**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Número de arestas que `saem` do vértice.
 
