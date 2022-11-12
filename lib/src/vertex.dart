@@ -56,6 +56,7 @@ class Vertex {
   })  : edgesList = edgesList ?? [],
         connectedFrom = connectedFrom ?? [];
 
+  //TODO: verificar se a aresta ja existe
   /// Adds an edge across the current and an existing vertex
   void addEdge({required Vertex connectedTo, num? weigth}) {
     final newEdge = Edge(
@@ -66,10 +67,18 @@ class Vertex {
     edgesList.add(newEdge);
   }
 
-  //TODO: o que acontece se uma aresta nao for encontrada para exclusao
+  //TODO: log e exception message nao paracerem no console, somente assert
   /// Remove a single edge from this vertex
   void excludeEdge({required String destinyLabel}) {
-    edgesList.removeWhere((edge) => edge.destiny.label == destinyLabel);
+    for (var edge in edgesList) {
+      if (edge.destiny.label == destinyLabel) {
+        edgesList.remove(edge);
+
+        return;
+      }
+    }
+
+    throw EdgeNotFoundException('Edge not found!!!!!!');
   }
 
   /// Returns vertex adjacency list from edgesList

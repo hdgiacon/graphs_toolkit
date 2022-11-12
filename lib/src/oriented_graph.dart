@@ -155,6 +155,8 @@ class OrientedGraph extends _Graph {
       vertices.removeWhere((vertex) => vertex.label == vertexLabel);
     } on StateError catch (e, s) {
       log('Vertex not found for exclusion!!!!!!', error: e, stackTrace: s);
+    } on EdgeNotFoundException catch (e, s) {
+      log('Edge not found for exclusion!!!!!!', error: e, stackTrace: s);
     }
   }
 
