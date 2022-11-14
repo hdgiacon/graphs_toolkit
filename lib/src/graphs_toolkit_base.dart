@@ -1,6 +1,7 @@
 import 'dart:collection' show ListQueue;
 import 'dart:developer';
 import 'package:collection/collection.dart' show DeepCollectionEquality;
+import 'package:logger/logger.dart';
 import 'package:tuple/tuple.dart' show Tuple3;
 import 'package:graphs_toolkit/src/graph_exceptions.dart';
 

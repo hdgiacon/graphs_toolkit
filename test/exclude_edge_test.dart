@@ -1,5 +1,8 @@
-import 'package:graphs_toolkit/graphs_toolkit.dart';
 import 'package:test/test.dart';
+import 'dart:developer';
+import 'package:logger/logger.dart';
+import 'package:graphs_toolkit/graphs_toolkit.dart';
+import 'package:graphs_toolkit/src/graph_exceptions.dart';
 
 void main() {
   test('exclude edge - test', () {
@@ -9,12 +12,13 @@ void main() {
     myGraph.addVertex(newVertex: Vertex(label: '2'));
     myGraph.addVertex(newVertex: Vertex(label: '3'));
 
-    print('$myGraph\n');
+    try {
+      myGraph.getV('3').excludeEdge(destinyLabel: '2');
+    } on EdgeNotFoundException catch (e, s) {
+      final logger = Logger();
+      logger.e(e.cause);
 
-    myGraph.getV('1').excludeEdge(destinyLabel: '3');
-
-    myGraph.getV('3').excludeEdge(destinyLabel: '2');
-
-    print(myGraph);
+      log('', error: e, stackTrace: s);
+    }
   });
 }

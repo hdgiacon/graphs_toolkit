@@ -335,14 +335,17 @@ Conteúdo
   // (z) - [ (z) ]
 ```
 
-&nbsp;&nbsp;&nbsp;&nbsp;Caso o vertice nao seja encontrado no grafo, uma mensagem de `log` sera mostrada.
-
-```Plain
-  [log] Vertex not found for exclusion!!!!!!
-  [log] StateError (Bad state: No element)
-```
+&nbsp;&nbsp;&nbsp;&nbsp;Caso o vértice não seja encontrado no grafo, uma mensagem de `erro` será mostrada:
 
 &nbsp;
+
+<p style="margin-left: 40px">
+  <img height="50" src="readme_resources/imgs/exclude_vertex_error.png">
+</p>
+
+&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;Para mais informações sobre o erro ocorrido, execute a sua aplicação no modo *`debbug`* e um `log` abaixo desta mensagem de erro também será mostrado, com informações sobre a exceção lançada e o estado atual da pilha de chamadas (`StackTrace`).
 
 ### **First**
 
@@ -693,6 +696,14 @@ Conteúdo
     myGraph.getV('u').addEdge(connectedTo: myGraph.getV('v'));
 
     myGraph.getV('u').excludeEdge('v');
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;Caso a aresta não seja encontrada no vértice, a seguinte exceção será lançada:
+
+```Dart
+  EdgeNotFoundException(
+    'Edge between (vertex $label) and (vertex $destinyLabel) not found!!!!!!',
+  )
 ```
 
 &nbsp;

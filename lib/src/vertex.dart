@@ -67,7 +67,6 @@ class Vertex {
     edgesList.add(newEdge);
   }
 
-  //TODO: log e exception message nao paracerem no console, somente assert
   /// Remove a single edge from this vertex
   void excludeEdge({required String destinyLabel}) {
     for (var edge in edgesList) {
@@ -78,7 +77,8 @@ class Vertex {
       }
     }
 
-    throw EdgeNotFoundException('Edge not found!!!!!!');
+    throw EdgeNotFoundException(
+        'Edge between (vertex $label) and (vertex $destinyLabel) not found!!!!!!');
   }
 
   /// Returns vertex adjacency list from edgesList

@@ -11,10 +11,10 @@ void main() {
     myGraph.addVertex(newVertex: Vertex(label: '2'));
     myGraph.addVertex(newVertex: Vertex(label: '3'));
 
-    print(myGraph.print());
+    print(myGraph.printGraph());
 
     expect(
-      myGraph.print(),
+      myGraph.printGraph(),
       "(1) ----> (2) \n    ----> (3) \n\n(2) \n\n(3) \n\n",
     );
   });
@@ -29,10 +29,10 @@ void main() {
     myGraph.addVertex(newVertex: Vertex(label: '2'));
     myGraph.addVertex(newVertex: Vertex(label: '3'));
 
-    print(myGraph.print(edgeWeigth: true));
+    print(myGraph.printGraph(edgeWeigth: true));
 
     expect(
-      myGraph.print(edgeWeigth: true),
+      myGraph.printGraph(edgeWeigth: true),
       "(1) --1-> (2) \n    --2-> (3) \n\n(2) \n\n(3) \n\n",
     );
   });
@@ -44,10 +44,10 @@ void main() {
     myGraph.addVertex(newVertex: Vertex(label: '2'));
     myGraph.addVertex(newVertex: Vertex(label: '3'));
 
-    print(myGraph.print());
+    print(myGraph.printGraph());
 
     expect(
-      myGraph.print(),
+      myGraph.printGraph(),
       "(1) ----- (2) \n    ----- (3) \n\n(2) ----- (1) \n \n\n(3) ----- (1) \n \n\n",
     );
   });
@@ -62,10 +62,10 @@ void main() {
     myGraph.addVertex(newVertex: Vertex(label: '2'));
     myGraph.addVertex(newVertex: Vertex(label: '3'));
 
-    print(myGraph.print(edgeWeigth: true));
+    print(myGraph.printGraph(edgeWeigth: true));
 
     expect(
-      myGraph.print(edgeWeigth: true),
+      myGraph.printGraph(edgeWeigth: true),
       "(1) --1-- (2) \n    --2-- (3) \n\n(2) --1-- (1) \n \n\n(3) --2-- (1) \n \n\n",
     );
   });
@@ -78,10 +78,10 @@ void main() {
     myGraph.addVertex(newVertex: Vertex(label: '2', value: 2));
     myGraph.addVertex(newVertex: Vertex(label: '3', value: 3));
 
-    print(myGraph.print(vertexValue: true));
+    print(myGraph.printGraph(vertexValue: true));
 
     expect(
-      myGraph.print(vertexValue: true),
+      myGraph.printGraph(vertexValue: true),
       "(1:1) ----> (2:2) \n      ----> (3:3) \n\n(2:2) \n\n(3:3) \n\n",
     );
   });
@@ -96,10 +96,10 @@ void main() {
     myGraph.addVertex(newVertex: Vertex(label: '2', value: 2));
     myGraph.addVertex(newVertex: Vertex(label: '3', value: 3));
 
-    print(myGraph.print(vertexValue: true, edgeWeigth: true));
+    print(myGraph.printGraph(vertexValue: true, edgeWeigth: true));
 
     expect(
-      myGraph.print(vertexValue: true, edgeWeigth: true),
+      myGraph.printGraph(vertexValue: true, edgeWeigth: true),
       "(1:1) --1-> (2:2) \n      --2-> (3:3) \n\n(2:2) \n\n(3:3) \n\n",
     );
   });
@@ -112,10 +112,10 @@ void main() {
     myGraph.addVertex(newVertex: Vertex(label: '2', value: 2));
     myGraph.addVertex(newVertex: Vertex(label: '3', value: 3));
 
-    print(myGraph.print(vertexValue: true));
+    print(myGraph.printGraph(vertexValue: true));
 
     expect(
-      myGraph.print(vertexValue: true),
+      myGraph.printGraph(vertexValue: true),
       "(1:1) ----- (2:2) \n      ----- (3:3) \n\n(2:2) ----- (1:1) \n \n\n(3:3) ----- (1:1) \n \n\n",
     );
   });
@@ -130,10 +130,10 @@ void main() {
     myGraph.addVertex(newVertex: Vertex(label: '2', value: 2));
     myGraph.addVertex(newVertex: Vertex(label: '3', value: 3));
 
-    print(myGraph.print(vertexValue: true, edgeWeigth: true));
+    print(myGraph.printGraph(vertexValue: true, edgeWeigth: true));
 
     expect(
-      myGraph.print(vertexValue: true, edgeWeigth: true),
+      myGraph.printGraph(vertexValue: true, edgeWeigth: true),
       "(1:1) --1-- (2:2) \n      --2-- (3:3) \n\n(2:2) --1-- (1:1) \n \n\n(3:3) --2-- (1:1) \n \n\n",
     );
   });

@@ -148,6 +148,8 @@ class NotOrientedGraph extends _Graph {
   /// If the vertex is `not found`, a `log` message will be displayed.
   @override
   void excludeVertex({required String vertexLabel}) {
+    final logger = Logger();
+
     try {
       getV(vertexLabel).edgesList.forEach((edge) {
         edge.destiny.excludeEdge(destinyLabel: vertexLabel);
@@ -155,9 +157,13 @@ class NotOrientedGraph extends _Graph {
 
       vertices.removeWhere((vertex) => vertex.label == vertexLabel);
     } on StateError catch (e, s) {
-      log('Vertex not found for exclusion!!!!!!', error: e, stackTrace: s);
+      logger.e('(Vertex $vertexLabel) not found for exclusion!!!!!!');
+
+      log(e.message, error: e, stackTrace: s);
     } on EdgeNotFoundException catch (e, s) {
-      log('Edge not found for exclusion!!!!!!', error: e, stackTrace: s);
+      logger.e(e.cause);
+
+      log('', error: e, stackTrace: s);
     }
   }
 
@@ -260,7 +266,9 @@ class NotOrientedGraph extends _Graph {
     return graphString.substring(0, graphString.length - 1);
   }
 
-  /// Show the graph in ajacencies list mode, `null` values ​​are not shown
+  //TODO: melhorar esse doc
+
+  /// Show the graph in ajacencies list mode
   /// ```
   ///   myGraph.print();
   ///
@@ -294,7 +302,7 @@ class NotOrientedGraph extends _Graph {
   ///   (3) --10-- (1)
   /// ```
   /// `null` values ​​are not shown
-  String print({bool vertexValue = false, bool edgeWeigth = false}) {
+  String printGraph({bool vertexValue = false, bool edgeWeigth = false}) {
     var graphString = "";
 
     for (var vertex in vertices) {
