@@ -2,7 +2,8 @@ import 'package:test/test.dart';
 import 'dart:developer';
 import 'package:logger/logger.dart';
 import 'package:graphs_toolkit/graphs_toolkit.dart';
-import 'package:graphs_toolkit/src/graph_exceptions.dart';
+
+//TODO: mais testes
 
 void main() {
   test('exclude edge - test', () {

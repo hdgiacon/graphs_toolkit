@@ -3,13 +3,14 @@ import 'dart:developer';
 import 'package:collection/collection.dart' show DeepCollectionEquality;
 import 'package:logger/logger.dart';
 import 'package:tuple/tuple.dart' show Tuple3;
-import 'package:graphs_toolkit/src/graph_exceptions.dart';
 
 part "edge.dart";
 part "vertex.dart";
 
 part 'not_oriented_graph.dart';
 part 'oriented_graph.dart';
+
+part 'graph_exceptions.dart';
 
 /// <Vertex,ConnectedFrom,EdgeWeigth>
 typedef _WaitType = Tuple3<Vertex, Vertex, num?>;

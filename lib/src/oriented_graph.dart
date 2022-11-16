@@ -138,6 +138,11 @@ class OrientedGraph extends _Graph {
         _waitList.add(
           Tuple3(Vertex(label: connectedTo), newVertex, edgeWeigth),
         );
+      } on EdgeAlreadyExistsException catch (e, s) {
+        final logger = Logger();
+        logger.e(e.cause);
+
+        log('', error: e, stackTrace: s);
       }
     });
   }
@@ -145,6 +150,9 @@ class OrientedGraph extends _Graph {
   /// removes a vertex by its `label` along with the edges that arrived at it from its adjacent ones
   ///
   /// If the vertex is `not found`, a `log` message will be displayed.
+  ///
+  /// In *`run`* mode only the message will be shown, for more information about the exception and stack
+  /// status (StackTrace), run in *`debug`* mode.
   @override
   void excludeVertex({required String vertexLabel}) {
     final logger = Logger();
@@ -247,7 +255,7 @@ class OrientedGraph extends _Graph {
 
   /// Show the graph in ajacencies list mode
   /// ```
-  ///   myGraph.print();
+  ///   myGraph.printGraph();
   ///
   ///   (1) -----> (2)
   ///       -----> (3)
@@ -256,9 +264,9 @@ class OrientedGraph extends _Graph {
   ///
   ///   (3) -----> (3)
   /// ```
-  /// The values ​​contained in the vertices can be shown with vertexValue -> `(label,value)`
+  /// The values ​​contained in the vertices can be shown with vertexValue :> `(label,value)`
   /// ```
-  ///   myGraph.print(vertexValue: true);
+  ///   myGraph.printGraph(vertexValue: true);
   ///
   ///   (1:5) -----> (2:4)
   ///         -----> (3:10)
@@ -269,7 +277,7 @@ class OrientedGraph extends _Graph {
   /// ```
   /// Edge weights can be shown with edgeWeight
   /// ```
-  ///   myGraph.print(edgeWeigth: true);
+  ///   myGraph.printGraph(edgeWeigth: true);
   ///
   ///   (1) --1--> (2)
   ///       --2--> (3)

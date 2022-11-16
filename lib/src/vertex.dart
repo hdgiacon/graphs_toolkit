@@ -56,9 +56,17 @@ class Vertex {
   })  : edgesList = edgesList ?? [],
         connectedFrom = connectedFrom ?? [];
 
-  //TODO: verificar se a aresta ja existe
   /// Adds an edge across the current and an existing vertex
+  ///
+  /// If the edge already exists, the `EdgeAlreadyExistsException` exception will be raised.
   void addEdge({required Vertex connectedTo, num? weigth}) {
+    for (var edge in edgesList) {
+      if (edge.destiny.label == connectedTo.label) {
+        throw EdgeAlreadyExistsException(
+            'Edge between $label and ${connectedTo.label} already exists');
+      }
+    }
+
     final newEdge = Edge(
       destiny: connectedTo,
       weigth: weigth,
@@ -68,6 +76,8 @@ class Vertex {
   }
 
   /// Remove a single edge from this vertex
+  ///
+  /// If the edge is not found, `EdgeNotFoundException` will be thrown.
   void excludeEdge({required String destinyLabel}) {
     for (var edge in edgesList) {
       if (edge.destiny.label == destinyLabel) {

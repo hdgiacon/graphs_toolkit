@@ -30,7 +30,7 @@ Conteúdo
   - [GetV](#getv)
   - [Adicionar Vértices do Modo Básico](#adicionar-vértices-do-modo-básico)
   - [Adicionar Vértices com *addVertex*](#adicionar-vértices-com-addvertex)
-  - [Excluir um Vértice](#excluir-um-vértice)
+  - [Exclude Vertex](#excluir-um-vértice)
   - [First](#first)
   - [Last](#last)
   - [Has Cycle](#has-cycle)
@@ -43,7 +43,7 @@ Conteúdo
   - [Is Strongly Connected](#is-strongly-connected)
   - [Is DAG](#is-dag)
   - [To String](#to-string)
-  - [Print](#print)
+  - [PrintGraph](#printgraph)
 
 - [Métodos de Grafo Não Orientado](#métodos-de-um-grafo-não-orientado)
   - [Num of Edges](#num-of-edges-1)
@@ -52,7 +52,7 @@ Conteúdo
   - [Is Tree](#is-tree)
   - [Is Forest](#is-forest)
   - [To String](#to-string-1)
-  - [Print](#print-1)
+  - [PrintGraph](#printgraph-1)
 
 - [Métodos de um Vértice](#métodos-de-um-vértice)
   - [Add Edge](#add-edge)
@@ -347,6 +347,8 @@ Conteúdo
 
 &nbsp;&nbsp;&nbsp;&nbsp;Para mais informações sobre o erro ocorrido, execute a sua aplicação no modo *`debbug`* e um `log` abaixo desta mensagem de erro também será mostrado, com informações sobre a exceção lançada e o estado atual da pilha de chamadas (`StackTrace`).
 
+&nbsp;
+
 ### **First**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Retorna o primeiro vértice da lista de vértices do grafo.
@@ -486,12 +488,12 @@ Conteúdo
 
 &nbsp;
 
-### **Print**
+### **PrintGraph**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Método mais robusto para mostrar o conteudo de um grafo orientado na linha de comando. Mostra utilizando listas de adjacência com alguns parâmetros opcionais. Valores `nulos` não são mostrados.
 
 ```Dart
-    myGraph.print();
+    myGraph.printGraph();
 
       (1) -----> (2)
           -----> (3)
@@ -504,7 +506,7 @@ Conteúdo
 &nbsp;&nbsp;&nbsp;&nbsp;Os valores associados a cada vértice podem ser mostrados com o parâmetro `vertexValue`, seguindo o padrão (`label`:`value`):
 
 ```Dart
-    myGraph.print(vertexValue: true);
+    myGraph.printGraph(vertexValue: true);
       
       (1:5) -----> (2:4)
             -----> (3:10)
@@ -517,7 +519,7 @@ Conteúdo
 &nbsp;&nbsp;&nbsp;&nbsp;Os pesos de cada aresta também podem ser mostrados com o parâmetro `edgeWeigth`:
 
 ```Dart
-    myGraph.print(edgeWeigth: true);
+    myGraph.printGraph(edgeWeigth: true);
     
     (1) --1--> (2)
         --2--> (3)
@@ -613,12 +615,12 @@ Conteúdo
 
 &nbsp;
 
-### ***Print***
+### ***PrintGraph***
 
 &nbsp;&nbsp;&nbsp;&nbsp;Método mais robusto para mostrar o conteudo de um grafo não orientado na linha de comando. Mostra utilizando listas de adjacência com alguns parâmetros opcionais. Valores `nulos` não são mostrados.
 
 ```Dart
-    myGraph.print();
+    myGraph.printGraph();
   
     (1) ----- (2)
         ----- (3)
@@ -631,7 +633,7 @@ Conteúdo
 &nbsp;&nbsp;&nbsp;&nbsp;Os valores associados a cada vértice podem ser mostrados com o parâmetro `vertexValue`, seguindo o padrão (`label`:`value`):
 
 ```Dart
-    myGraph.print(vertexValue: true);
+    myGraph.printGraph(vertexValue: true);
     
     (1:5) ----- (2:4)
           ----- (3:10)
@@ -644,7 +646,7 @@ Conteúdo
 &nbsp;&nbsp;&nbsp;&nbsp;Os pesos de cada aresta também podem ser mostrados com o parâmetro `edgeWeigth`:
 
 ```Dart
-    myGraph.print(edgeWeigth: true);
+    myGraph.printGraph(edgeWeigth: true);
   
     (1) --1-- (2)
         --2-- (3)
@@ -681,6 +683,14 @@ Conteúdo
     myGraph.getV('u').addEdge(connectedTo: myGraph.getV('v'), weigth: 5);
 ```
 
+&nbsp;&nbsp;&nbsp;&nbsp;Se a aresta já existir, a exceção `EdgeAlreadyExistsException` será levantada.
+
+```Dart
+  EdgeAlreadyExistsException(
+    'Edge between $label and ${connectedTo.label} already exists',
+  );
+```
+
 &nbsp;
 
 ### **Exclude Edge**
@@ -703,7 +713,7 @@ Conteúdo
 ```Dart
   EdgeNotFoundException(
     'Edge between (vertex $label) and (vertex $destinyLabel) not found!!!!!!',
-  )
+  );
 ```
 
 &nbsp;
