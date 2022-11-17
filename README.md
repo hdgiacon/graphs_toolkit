@@ -297,7 +297,7 @@ Conteúdo
     myGraph == myGraph2; // true
 ```
 
-&nbsp;&nbsp;&nbsp;&nbsp;Outra vantagem que este método possui e a legibilidade do código, pois em um mesmo comando sabe qual vértice está sendo criado, para quais outros ele possui uma aresta e os pesos declarados para cada aresta.
+&nbsp;&nbsp;&nbsp;&nbsp;Outra vantagem que este método possui é a legibilidade do código, pois em um mesmo comando sabe qual vértice está sendo criado, para quais outros ele possui uma aresta e os pesos declarados para cada aresta.
 
 &nbsp;
 
@@ -493,7 +493,7 @@ Conteúdo
 &nbsp;&nbsp;&nbsp;&nbsp;Método mais robusto para mostrar o conteudo de um grafo orientado na linha de comando. Mostra utilizando listas de adjacência com alguns parâmetros opcionais. Valores `nulos` não são mostrados.
 
 ```Dart
-    myGraph.printGraph();
+    print(myGraph.printGraph());
 
       (1) -----> (2)
           -----> (3)
@@ -506,7 +506,7 @@ Conteúdo
 &nbsp;&nbsp;&nbsp;&nbsp;Os valores associados a cada vértice podem ser mostrados com o parâmetro `vertexValue`, seguindo o padrão (`label`:`value`):
 
 ```Dart
-    myGraph.printGraph(vertexValue: true);
+    print(myGraph.printGraph(vertexValue: true));
       
       (1:5) -----> (2:4)
             -----> (3:10)
@@ -519,7 +519,7 @@ Conteúdo
 &nbsp;&nbsp;&nbsp;&nbsp;Os pesos de cada aresta também podem ser mostrados com o parâmetro `edgeWeigth`:
 
 ```Dart
-    myGraph.printGraph(edgeWeigth: true);
+    print(myGraph.printGraph(edgeWeigth: true));
     
     (1) --1--> (2)
         --2--> (3)
@@ -539,7 +539,7 @@ Conteúdo
 
 ### ***Num of Edges***
 
-&nbsp;&nbsp;&nbsp;&nbsp;Retorna o número de arestas presentes em um grafo não orientado, seguindo a equacao abaixo:
+&nbsp;&nbsp;&nbsp;&nbsp;Retorna o número de arestas presentes em um grafo não orientado, seguindo a equação abaixo:
 
 ```Dart
   numero_total_de_vertices ~/ 2
@@ -620,7 +620,7 @@ Conteúdo
 &nbsp;&nbsp;&nbsp;&nbsp;Método mais robusto para mostrar o conteudo de um grafo não orientado na linha de comando. Mostra utilizando listas de adjacência com alguns parâmetros opcionais. Valores `nulos` não são mostrados.
 
 ```Dart
-    myGraph.printGraph();
+    print(myGraph.printGraph());
   
     (1) ----- (2)
         ----- (3)
@@ -633,7 +633,7 @@ Conteúdo
 &nbsp;&nbsp;&nbsp;&nbsp;Os valores associados a cada vértice podem ser mostrados com o parâmetro `vertexValue`, seguindo o padrão (`label`:`value`):
 
 ```Dart
-    myGraph.printGraph(vertexValue: true);
+    print(myGraph.printGraph(vertexValue: true));
     
     (1:5) ----- (2:4)
           ----- (3:10)
@@ -646,7 +646,7 @@ Conteúdo
 &nbsp;&nbsp;&nbsp;&nbsp;Os pesos de cada aresta também podem ser mostrados com o parâmetro `edgeWeigth`:
 
 ```Dart
-    myGraph.printGraph(edgeWeigth: true);
+    print(myGraph.printGraph(edgeWeigth: true));
   
     (1) --1-- (2)
         --2-- (3)

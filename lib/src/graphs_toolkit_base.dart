@@ -1,7 +1,7 @@
 import 'dart:collection' show ListQueue;
-import 'dart:developer';
+import 'dart:developer' show log;
 import 'package:collection/collection.dart' show DeepCollectionEquality;
-import 'package:logger/logger.dart';
+import 'package:logger/logger.dart' show Logger;
 import 'package:tuple/tuple.dart' show Tuple3;
 
 part "edge.dart";
