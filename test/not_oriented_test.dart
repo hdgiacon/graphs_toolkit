@@ -86,7 +86,7 @@ void main() {
     );
   });
 
-  test('oriented graph with add vertex method - test', () {
+  test('not oriented graph with add vertex method - test', () {
     final myGraph = NotOrientedGraph();
 
     myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
