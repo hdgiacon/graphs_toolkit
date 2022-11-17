@@ -310,25 +310,36 @@ class NotOrientedGraph extends _Graph {
   /// `null` values ​​are not shown
   String printGraph({bool vertexValue = false, bool edgeWeigth = false}) {
     var graphString = "";
+    var cont = 1;
 
     for (var vertex in vertices) {
+      // first vertex
       graphString =
           "$graphString(${vertex.label}${vertexValue ? ":" : ""}${vertexValue ? _printNum(vertex.value) : ""})";
 
-      for (var adj in vertex.edgesList) {
-        if (vertex.edgesList.first == adj) {
-          graphString =
-              "$graphString --${edgeWeigth ? _printNum(adj.weigth) ?? "-" : "-"}-- (${adj.destiny.label}${vertexValue ? ":" : ""}${vertexValue ? _printNum(adj.destiny.value) : ""}) \n";
-        } else if (vertex.edgesList.last == adj) {
-          graphString =
-              "$graphString    ${vertexValue ? "  " : ""}--${edgeWeigth ? _printNum(adj.weigth) ?? "-" : "-"}-- (${adj.destiny.label}${vertexValue ? ":" : ""}${vertexValue ? _printNum(adj.destiny.value) : ""})";
-        } else {
-          graphString =
-              "$graphString    ${vertexValue ? "  " : ""}--${edgeWeigth ? _printNum(adj.weigth) ?? "-" : "-"}-- (${adj.destiny.label}${vertexValue ? ":" : ""}${vertexValue ? _printNum(adj.destiny.value) : ""}) \n";
-        }
+      // first edge
+      if (vertex.edgesList.isNotEmpty) {
+        graphString =
+            "$graphString --${edgeWeigth ? _printNum(vertex.edgesList.first.weigth) ?? "-" : "-"}-- (${vertex.edgesList.isEmpty ? '' : vertex.edgesList.first.destiny.label}${vertexValue ? ":" : ""}${vertexValue ? _printNum(vertex.edgesList.isEmpty ? null : vertex.edgesList.first.destiny.value) : ""}) \n";
       }
 
-      graphString = "$graphString \n\n";
+      while (cont < vertex.edgesList.length - 1) {
+        // middle edges
+        graphString =
+            "$graphString    ${vertexValue ? "  " : ""}--${edgeWeigth ? _printNum(vertex.edgesList[cont].weigth) ?? "-" : "-"}-- (${vertex.edgesList[cont].destiny.label}${vertexValue ? ":" : ""}${vertexValue ? _printNum(vertex.edgesList[cont].destiny.value) : ""})\n";
+
+        cont++;
+      }
+
+      // last edge
+      if (vertex.edgesList.isNotEmpty && vertex.edgesList.length > 1) {
+        graphString =
+            "$graphString    ${vertexValue ? "  " : ""}--${edgeWeigth ? _printNum(vertex.edgesList.isEmpty ? null : vertex.edgesList.last.weigth) ?? "-" : "-"}-- (${vertex.edgesList.isEmpty ? '' : vertex.edgesList.last.destiny.label}${vertexValue ? ":" : ""}${vertexValue ? _printNum(vertex.edgesList.isEmpty ? null : vertex.edgesList.last.destiny.value) : ""})\n";
+      }
+
+      cont = 1;
+
+      graphString = "$graphString\n";
     }
 
     return graphString;

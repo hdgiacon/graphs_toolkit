@@ -14,11 +14,11 @@ void main() {
     myGraph.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z']);
     myGraph.addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z']);
 
-    //myGraph.print();
+    print(myGraph.printGraph());
 
-    print('$myGraph\n');
+    print('\n\n$myGraph\n');
 
-    myGraph.excludeVertex(vertexLabel: '1');
+    //myGraph.excludeVertex(vertexLabel: '1');
 
     //print(myGraph);
 /*
