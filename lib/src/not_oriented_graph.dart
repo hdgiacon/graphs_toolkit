@@ -262,7 +262,7 @@ class NotOrientedGraph extends _Graph {
     var graphString = "";
 
     for (var vertex in vertices) {
-      graphString = "$graphString(${vertex.label}) - [";
+      graphString = "$graphString(${vertex.label}) -- [";
 
       for (var adj in vertex.edgesList) {
         graphString = "$graphString (${adj.destiny.label})";
@@ -308,6 +308,7 @@ class NotOrientedGraph extends _Graph {
   ///   (3) --10-- (1)
   /// ```
   /// `null` values ​​are not shown
+  @override
   String printGraph({bool vertexValue = false, bool edgeWeigth = false}) {
     var graphString = "";
     var cont = 1;

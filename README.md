@@ -471,9 +471,9 @@ Conteúdo
 ```Dart
     print(myGraph.toString());
 
-    (1) - [ (2) (3) ]
-    (2) - [ ]
-    (3) - [ ]
+    (1) -> [ (2) (3) ]
+    (2) -> [ ]
+    (3) -> [ ]
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;Omitindo a chamada do método *`toString()`* dentro de *print* também funciona:
@@ -481,9 +481,9 @@ Conteúdo
 ```Dart
     print(myGraph);
 
-    (1) - [ (2) (3) ]
-    (2) - [ ]
-    (3) - [ ]
+    (1) -> [ (2) (3) ]
+    (2) -> [ ]
+    (3) -> [ ]
 ```
 
 &nbsp;
@@ -598,9 +598,9 @@ Conteúdo
 ```Dart
     print(myGraph.toString());
 
-    (1) - [ (2) (3) ]
-    (2) - [ (1) ]
-    (3) - [ (1) ]
+    (1) -- [ (2) (3) ]
+    (2) -- [ (1) ]
+    (3) -- [ (1) ]
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;Omitindo a chamada do método *`toString()`* dentro de *print* também funciona:
@@ -608,9 +608,9 @@ Conteúdo
 ```Dart
     print(myGraph);
 
-    (1) - [ (2) (3) ]
-    (2) - [ (1) ]
-    (3) - [ (1) ]
+    (1) -- [ (2) (3) ]
+    (2) -- [ (1) ]
+    (3) -- [ (1) ]
 ```
 
 &nbsp;

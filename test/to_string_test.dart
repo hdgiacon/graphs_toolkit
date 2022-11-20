@@ -11,7 +11,7 @@ void main() {
 
     expect(
       myGraph.toString(),
-      "(1) - [ (2) (3) ]\n(2) - [ (1) ]\n(3) - [ (1) ]",
+      "(1) -- [ (2) (3) ]\n(2) -- [ (1) ]\n(3) -- [ (1) ]",
     );
   });
 
@@ -26,7 +26,7 @@ void main() {
     myGraph.addVertex(newVertex: Vertex(label: 'z'));
 
     expect(myGraph.toString(),
-        '(u) - [ (v) (x) ]\n(v) - [ (u) (y) (x) ]\n(y) - [ (v) (x) (w) ]\n(x) - [ (u) (v) (y) ]\n(w) - [ (y) (z) ]\n(z) - [ (w) ]');
+        '(u) -- [ (v) (x) ]\n(v) -- [ (u) (y) (x) ]\n(y) -- [ (v) (x) (w) ]\n(x) -- [ (u) (v) (y) ]\n(w) -- [ (y) (z) ]\n(z) -- [ (w) ]');
   });
 
   test('toString function - oriented 1 - test', () {
@@ -38,7 +38,7 @@ void main() {
 
     expect(
       myGraph.toString(),
-      "(1) - [ (2) (3) ]\n(2) - [ ]\n(3) - [ ]",
+      "(1) -> [ (2) (3) ]\n(2) -> [ ]\n(3) -> [ ]",
     );
   });
 
@@ -53,6 +53,6 @@ void main() {
     myGraph.addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z']);
 
     expect(myGraph.toString(),
-        "(u) - [ (v) (x) ]\n(v) - [ (y) ]\n(y) - [ (x) ]\n(x) - [ (v) ]\n(w) - [ (y) (z) ]\n(z) - [ (z) ]");
+        "(u) -> [ (v) (x) ]\n(v) -> [ (y) ]\n(y) -> [ (x) ]\n(x) -> [ (v) ]\n(w) -> [ (y) (z) ]\n(z) -> [ (z) ]");
   });
 }

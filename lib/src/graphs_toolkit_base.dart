@@ -194,6 +194,8 @@ abstract class _Graph {
     }
   }
 
+  String printGraph({bool vertexValue = false, bool edgeWeigth = false});
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
