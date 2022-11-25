@@ -102,7 +102,7 @@ class NotOrientedGraph extends _Graph {
 
   List<num?>? _listFillIfNecessaryWithNull(
       List<String>? connectedTo, List<num?>? edgeWeigth) {
-    if (edgeWeigth != null && connectedTo!.length != edgeWeigth.length) {
+    if (edgeWeigth != null && connectedTo!.length >= edgeWeigth.length) {
       while (edgeWeigth.length != connectedTo.length) {
         edgeWeigth.add(null);
       }

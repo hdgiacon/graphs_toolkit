@@ -171,6 +171,99 @@ void main() {
     );
   });
 
+  test('bfs - not oriented graph weigth - test', () {
+    final myGraph = NotOrientedGraph();
+
+    myGraph.addVertex(
+        newVertex: Vertex(label: 'u'),
+        connectedTo: ['v', 'x'],
+        edgeWeigth: [1, 2]);
+    myGraph.addVertex(
+        newVertex: Vertex(label: 'v'),
+        connectedTo: ['y', 'x'],
+        edgeWeigth: [3, 4]);
+    myGraph.addVertex(
+        newVertex: Vertex(label: 'y'),
+        connectedTo: ['x', 'w'],
+        edgeWeigth: [5, 6]);
+    myGraph.addVertex(newVertex: Vertex(label: 'x'));
+    myGraph.addVertex(
+        newVertex: Vertex(label: 'w'), connectedTo: ['z'], edgeWeigth: [7]);
+    myGraph.addVertex(newVertex: Vertex(label: 'z'));
+
+    myGraph.bfs(myGraph.first);
+
+    expect(
+      myGraph,
+      NotOrientedGraph(
+        vertices: [
+          Vertex(
+            label: 'u',
+            value: 0,
+            ancestor: null,
+            visited: true,
+            edgesList: [
+              Edge(destiny: myGraph.getV('v'), weigth: 1),
+              Edge(destiny: myGraph.getV('x'), weigth: 2),
+            ],
+          ),
+          Vertex(
+            label: 'v',
+            value: 1,
+            ancestor: myGraph.getV('u'),
+            visited: true,
+            edgesList: [
+              Edge(destiny: myGraph.getV('u'), weigth: 1),
+              Edge(destiny: myGraph.getV('y'), weigth: 3),
+              Edge(destiny: myGraph.getV('x'), weigth: 4),
+            ],
+          ),
+          Vertex(
+            label: 'y',
+            value: 2,
+            ancestor: myGraph.getV('v'),
+            visited: true,
+            edgesList: [
+              Edge(destiny: myGraph.getV('v'), weigth: 3),
+              Edge(destiny: myGraph.getV('x'), weigth: 5),
+              Edge(destiny: myGraph.getV('w'), weigth: 6),
+            ],
+          ),
+          Vertex(
+            label: 'x',
+            value: 1,
+            ancestor: myGraph.getV('u'),
+            visited: true,
+            edgesList: [
+              Edge(destiny: myGraph.getV('u'), weigth: 2),
+              Edge(destiny: myGraph.getV('v'), weigth: 4),
+              Edge(destiny: myGraph.getV('y'), weigth: 5),
+            ],
+          ),
+          Vertex(
+            label: 'w',
+            value: 3,
+            ancestor: myGraph.getV('y'),
+            visited: true,
+            edgesList: [
+              Edge(destiny: myGraph.getV('y'), weigth: 6),
+              Edge(destiny: myGraph.getV('z'), weigth: 7),
+            ],
+          ),
+          Vertex(
+            label: 'z',
+            value: 4,
+            ancestor: myGraph.getV('w'),
+            visited: true,
+            edgesList: [
+              Edge(destiny: myGraph.getV('w'), weigth: 7),
+            ],
+          ),
+        ],
+      ),
+    );
+  });
+
   test('bfs - oriented graph - test', () {
     final myGraph = OrientedGraph();
 
@@ -241,6 +334,93 @@ void main() {
             visited: false,
             edgesList: [
               Edge(destiny: myGraph.getV('z')),
+            ],
+          ),
+        ],
+      ),
+    );
+  });
+
+  test('bfs - oriented graph weigth - test', () {
+    final myGraph = OrientedGraph();
+
+    myGraph.addVertex(
+        newVertex: Vertex(label: 'u'),
+        connectedTo: ['v', 'x'],
+        edgeWeigth: [1, 2]);
+    myGraph.addVertex(
+        newVertex: Vertex(label: 'v'), connectedTo: ['y'], edgeWeigth: [3, 1]);
+    myGraph.addVertex(
+        newVertex: Vertex(label: 'y'), connectedTo: ['x'], edgeWeigth: [4]);
+    myGraph.addVertex(
+        newVertex: Vertex(label: 'x'), connectedTo: ['v'], edgeWeigth: [5]);
+    myGraph.addVertex(
+        newVertex: Vertex(label: 'w'),
+        connectedTo: ['y', 'z'],
+        edgeWeigth: [6, 7]);
+    myGraph.addVertex(
+        newVertex: Vertex(label: 'z'), connectedTo: ['z'], edgeWeigth: [8]);
+
+    myGraph.bfs(myGraph.first);
+
+    expect(
+      myGraph,
+      OrientedGraph(
+        vertices: [
+          Vertex(
+            label: 'u',
+            value: 0,
+            ancestor: null,
+            visited: true,
+            edgesList: [
+              Edge(destiny: myGraph.getV('v'), weigth: 1),
+              Edge(destiny: myGraph.getV('x'), weigth: 2),
+            ],
+          ),
+          Vertex(
+            label: 'v',
+            value: 1,
+            ancestor: myGraph.getV('u'),
+            visited: true,
+            edgesList: [
+              Edge(destiny: myGraph.getV('y'), weigth: 3),
+            ],
+          ),
+          Vertex(
+            label: 'y',
+            value: 2,
+            ancestor: myGraph.getV('v'),
+            visited: true,
+            edgesList: [
+              Edge(destiny: myGraph.getV('x'), weigth: 4),
+            ],
+          ),
+          Vertex(
+            label: 'x',
+            value: 1,
+            ancestor: myGraph.getV('u'),
+            visited: true,
+            edgesList: [
+              Edge(destiny: myGraph.getV('v'), weigth: 5),
+            ],
+          ),
+          Vertex(
+            label: 'w',
+            value: 0,
+            ancestor: null,
+            visited: false,
+            edgesList: [
+              Edge(destiny: myGraph.getV('y'), weigth: 6),
+              Edge(destiny: myGraph.getV('z'), weigth: 7),
+            ],
+          ),
+          Vertex(
+            label: 'z',
+            value: 0,
+            ancestor: null,
+            visited: false,
+            edgesList: [
+              Edge(destiny: myGraph.getV('z'), weigth: 8),
             ],
           ),
         ],

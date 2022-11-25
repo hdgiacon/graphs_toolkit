@@ -52,6 +52,79 @@ void main() {
     );
   });
 
+  test('exclude vertex - oriented graph weigth value - test', () {
+    final myGraph = OrientedGraph();
+
+    myGraph.addVertex(
+        newVertex: Vertex(label: 'u', value: 1),
+        connectedTo: ['v', 'x'],
+        edgeWeigth: [1, 2]);
+    myGraph.addVertex(
+        newVertex: Vertex(label: 'v', value: 2),
+        connectedTo: ['y'],
+        edgeWeigth: [3]);
+    myGraph.addVertex(
+        newVertex: Vertex(label: 'y', value: 3),
+        connectedTo: ['x'],
+        edgeWeigth: [4]);
+    myGraph.addVertex(
+        newVertex: Vertex(label: 'x', value: 4),
+        connectedTo: ['v'],
+        edgeWeigth: [5]);
+    myGraph.addVertex(
+        newVertex: Vertex(label: 'w', value: 5),
+        connectedTo: ['y', 'z'],
+        edgeWeigth: [6, 7]);
+    myGraph.addVertex(
+        newVertex: Vertex(label: 'z', value: 6),
+        connectedTo: ['z'],
+        edgeWeigth: [8]);
+
+    myGraph.excludeVertex(vertexLabel: 'v');
+
+    expect(
+      myGraph,
+      OrientedGraph(
+        vertices: [
+          Vertex(
+            label: 'u',
+            value: 1,
+            edgesList: [
+              Edge(destiny: myGraph.getV('x'), weigth: 2),
+            ],
+          ),
+          Vertex(
+            label: 'y',
+            value: 3,
+            edgesList: [
+              Edge(destiny: myGraph.getV('x'), weigth: 4),
+            ],
+          ),
+          Vertex(
+            label: 'x',
+            value: 4,
+            edgesList: [],
+          ),
+          Vertex(
+            label: 'w',
+            value: 5,
+            edgesList: [
+              Edge(destiny: myGraph.getV('y'), weigth: 6),
+              Edge(destiny: myGraph.getV('z'), weigth: 7),
+            ],
+          ),
+          Vertex(
+            label: 'z',
+            value: 6,
+            edgesList: [
+              Edge(destiny: myGraph.getV('z'), weigth: 8),
+            ],
+          ),
+        ],
+      ),
+    );
+  });
+
   test('exclude vertex not found - oriented graph - test', () {
     final myGraph = OrientedGraph();
 
@@ -63,6 +136,7 @@ void main() {
     myGraph.addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z']);
 
     myGraph.excludeVertex(vertexLabel: '1');
+    /* prints a error message */
   });
 
   test('exclude vertex - not oriented graph - test', () {
@@ -119,6 +193,77 @@ void main() {
     );
   });
 
+  test('exclude vertex - not oriented graph weigth value - test', () {
+    final myGraph = NotOrientedGraph();
+
+    myGraph.addVertex(
+        newVertex: Vertex(label: 'u', value: 1),
+        connectedTo: ['v', 'x'],
+        edgeWeigth: [1, 2]);
+    myGraph.addVertex(
+        newVertex: Vertex(label: 'v', value: 2),
+        connectedTo: ['y', 'x'],
+        edgeWeigth: [3, 4]);
+    myGraph.addVertex(
+        newVertex: Vertex(label: 'y', value: 3),
+        connectedTo: ['x', 'w'],
+        edgeWeigth: [5, 6]);
+    myGraph.addVertex(newVertex: Vertex(label: 'x', value: 4));
+    myGraph.addVertex(
+        newVertex: Vertex(label: 'w', value: 5),
+        connectedTo: ['z'],
+        edgeWeigth: [7]);
+    myGraph.addVertex(newVertex: Vertex(label: 'z', value: 6));
+
+    myGraph.excludeVertex(vertexLabel: 'v');
+
+    expect(
+      myGraph,
+      NotOrientedGraph(
+        vertices: [
+          Vertex(
+            label: 'u',
+            value: 1,
+            edgesList: [
+              Edge(destiny: myGraph.getV('x'), weigth: 2),
+            ],
+          ),
+          Vertex(
+            label: 'y',
+            value: 3,
+            edgesList: [
+              Edge(destiny: myGraph.getV('x'), weigth: 5),
+              Edge(destiny: myGraph.getV('w'), weigth: 6),
+            ],
+          ),
+          Vertex(
+            label: 'x',
+            value: 4,
+            edgesList: [
+              Edge(destiny: myGraph.getV('u'), weigth: 2),
+              Edge(destiny: myGraph.getV('y'), weigth: 5),
+            ],
+          ),
+          Vertex(
+            label: 'w',
+            value: 5,
+            edgesList: [
+              Edge(destiny: myGraph.getV('y'), weigth: 6),
+              Edge(destiny: myGraph.getV('z'), weigth: 7),
+            ],
+          ),
+          Vertex(
+            label: 'z',
+            value: 6,
+            edgesList: [
+              Edge(destiny: myGraph.getV('w'), weigth: 7),
+            ],
+          ),
+        ],
+      ),
+    );
+  });
+
   test('exclude vertex not found - not oriented graph - test', () {
     final myGraph = NotOrientedGraph();
 
@@ -130,5 +275,6 @@ void main() {
     myGraph.addVertex(newVertex: Vertex(label: 'z'));
 
     myGraph.excludeVertex(vertexLabel: '5');
+    /* prints a error message */
   });
 }
