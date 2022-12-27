@@ -115,9 +115,9 @@ class NotOrientedGraph extends _Graph {
     _waitList.removeWhere((element) {
       if (element.vertex.label == newVertex.label) {
         element.connectedFrom
-            .addEdge(connectedTo: newVertex, weigth: element.edgeWeigth);
+            .addEdge(connectedTo: newVertex, weight: element.edgeWeigth);
         newVertex.addEdge(
-            connectedTo: element.connectedFrom, weigth: element.edgeWeigth);
+            connectedTo: element.connectedFrom, weight: element.edgeWeigth);
         return true;
       }
       return false;
@@ -129,12 +129,12 @@ class NotOrientedGraph extends _Graph {
       try {
         newVertex.addEdge(
           connectedTo: getV(connectedTo),
-          weigth: edgeWeigth,
+          weight: edgeWeigth,
         );
 
         getV(connectedTo).addEdge(
           connectedTo: newVertex,
-          weigth: edgeWeigth,
+          weight: edgeWeigth,
         );
       } on StateError catch (_) {
         _waitList
@@ -321,13 +321,13 @@ class NotOrientedGraph extends _Graph {
       // first edge
       if (vertex.edgesList.isNotEmpty) {
         graphString =
-            "$graphString --${edgeWeigth ? _printNum(vertex.edgesList.first.weigth) ?? "-" : "-"}-- (${vertex.edgesList.isEmpty ? '' : vertex.edgesList.first.destiny.label}${vertexValue ? ":" : ""}${vertexValue ? _printNum(vertex.edgesList.isEmpty ? null : vertex.edgesList.first.destiny.value) : ""}) \n";
+            "$graphString --${edgeWeigth ? _printNum(vertex.edgesList.first.weight) ?? "-" : "-"}-- (${vertex.edgesList.isEmpty ? '' : vertex.edgesList.first.destiny.label}${vertexValue ? ":" : ""}${vertexValue ? _printNum(vertex.edgesList.isEmpty ? null : vertex.edgesList.first.destiny.value) : ""}) \n";
       }
 
       while (cont < vertex.edgesList.length - 1) {
         // middle edges
         graphString =
-            "$graphString    ${vertexValue ? "  " : ""}--${edgeWeigth ? _printNum(vertex.edgesList[cont].weigth) ?? "-" : "-"}-- (${vertex.edgesList[cont].destiny.label}${vertexValue ? ":" : ""}${vertexValue ? _printNum(vertex.edgesList[cont].destiny.value) : ""})\n";
+            "$graphString    ${vertexValue ? "  " : ""}--${edgeWeigth ? _printNum(vertex.edgesList[cont].weight) ?? "-" : "-"}-- (${vertex.edgesList[cont].destiny.label}${vertexValue ? ":" : ""}${vertexValue ? _printNum(vertex.edgesList[cont].destiny.value) : ""})\n";
 
         cont++;
       }
@@ -335,7 +335,7 @@ class NotOrientedGraph extends _Graph {
       // last edge
       if (vertex.edgesList.isNotEmpty && vertex.edgesList.length > 1) {
         graphString =
-            "$graphString    ${vertexValue ? "  " : ""}--${edgeWeigth ? _printNum(vertex.edgesList.isEmpty ? null : vertex.edgesList.last.weigth) ?? "-" : "-"}-- (${vertex.edgesList.isEmpty ? '' : vertex.edgesList.last.destiny.label}${vertexValue ? ":" : ""}${vertexValue ? _printNum(vertex.edgesList.isEmpty ? null : vertex.edgesList.last.destiny.value) : ""})\n";
+            "$graphString    ${vertexValue ? "  " : ""}--${edgeWeigth ? _printNum(vertex.edgesList.isEmpty ? null : vertex.edgesList.last.weight) ?? "-" : "-"}-- (${vertex.edgesList.isEmpty ? '' : vertex.edgesList.last.destiny.label}${vertexValue ? ":" : ""}${vertexValue ? _printNum(vertex.edgesList.isEmpty ? null : vertex.edgesList.last.destiny.value) : ""})\n";
       }
 
       cont = 1;

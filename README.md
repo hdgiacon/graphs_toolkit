@@ -3,9 +3,10 @@
 <div align="center">
 
   Idiomas:
-  
+
   [![Português](https://img.shields.io/badge/Language-Português-blue?style=for-the-badge)](README.pt-br.md)
   [![Inglês](https://img.shields.io/badge/Language-Inglês-blue?style=for-the-badge)](README.en.md)
+
 </div>
 
 &nbsp;
@@ -19,6 +20,7 @@
 Conteúdo
 
 - [O que é um Grafo](#o-que-é-um-grafo)
+
   - [Orientado](#orientado)
   - [Não Orientado](#não-orientado)
 
@@ -27,9 +29,10 @@ Conteúdo
 - [O que é uma Aresta](#o-que-é-uma-aresta)
 
 - [Métodos Básicos de um Grafo](#métodos-básicos-de-um-grafo)
+
   - [GetV](#getv)
   - [Adicionar Vértices do Modo Básico](#adicionar-vértices-do-modo-básico)
-  - [Adicionar Vértices com *addVertex*](#adicionar-vértices-com-addvertex)
+  - [Adicionar Vértices com _addVertex_](#adicionar-vértices-com-addvertex)
   - [Exclude Vertex](#excluir-um-vértice)
   - [First](#first)
   - [Last](#last)
@@ -38,6 +41,7 @@ Conteúdo
   - [Depth First Search - Dfs](#depth-first-search---dfs)
 
 - [Métodos de um Grafo Orientado](#métodos-de-um-grafo-orientado)
+
   - [Num of Edges](#num-of-edges)
   - [Get all Edges](#get-all-edges)
   - [Is Strongly Connected](#is-strongly-connected)
@@ -46,6 +50,7 @@ Conteúdo
   - [PrintGraph](#printgraph)
 
 - [Métodos de Grafo Não Orientado](#métodos-de-um-grafo-não-orientado)
+
   - [Num of Edges](#num-of-edges-1)
   - [Get all Edges](#get-all-edges-1)
   - [Is Connected](#is-connected)
@@ -107,7 +112,7 @@ Conteúdo
 
 ## **O que é um Vértice**
 
-&nbsp;&nbsp;&nbsp;&nbsp;Um vértice, também conhecido por nó, e a unidade fundamental para a composição de um grafo. A partir das suas composições com arestas muitos problemas podem ser resolvidos através da sua modelagem. No caso da implementação deste *`package`*, um vértice possui um identificador para diferenciá-lo dos demais, representado pelo atributo `label`. Pode armazenar um valor numérico em `value` e possui uma lista de arestas nos quais indica com quais outros vértices este está conectado.
+&nbsp;&nbsp;&nbsp;&nbsp;Um vértice, também conhecido por nó, e a unidade fundamental para a composição de um grafo. A partir das suas composições com arestas muitos problemas podem ser resolvidos através da sua modelagem. No caso da implementação deste _`package`_, um vértice possui um identificador para diferenciá-lo dos demais, representado pelo atributo `label`. Pode armazenar um valor numérico em `value` e possui uma lista de arestas nos quais indica com quais outros vértices este está conectado.
 
 &nbsp;
 
@@ -148,7 +153,7 @@ Conteúdo
 &nbsp;&nbsp;&nbsp;&nbsp;Em ambos os tipos, as arestas podem armazenar um peso numérico:
 
 <p align="center">
-  <img height="200" src="readme_resources/imgs/edge_weigth.png">
+  <img height="200" src="readme_resources/imgs/edge_weight.png">
 </p>
 
 &nbsp;
@@ -159,7 +164,7 @@ Conteúdo
 
 ## **Métodos Básicos de um Grafo**
 
-&nbsp;&nbsp;&nbsp;&nbsp;Tanto grafos orientados quanto os não orientados possuem atributos e métodos em comum. A partir disso, muitas funcionalidades presentes neste *Package* estão implementadas para os dois tipos de estrutura, mostradas nesta sessão.
+&nbsp;&nbsp;&nbsp;&nbsp;Tanto grafos orientados quanto os não orientados possuem atributos e métodos em comum. A partir disso, muitas funcionalidades presentes neste _Package_ estão implementadas para os dois tipos de estrutura, mostradas nesta sessão.
 
 &nbsp;
 
@@ -218,7 +223,7 @@ Conteúdo
 
 &nbsp;
 
-### **Adicionar Vértices com *addVertex***
+### **Adicionar Vértices com _addVertex_**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Uma segunda maneira de se povoar um grafo e através do método `addVertex`. Esta função consiste em encapsular toda a criação de um vértice e criação das suas arestas para outros vértices mesmo que eles ainda não tenham sido criados.
 
@@ -233,27 +238,26 @@ Conteúdo
     myGraph.addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z']);
 ```
 
-&nbsp;&nbsp;&nbsp;&nbsp;No exemplo acima, quando o vértice `u` e criado, tanto o vértice `v` quando `x` ainda não existem no grafo, mas este método os armazena em uma lista de espera, até que eles sejam difinitivamente criados, assim as arestas necessárias serão criadas e o grafo seguir a modelagem desejada.
+&nbsp;&nbsp;&nbsp;&nbsp;No exemplo acima, quando o vértice `u` e criado, tanto o vértice `v` quando `x` ainda não existem no grafo, mas este método os armazena em uma lista de espera, até que eles sejam definitivamente criados, assim as arestas necessárias serão criadas e o grafo seguir a modelagem desejada.
 
-&nbsp;&nbsp;&nbsp;&nbsp;Além de definir as conexoes com arestas baseados em `connectedTo`, também e possível passar pesos para as arestas através do parâmetro `edgeWeigth`. Este parâmetro consiste em uma lista de valores para os pesos, dessa forma, posicionalmente com a lista `connectedTo`, as arestas terão um peso definido a cada uma. O valor `null` também pode ser atribuido a peso de arestas.
+&nbsp;&nbsp;&nbsp;&nbsp;Além de definir as conexões com arestas baseados em `connectedTo`, também e possível passar pesos para as arestas através do parâmetro `edgeWeight`. Este parâmetro consiste em uma lista de valores para os pesos, dessa forma, posicionalmente com a lista `connectedTo`, as arestas terão um peso definido a cada uma. O valor `null` também pode ser atribuído a peso de arestas.
 
 ```Dart
     final myGraph = OrientedGraph();
 
-    myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x'], edgeWeigth: [null, 2]);
-    myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y'], edgeWeigth: []);
-    myGraph.addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x'], edgeWeigth: [null]);
+    myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x'], edgeWeight: [null, 2]);
+    myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y'], edgeWeight: []);
+    myGraph.addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x'], edgeWeight: [null]);
     myGraph.addVertex(newVertex: Vertex(label: 'x'), connectedTo: ['v']);
-    myGraph.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z'], edgeWeigth: [6]);
-    myGraph.addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z'], edgeWeigth: [8]);
+    myGraph.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z'], edgeWeight: [6]);
+    myGraph.addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z'], edgeWeight: [8]);
 ```
 
-&nbsp;&nbsp;&nbsp;&nbsp;No exemplo acima existem 4 meneiras de atribuir valores nulos para o peso de arestas: não utilizando o parâmetro `edgeWeigth` *(linha 6)*, utilizando uma lista vazia *(linha 4)*, utilizando explicitamente `null` *(linhas 3 e 5)* e omitindo o valor do ultimo peso *(linha 7)*
+&nbsp;&nbsp;&nbsp;&nbsp;No exemplo acima existem 4 maneiras de atribuir valores nulos para o peso de arestas: não utilizando o parâmetro `edgeWeight` _(linha 6)_, utilizando uma lista vazia _(linha 4)_, utilizando explicitamente `null` _(linhas 3 e 5)_ e omitindo o valor do ultimo peso _(linha 7)_
 
 &nbsp;&nbsp;&nbsp;&nbsp;Dentre as vantagens que este método possui em relação ao básico, pode-se citar principalmente a redução na quantidade de código, principalmente em grafos não orientados, pois neles a adição de arestas é sempre dobrada, como mostra o exemplo abaixo:
 
 ```Dart
-
     final myGraph = NotOrientedGraph();
 
     myGraph.vertices.add(Vertex(label: 'u'));
@@ -274,7 +278,7 @@ Conteúdo
 
     myGraph.getV('y').addEdge(connectedTo: myGraph.getV('x'));
     myGraph.getV('x').addEdge(connectedTo: myGraph.getV('v'));
-    
+
     myGraph.getV('x').addEdge(connectedTo: myGraph.getV('y'));
     myGraph.getV('v').addEdge(connectedTo: myGraph.getV('x'));
 
@@ -308,12 +312,12 @@ Conteúdo
 ```Dart
   final myGraph = NotOrientedGraph();
 
-  myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x'], edgeWeigth: [null, 2]);
-  myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y'], edgeWeigth: []);
-  myGraph.addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x'], edgeWeigth: [null]);
+  myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x'], edgeWeight: [null, 2]);
+  myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y'], edgeWeight: []);
+  myGraph.addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x'], edgeWeight: [null]);
   myGraph.addVertex(newVertex: Vertex(label: 'x'), connectedTo: ['v']);
-  myGraph.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z'], edgeWeigth: [6]);
-  myGraph.addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z'], edgeWeigth: [8]);
+  myGraph.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z'], edgeWeight: [6]);
+  myGraph.addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z'], edgeWeight: [8]);
 
   print(myGraph);
 
@@ -345,7 +349,7 @@ Conteúdo
 
 &nbsp;
 
-&nbsp;&nbsp;&nbsp;&nbsp;Para mais informações sobre o erro ocorrido, execute a sua aplicação no modo *`debbug`* e um `log` abaixo desta mensagem de erro também será mostrado, com informações sobre a exceção lançada e o estado atual da pilha de chamadas (`StackTrace`).
+&nbsp;&nbsp;&nbsp;&nbsp;Para mais informações sobre o erro ocorrido, execute a sua aplicação no modo _`debug`_ e um `log` abaixo desta mensagem de erro também será mostrado, com informações sobre a exceção lançada e o estado atual da pilha de chamadas (`StackTrace`).
 
 &nbsp;
 
@@ -356,12 +360,12 @@ Conteúdo
 ```Dart
   final myGraph = NotOrientedGraph();
 
-  myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x'], edgeWeigth: [null, 2]);
-  myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y'], edgeWeigth: []);
-  myGraph.addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x'], edgeWeigth: [null]);
+  myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x'], edgeWeight: [null, 2]);
+  myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y'], edgeWeight: []);
+  myGraph.addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x'], edgeWeight: [null]);
   myGraph.addVertex(newVertex: Vertex(label: 'x'), connectedTo: ['v']);
-  myGraph.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z'], edgeWeigth: [6]);
-  myGraph.addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z'], edgeWeigth: [8]);
+  myGraph.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z'], edgeWeight: [6]);
+  myGraph.addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z'], edgeWeight: [8]);
 
   myGraph.first   // Vertex(label: 'u')
 ```
@@ -375,12 +379,12 @@ Conteúdo
 ```Dart
   final myGraph = NotOrientedGraph();
 
-  myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x'], edgeWeigth: [null, 2]);
-  myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y'], edgeWeigth: []);
-  myGraph.addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x'], edgeWeigth: [null]);
+  myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x'], edgeWeight: [null, 2]);
+  myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y'], edgeWeight: []);
+  myGraph.addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x'], edgeWeight: [null]);
   myGraph.addVertex(newVertex: Vertex(label: 'x'), connectedTo: ['v']);
-  myGraph.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z'], edgeWeigth: [6]);
-  myGraph.addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z'], edgeWeigth: [8]);
+  myGraph.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z'], edgeWeight: [6]);
+  myGraph.addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z'], edgeWeight: [8]);
 
   myGraph.last   // Vertex(label: 'z')
 ```
@@ -394,12 +398,12 @@ Conteúdo
 ```Dart
   final myGraph = NotOrientedGraph();
 
-  myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x'], edgeWeigth: [null, 2]);
-  myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y'], edgeWeigth: []);
-  myGraph.addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x'], edgeWeigth: [null]);
+  myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x'], edgeWeight: [null, 2]);
+  myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y'], edgeWeight: []);
+  myGraph.addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x'], edgeWeight: [null]);
   myGraph.addVertex(newVertex: Vertex(label: 'x'), connectedTo: ['v']);
-  myGraph.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z'], edgeWeigth: [6]);
-  myGraph.addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z'], edgeWeigth: [8]);
+  myGraph.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z'], edgeWeight: [6]);
+  myGraph.addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z'], edgeWeight: [8]);
 
   myGraph.hasCycle   // true
 ```
@@ -476,7 +480,7 @@ Conteúdo
     (3) -> [ ]
 ```
 
-&nbsp;&nbsp;&nbsp;&nbsp;Omitindo a chamada do método *`toString()`* dentro de *print* também funciona:
+&nbsp;&nbsp;&nbsp;&nbsp;Omitindo a chamada do método _`toString()`_ dentro de _print_ também funciona:
 
 ```Dart
     print(myGraph);
@@ -490,7 +494,7 @@ Conteúdo
 
 ### **PrintGraph**
 
-&nbsp;&nbsp;&nbsp;&nbsp;Método mais robusto para mostrar o conteudo de um grafo orientado na linha de comando. Mostra utilizando listas de adjacência com alguns parâmetros opcionais. Valores `nulos` não são mostrados.
+&nbsp;&nbsp;&nbsp;&nbsp;Método mais robusto para mostrar o conteúdo de um grafo orientado na linha de comando. Mostra utilizando listas de adjacência com alguns parâmetros opcionais. Valores `nulos` não são mostrados.
 
 ```Dart
     print(myGraph.printGraph());
@@ -507,7 +511,7 @@ Conteúdo
 
 ```Dart
     print(myGraph.printGraph(vertexValue: true));
-      
+
       (1:5) -----> (2:4)
             -----> (3:10)
 
@@ -516,11 +520,11 @@ Conteúdo
       (3:10) -----> (3:10)
 ```
 
-&nbsp;&nbsp;&nbsp;&nbsp;Os pesos de cada aresta também podem ser mostrados com o parâmetro `edgeWeigth`:
+&nbsp;&nbsp;&nbsp;&nbsp;Os pesos de cada aresta também podem ser mostrados com o parâmetro `edgeWeight`:
 
 ```Dart
-    print(myGraph.printGraph(edgeWeigth: true));
-    
+    print(myGraph.printGraph(edgeWeight: true));
+
     (1) --1--> (2)
         --2--> (3)
 
@@ -533,11 +537,11 @@ Conteúdo
 
 ## **Métodos de um Grafo Não Orientado**
 
-&nbsp;&nbsp;&nbsp;&nbsp;Grafos não orientados possuem caracteristicas e métodos exclusivos de sua estrutura, nas quais serão mostradas nesta sessão.
+&nbsp;&nbsp;&nbsp;&nbsp;Grafos não orientados possuem características e métodos exclusivos de sua estrutura, nas quais serão mostradas nesta sessão.
 
 &nbsp;
 
-### ***Num of Edges***
+### **_Num of Edges_**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Retorna o número de arestas presentes em um grafo não orientado, seguindo a equação abaixo:
 
@@ -549,7 +553,7 @@ Conteúdo
 
 &nbsp;
 
-### ***Get all Edges***
+### **_Get all Edges_**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Retorna uma lista com todas as arestas presentes em um grafo não orientado orientado, incluindo arestas de `ida` e de `volta`.
 
@@ -591,7 +595,7 @@ Conteúdo
 
 &nbsp;
 
-### ***To String***
+### **_To String_**
 
 &nbsp;&nbsp;&nbsp;&nbsp;Método no qual mostra uma versão simplificada do grafo na linha de comando utilizando `listas de adjacência`.
 
@@ -603,7 +607,7 @@ Conteúdo
     (3) -- [ (1) ]
 ```
 
-&nbsp;&nbsp;&nbsp;&nbsp;Omitindo a chamada do método *`toString()`* dentro de *print* também funciona:
+&nbsp;&nbsp;&nbsp;&nbsp;Omitindo a chamada do método _`toString()`_ dentro de _print_ também funciona:
 
 ```Dart
     print(myGraph);
@@ -615,18 +619,18 @@ Conteúdo
 
 &nbsp;
 
-### ***PrintGraph***
+### **_PrintGraph_**
 
-&nbsp;&nbsp;&nbsp;&nbsp;Método mais robusto para mostrar o conteudo de um grafo não orientado na linha de comando. Mostra utilizando listas de adjacência com alguns parâmetros opcionais. Valores `nulos` não são mostrados.
+&nbsp;&nbsp;&nbsp;&nbsp;Método mais robusto para mostrar o conteúdo de um grafo não orientado na linha de comando. Mostra utilizando listas de adjacência com alguns parâmetros opcionais. Valores `nulos` não são mostrados.
 
 ```Dart
     print(myGraph.printGraph());
-  
+
     (1) ----- (2)
         ----- (3)
 
     (2) ----- (1)
-    
+
     (3) ----- (1)
 ```
 
@@ -634,25 +638,25 @@ Conteúdo
 
 ```Dart
     print(myGraph.printGraph(vertexValue: true));
-    
+
     (1:5) ----- (2:4)
           ----- (3:10)
-    
+
     (2:4) ----- (1:5)
-    
+
     (3:10) ----- (1:5)
 ```
 
-&nbsp;&nbsp;&nbsp;&nbsp;Os pesos de cada aresta também podem ser mostrados com o parâmetro `edgeWeigth`:
+&nbsp;&nbsp;&nbsp;&nbsp;Os pesos de cada aresta também podem ser mostrados com o parâmetro `edgeWeight`:
 
 ```Dart
-    print(myGraph.printGraph(edgeWeigth: true));
-  
+    print(myGraph.printGraph(edgeWeight: true));
+
     (1) --1-- (2)
         --2-- (3)
-    
+
     (2) --5-- (1)
-    
+
     (3) --10-- (1)
 ```
 
@@ -680,7 +684,7 @@ Conteúdo
 &nbsp;&nbsp;&nbsp;&nbsp;A nova aresta pode ser criada com `peso`, caso não seja passado, será `null`.
 
 ```Dart
-    myGraph.getV('u').addEdge(connectedTo: myGraph.getV('v'), weigth: 5);
+    myGraph.getV('u').addEdge(connectedTo: myGraph.getV('v'), weight: 5);
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;Se a aresta já existir, a exceção `EdgeAlreadyExistsException` será levantada.

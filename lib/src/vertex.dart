@@ -59,7 +59,7 @@ class Vertex {
   /// Adds an edge across the current and an existing vertex
   ///
   /// If the edge already exists, the `EdgeAlreadyExistsException` exception will be raised.
-  void addEdge({required Vertex connectedTo, num? weigth}) {
+  void addEdge({required Vertex connectedTo, num? weight}) {
     for (var edge in edgesList) {
       if (edge.destiny.label == connectedTo.label) {
         throw EdgeAlreadyExistsException(
@@ -69,7 +69,7 @@ class Vertex {
 
     final newEdge = Edge(
       destiny: connectedTo,
-      weigth: weigth,
+      weight: weight,
     );
 
     edgesList.add(newEdge);

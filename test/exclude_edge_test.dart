@@ -72,7 +72,7 @@ void main() {
     }
   });
 
-  test('exclude not oriented edge weigth - test', () {
+  test('exclude not oriented edge weight - test', () {
     final myGraph = NotOrientedGraph();
 
     myGraph.addVertex(

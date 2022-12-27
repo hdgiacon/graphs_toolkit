@@ -3,23 +3,23 @@ part of 'graphs_toolkit_base.dart';
 class Edge {
   Vertex destiny;
 
-  num? weigth;
+  num? weight;
 
   /// Connect two vertices
   ///
   /// can have a weight value, default is `null`
   Edge({
     required this.destiny,
-    this.weigth,
+    this.weight,
   });
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is Edge && other.destiny == destiny && other.weigth == weigth;
+    return other is Edge && other.destiny == destiny && other.weight == weight;
   }
 
   @override
-  int get hashCode => destiny.hashCode ^ weigth.hashCode;
+  int get hashCode => destiny.hashCode ^ weight.hashCode;
 }

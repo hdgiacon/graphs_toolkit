@@ -52,7 +52,7 @@ void main() {
     );
   });
 
-  test('exclude vertex - oriented graph weigth value - test', () {
+  test('exclude vertex - oriented graph weight value - test', () {
     final myGraph = OrientedGraph();
 
     myGraph.addVertex(
@@ -90,14 +90,14 @@ void main() {
             label: 'u',
             value: 1,
             edgesList: [
-              Edge(destiny: myGraph.getV('x'), weigth: 2),
+              Edge(destiny: myGraph.getV('x'), weight: 2),
             ],
           ),
           Vertex(
             label: 'y',
             value: 3,
             edgesList: [
-              Edge(destiny: myGraph.getV('x'), weigth: 4),
+              Edge(destiny: myGraph.getV('x'), weight: 4),
             ],
           ),
           Vertex(
@@ -109,15 +109,15 @@ void main() {
             label: 'w',
             value: 5,
             edgesList: [
-              Edge(destiny: myGraph.getV('y'), weigth: 6),
-              Edge(destiny: myGraph.getV('z'), weigth: 7),
+              Edge(destiny: myGraph.getV('y'), weight: 6),
+              Edge(destiny: myGraph.getV('z'), weight: 7),
             ],
           ),
           Vertex(
             label: 'z',
             value: 6,
             edgesList: [
-              Edge(destiny: myGraph.getV('z'), weigth: 8),
+              Edge(destiny: myGraph.getV('z'), weight: 8),
             ],
           ),
         ],
@@ -193,7 +193,7 @@ void main() {
     );
   });
 
-  test('exclude vertex - not oriented graph weigth value - test', () {
+  test('exclude vertex - not oriented graph weight value - test', () {
     final myGraph = NotOrientedGraph();
 
     myGraph.addVertex(
@@ -225,38 +225,38 @@ void main() {
             label: 'u',
             value: 1,
             edgesList: [
-              Edge(destiny: myGraph.getV('x'), weigth: 2),
+              Edge(destiny: myGraph.getV('x'), weight: 2),
             ],
           ),
           Vertex(
             label: 'y',
             value: 3,
             edgesList: [
-              Edge(destiny: myGraph.getV('x'), weigth: 5),
-              Edge(destiny: myGraph.getV('w'), weigth: 6),
+              Edge(destiny: myGraph.getV('x'), weight: 5),
+              Edge(destiny: myGraph.getV('w'), weight: 6),
             ],
           ),
           Vertex(
             label: 'x',
             value: 4,
             edgesList: [
-              Edge(destiny: myGraph.getV('u'), weigth: 2),
-              Edge(destiny: myGraph.getV('y'), weigth: 5),
+              Edge(destiny: myGraph.getV('u'), weight: 2),
+              Edge(destiny: myGraph.getV('y'), weight: 5),
             ],
           ),
           Vertex(
             label: 'w',
             value: 5,
             edgesList: [
-              Edge(destiny: myGraph.getV('y'), weigth: 6),
-              Edge(destiny: myGraph.getV('z'), weigth: 7),
+              Edge(destiny: myGraph.getV('y'), weight: 6),
+              Edge(destiny: myGraph.getV('z'), weight: 7),
             ],
           ),
           Vertex(
             label: 'z',
             value: 6,
             edgesList: [
-              Edge(destiny: myGraph.getV('w'), weigth: 7),
+              Edge(destiny: myGraph.getV('w'), weight: 7),
             ],
           ),
         ],
