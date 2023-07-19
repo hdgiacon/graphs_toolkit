@@ -128,7 +128,10 @@ class OrientedGraph extends _Graph {
     Map<String, num?> connectedToAsMap,
     Vertex newVertex,
   ) {
-    connectedToAsMap.forEach((connectedTo, edgeWeigth) {
+    for (var edge in connectedToAsMap.entries) {
+      var connectedTo = edge.key;
+      var edgeWeigth = edge.value;
+
       try {
         newVertex.addEdge(
           connectedTo: getV(connectedTo),
@@ -138,7 +141,7 @@ class OrientedGraph extends _Graph {
         getV(connectedTo).connectedFrom.add(newVertex);
       } on StateError catch (_) {
         _waitList.add(
-          Tuple3(Vertex(label: connectedTo), newVertex, edgeWeigth),
+          (Vertex(label: connectedTo), newVertex, edgeWeigth),
         );
       } on EdgeAlreadyExistsException catch (e, s) {
         final logger = Logger();
@@ -146,7 +149,7 @@ class OrientedGraph extends _Graph {
 
         log('', error: e, stackTrace: s);
       }
-    });
+    }
   }
 
   /// removes a vertex by its `label` along with the edges that arrived at it from its adjacent ones
@@ -160,9 +163,11 @@ class OrientedGraph extends _Graph {
     final logger = Logger();
 
     try {
-      getV(vertexLabel).connectedFrom.forEach((vertex) {
+      final connectedFrom = getV(vertexLabel).connectedFrom;
+
+      for (var vertex in connectedFrom) {
         vertex.excludeEdge(destinyLabel: vertexLabel);
-      });
+      }
 
       vertices.removeWhere((vertex) => vertex.label == vertexLabel);
     } on StateError catch (e, s) {

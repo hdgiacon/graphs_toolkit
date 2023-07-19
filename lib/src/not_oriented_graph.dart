@@ -125,27 +125,31 @@ class NotOrientedGraph extends _Graph {
   }
 
   void _connectVertices(Map<String, num?> connectedToAsMap, Vertex newVertex) {
-    connectedToAsMap.forEach((connectedTo, edgeWeigth) {
+    for (var edge in connectedToAsMap.entries) {
+      var connectedTo = edge.key;
+      var edgeWeigth = edge.value;
+
       try {
         newVertex.addEdge(
           connectedTo: getV(connectedTo),
           weight: edgeWeigth,
         );
 
-        getV(connectedTo).addEdge(
+        getV(edge.key).addEdge(
           connectedTo: newVertex,
           weight: edgeWeigth,
         );
       } on StateError catch (_) {
-        _waitList
-            .add(Tuple3(Vertex(label: connectedTo), newVertex, edgeWeigth));
+        _waitList.add(
+          (Vertex(label: connectedTo), newVertex, edgeWeigth),
+        );
       } on EdgeAlreadyExistsException catch (e, s) {
         final logger = Logger();
         logger.e(e.cause);
 
         log('', error: e, stackTrace: s);
       }
-    });
+    }
   }
 
   /// Removes a vertex by its `label` along with the edges that arrived at it from its adjacent ones
@@ -159,9 +163,11 @@ class NotOrientedGraph extends _Graph {
     final logger = Logger();
 
     try {
-      getV(vertexLabel).edgesList.forEach((edge) {
+      final edgesList = getV(vertexLabel).edgesList;
+
+      for (var edge in edgesList) {
         edge.destiny.excludeEdge(destinyLabel: vertexLabel);
-      });
+      }
 
       vertices.removeWhere((vertex) => vertex.label == vertexLabel);
     } on StateError catch (e, s) {
