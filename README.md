@@ -83,7 +83,7 @@ Conteúdo
 &nbsp;
 
 <p align="center">
-  <img height="180" src="readme_resources/imgs/oriented_graph.png">
+  <img height="180" src="assets/imgs/oriented_graph.png">
 </p>
 
 &nbsp;
@@ -93,7 +93,7 @@ Conteúdo
 &nbsp;
 
 <p align="center">
-  <img height="200" src="readme_resources/imgs/oriented_graph_2.png">
+  <img height="200" src="assets/imgs/oriented_graph_2.png">
 </p>
 
 &nbsp;
@@ -105,7 +105,7 @@ Conteúdo
 &nbsp;
 
 <p align="center">
-  <img height="180" src="readme_resources/imgs/not_oriented_graph.png">
+  <img height="180" src="assets/imgs/not_oriented_graph.png">
 </p>
 
 &nbsp;
@@ -117,7 +117,7 @@ Conteúdo
 &nbsp;
 
 <p align="center">
-  <img height="150" src="readme_resources/imgs/vertex.png">
+  <img height="150" src="assets/imgs/vertex.png">
 </p>
 
 &nbsp;
@@ -135,7 +135,7 @@ Conteúdo
 &nbsp;
 
 <p align="center">
-  <img height="100" src="readme_resources/imgs/oriented_edge.png">
+  <img height="100" src="assets/imgs/oriented_edge.png">
 </p>
 
 &nbsp;
@@ -145,7 +145,7 @@ Conteúdo
 &nbsp;
 
 <p align="center">
-  <img height="100" src="readme_resources/imgs/not_oriented_edge.png">
+  <img height="100" src="assets/imgs/not_oriented_edge.png">
 </p>
 
 &nbsp;
@@ -153,7 +153,7 @@ Conteúdo
 &nbsp;&nbsp;&nbsp;&nbsp;Em ambos os tipos, as arestas podem armazenar um peso numérico:
 
 <p align="center">
-  <img height="200" src="readme_resources/imgs/edge_weight.png">
+  <img height="200" src="assets/imgs/edge_weight.png">
 </p>
 
 &nbsp;
@@ -344,7 +344,7 @@ Conteúdo
 &nbsp;
 
 <p style="margin-left: 40px">
-  <img height="50" src="readme_resources/imgs/exclude_vertex_error.png">
+  <img height="50" src="assets/imgs/exclude_vertex_error.png">
 </p>
 
 &nbsp;
@@ -451,7 +451,7 @@ Conteúdo
 &nbsp;
 
 <p align="center">
-  <img height="200" src="readme_resources/imgs/strongly_connected.png">
+  <img height="200" src="assets/imgs/strongly_connected.png">
 </p>
 
 &nbsp;
@@ -463,7 +463,7 @@ Conteúdo
 &nbsp;
 
 <p align="center">
-  <img height="200" src="readme_resources/imgs/dag.png">
+  <img height="200" src="assets/imgs/dag.png">
 </p>
 
 &nbsp;
@@ -566,7 +566,7 @@ Conteúdo
 &nbsp;
 
 <p align="center">
-  <img height="200" src="readme_resources/imgs/is_connected.png">
+  <img height="200" src="assets/imgs/is_connected.png">
 </p>
 
 &nbsp;
@@ -578,7 +578,7 @@ Conteúdo
 &nbsp;
 
 <p align="center">
-  <img height="250" src="readme_resources/imgs/is_tree.png">
+  <img height="250" src="assets/imgs/is_tree.png">
 </p>
 
 &nbsp;
@@ -590,7 +590,7 @@ Conteúdo
 &nbsp;
 
 <p align="center">
-  <img height="200" src="readme_resources/imgs/is_forest.png">
+  <img height="200" src="assets/imgs/is_forest.png">
 </p>
 
 &nbsp;
