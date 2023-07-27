@@ -1,7 +1,7 @@
 import 'package:graphs_toolkit/src/graphs_toolkit_base.dart';
 
 void main() {
-  final myGraph = NotOrientedGraph();
+  final myGraph = AdjacencyList.notOriented();
 
   myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
   myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y', 'x']);
@@ -10,7 +10,7 @@ void main() {
   myGraph.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['z']);
   myGraph.addVertex(newVertex: Vertex(label: 'z'));
 
-  final myGraph2 = NotOrientedGraph();
+  final myGraph2 = AdjacencyList.notOriented();
 
   myGraph2.adjacencyList.add(Vertex(label: 'u'));
   myGraph2.adjacencyList.add(Vertex(label: 'v'));

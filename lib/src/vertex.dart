@@ -98,7 +98,7 @@ class Vertex {
 
   /// Checks if this vertex has no edges coming out of it, used only in `oriented graphs`
   bool get isSinkhole {
-    assert(vertexType == OrientedGraph, 'Graph must be oriented type');
+    assert(vertexType == _OrientedGraph, 'Graph must be oriented type');
 
     if (edgesList.isEmpty && connectedFrom.isNotEmpty) {
       return true;
@@ -109,7 +109,7 @@ class Vertex {
 
   /// Checks if this vertex has no edges entering it, used only in `oriented graphs`
   bool get isGenerator {
-    assert(vertexType == OrientedGraph, 'Graph must be oriented type');
+    assert(vertexType == _OrientedGraph, 'Graph must be oriented type');
 
     if (edgesList.isNotEmpty && connectedFrom.isEmpty) {
       return true;
@@ -120,7 +120,7 @@ class Vertex {
 
   /// Number of edges that enter this vertex
   int get entryDegree {
-    if (vertexType == NotOrientedGraph) {
+    if (vertexType == _NotOrientedGraph) {
       return edgesList.length;
     } else {
       return connectedFrom.length;

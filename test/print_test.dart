@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   test('print function - oriented - no weight - test', () {
-    final myGraph = OrientedGraph();
+    final myGraph = AdjacencyList.oriented();
 
     myGraph.addVertex(newVertex: Vertex(label: '1'), connectedTo: ['2', '3']);
     myGraph.addVertex(newVertex: Vertex(label: '2'));
@@ -18,7 +18,7 @@ void main() {
   });
 
   test('print function - oriented - with weight - test', () {
-    final myGraph = OrientedGraph();
+    final myGraph = AdjacencyList.oriented();
 
     myGraph.addVertex(
         newVertex: Vertex(label: '1'),
@@ -36,7 +36,7 @@ void main() {
   });
 
   test('print function - not oriented - no weight - test', () {
-    final myGraph = NotOrientedGraph();
+    final myGraph = AdjacencyList.notOriented();
 
     myGraph.addVertex(newVertex: Vertex(label: '1'), connectedTo: ['2', '3']);
     myGraph.addVertex(newVertex: Vertex(label: '2'));
@@ -51,7 +51,7 @@ void main() {
   });
 
   test('print function - not oriented - with weight - test', () {
-    final myGraph = NotOrientedGraph();
+    final myGraph = AdjacencyList.notOriented();
 
     myGraph.addVertex(
         newVertex: Vertex(label: '1'),
@@ -69,7 +69,7 @@ void main() {
   });
 
   test('print function - oriented - vertex value - no weight - test', () {
-    final myGraph = OrientedGraph();
+    final myGraph = AdjacencyList.oriented();
 
     myGraph.addVertex(
         newVertex: Vertex(label: '1', value: 1), connectedTo: ['2', '3']);
@@ -85,7 +85,7 @@ void main() {
   });
 
   test('print function - oriented - vertex value - with weight - test', () {
-    final myGraph = OrientedGraph();
+    final myGraph = AdjacencyList.oriented();
 
     myGraph.addVertex(
         newVertex: Vertex(label: '1', value: 1),
@@ -103,7 +103,7 @@ void main() {
   });
 
   test('print function - not oriented - vertex value - no weight - test', () {
-    final myGraph = NotOrientedGraph();
+    final myGraph = AdjacencyList.notOriented();
 
     myGraph.addVertex(
         newVertex: Vertex(label: '1', value: 1), connectedTo: ['2', '3']);
@@ -119,7 +119,7 @@ void main() {
   });
 
   test('print function - not oriented - vertex value - with weight - test', () {
-    final myGraph = NotOrientedGraph();
+    final myGraph = AdjacencyList.notOriented();
 
     myGraph.addVertex(
         newVertex: Vertex(label: '1', value: 1),
@@ -137,7 +137,7 @@ void main() {
   });
 
   test('oriented graph no weight and value - test', () {
-    final myGraph = OrientedGraph();
+    final myGraph = AdjacencyList.oriented();
 
     myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
     myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y']);
@@ -150,7 +150,7 @@ void main() {
 
     expect(
       myGraph,
-      OrientedGraph(
+      AdjacencyList.oriented(
         adjacencyList: [
           Vertex(
             label: 'u',
@@ -210,7 +210,7 @@ void main() {
   });
 
   test('oriented graph with weight - test', () {
-    final myGraph = OrientedGraph();
+    final myGraph = AdjacencyList.oriented();
 
     myGraph.addVertex(
         newVertex: Vertex(label: 'u'),
@@ -233,7 +233,7 @@ void main() {
 
     expect(
       myGraph,
-      OrientedGraph(
+      AdjacencyList.oriented(
         adjacencyList: [
           Vertex(
             label: 'u',
@@ -293,7 +293,7 @@ void main() {
   });
 
   test('oriented graph with value - test', () {
-    final myGraph = OrientedGraph();
+    final myGraph = AdjacencyList.oriented();
 
     myGraph.addVertex(
         newVertex: Vertex(label: 'u', value: 1), connectedTo: ['v', 'x']);
@@ -312,7 +312,7 @@ void main() {
 
     expect(
       myGraph,
-      OrientedGraph(
+      AdjacencyList.oriented(
         adjacencyList: [
           Vertex(
             label: 'u',
@@ -382,7 +382,7 @@ void main() {
   });
 
   test('oriented graph with weight and value - test', () {
-    final myGraph = OrientedGraph();
+    final myGraph = AdjacencyList.oriented();
 
     myGraph.addVertex(
         newVertex: Vertex(label: 'u', value: 1),
@@ -413,7 +413,7 @@ void main() {
 
     expect(
       myGraph,
-      OrientedGraph(
+      AdjacencyList.oriented(
         adjacencyList: [
           Vertex(
             label: 'u',
@@ -483,7 +483,7 @@ void main() {
   });
 
   test('not oriented graph no weight and value - test', () {
-    final myGraph = NotOrientedGraph();
+    final myGraph = AdjacencyList.notOriented();
 
     myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
     myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y', 'x']);
@@ -496,7 +496,7 @@ void main() {
 
     expect(
       myGraph,
-      NotOrientedGraph(
+      AdjacencyList.notOriented(
         adjacencyList: [
           Vertex(
             label: 'u',
@@ -548,7 +548,7 @@ void main() {
   });
 
   test('not oriented graph with weight - test', () {
-    final myGraph = NotOrientedGraph();
+    final myGraph = AdjacencyList.notOriented();
 
     myGraph.addVertex(
         newVertex: Vertex(label: 'u'),
@@ -571,7 +571,7 @@ void main() {
 
     expect(
       myGraph,
-      NotOrientedGraph(
+      AdjacencyList.notOriented(
         adjacencyList: [
           Vertex(
             label: 'u',
@@ -623,7 +623,7 @@ void main() {
   });
 
   test('not oriented graph with value - test', () {
-    final myGraph = NotOrientedGraph();
+    final myGraph = AdjacencyList.notOriented();
 
     myGraph.addVertex(
         newVertex: Vertex(label: 'u', value: 1), connectedTo: ['v', 'x']);
@@ -640,7 +640,7 @@ void main() {
 
     expect(
       myGraph,
-      NotOrientedGraph(
+      AdjacencyList.notOriented(
         adjacencyList: [
           Vertex(
             label: 'u',
@@ -698,7 +698,7 @@ void main() {
   });
 
   test('not oriented graph with weight and value - test', () {
-    final myGraph = NotOrientedGraph();
+    final myGraph = AdjacencyList.notOriented();
 
     myGraph.addVertex(
         newVertex: Vertex(label: 'u', value: 1),
@@ -723,7 +723,7 @@ void main() {
 
     expect(
       myGraph,
-      NotOrientedGraph(
+      AdjacencyList.notOriented(
         adjacencyList: [
           Vertex(
             label: 'u',

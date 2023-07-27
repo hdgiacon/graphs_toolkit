@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   test('BFS - not oriented - test', () {
-    final myGraph = NotOrientedGraph();
+    final myGraph = AdjacencyList.notOriented();
 
     myGraph.addVertex(newVertex: Vertex(label: '1'), connectedTo: ['2', '3']);
     myGraph.addVertex(newVertex: Vertex(label: '2'));
@@ -13,7 +13,7 @@ void main() {
 
     expect(
       myGraph,
-      NotOrientedGraph(
+      AdjacencyList.notOriented(
         adjacencyList: [
           Vertex(
             label: '1',
@@ -49,7 +49,7 @@ void main() {
   });
 
   test('BFS - oriented - test', () {
-    final myGraph = OrientedGraph();
+    final myGraph = AdjacencyList.oriented();
 
     myGraph.addVertex(newVertex: Vertex(label: '1'), connectedTo: ['2', '3']);
     myGraph.addVertex(newVertex: Vertex(label: '2'));
@@ -59,7 +59,7 @@ void main() {
 
     expect(
       myGraph,
-      OrientedGraph(
+      AdjacencyList.oriented(
         adjacencyList: [
           Vertex(
             label: '1',
@@ -89,7 +89,7 @@ void main() {
   });
 
   test('bfs - not oriented graph - test', () {
-    final myGraph = NotOrientedGraph();
+    final myGraph = AdjacencyList.notOriented();
 
     myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
     myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y', 'x']);
@@ -102,7 +102,7 @@ void main() {
 
     expect(
       myGraph,
-      NotOrientedGraph(
+      AdjacencyList.notOriented(
         adjacencyList: [
           Vertex(
             label: 'u',
@@ -172,7 +172,7 @@ void main() {
   });
 
   test('bfs - not oriented graph weight - test', () {
-    final myGraph = NotOrientedGraph();
+    final myGraph = AdjacencyList.notOriented();
 
     myGraph.addVertex(
         newVertex: Vertex(label: 'u'),
@@ -195,7 +195,7 @@ void main() {
 
     expect(
       myGraph,
-      NotOrientedGraph(
+      AdjacencyList.notOriented(
         adjacencyList: [
           Vertex(
             label: 'u',
@@ -265,7 +265,7 @@ void main() {
   });
 
   test('bfs - oriented graph - test', () {
-    final myGraph = OrientedGraph();
+    final myGraph = AdjacencyList.oriented();
 
     myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
     myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y']);
@@ -278,7 +278,7 @@ void main() {
 
     expect(
       myGraph,
-      OrientedGraph(
+      AdjacencyList.oriented(
         adjacencyList: [
           Vertex(
             label: 'u',
@@ -342,7 +342,7 @@ void main() {
   });
 
   test('bfs - oriented graph weight - test', () {
-    final myGraph = OrientedGraph();
+    final myGraph = AdjacencyList.oriented();
 
     myGraph.addVertex(
         newVertex: Vertex(label: 'u'),
@@ -365,7 +365,7 @@ void main() {
 
     expect(
       myGraph,
-      OrientedGraph(
+      AdjacencyList.oriented(
         adjacencyList: [
           Vertex(
             label: 'u',

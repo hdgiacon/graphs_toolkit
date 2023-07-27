@@ -5,7 +5,7 @@ import 'package:logger/logger.dart';
 
 void main() {
   test('exclude oriented edge not found - test', () {
-    final myGraph = OrientedGraph();
+    final myGraph = AdjacencyList.oriented();
 
     myGraph.addVertex(newVertex: Vertex(label: '1'), connectedTo: ['2', '3']);
     myGraph.addVertex(newVertex: Vertex(label: '2'));
@@ -22,7 +22,7 @@ void main() {
   });
 
   test('exclude oriented edge - test', () {
-    final myGraph = OrientedGraph();
+    final myGraph = AdjacencyList.oriented();
 
     myGraph.addVertex(newVertex: Vertex(label: '1'), connectedTo: ['2', '3']);
     myGraph.addVertex(newVertex: Vertex(label: '2'));
@@ -39,7 +39,7 @@ void main() {
   });
 
   test('exclude not oriented edge not found - test', () {
-    final myGraph = NotOrientedGraph();
+    final myGraph = AdjacencyList.notOriented();
 
     myGraph.addVertex(newVertex: Vertex(label: '1'), connectedTo: ['2', '3']);
     myGraph.addVertex(newVertex: Vertex(label: '2'));
@@ -56,7 +56,7 @@ void main() {
   });
 
   test('exclude not oriented edge - test', () {
-    final myGraph = NotOrientedGraph();
+    final myGraph = AdjacencyList.notOriented();
 
     myGraph.addVertex(newVertex: Vertex(label: '1'), connectedTo: ['2', '3']);
     myGraph.addVertex(newVertex: Vertex(label: '2'));
@@ -73,7 +73,7 @@ void main() {
   });
 
   test('exclude not oriented edge weight - test', () {
-    final myGraph = NotOrientedGraph();
+    final myGraph = AdjacencyList.notOriented();
 
     myGraph.addVertex(
         newVertex: Vertex(label: 'u', value: 1),
@@ -105,7 +105,7 @@ void main() {
   });
 
   test('exclude oriented edge wigth - test', () {
-    final myGraph = OrientedGraph();
+    final myGraph = AdjacencyList.oriented();
 
     myGraph.addVertex(
         newVertex: Vertex(label: 'u', value: 1),

@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   test('oriented graph with edge weight - test', () {
-    final myGraph = OrientedGraph();
+    final myGraph = AdjacencyList.oriented();
 
     myGraph.addVertex(
         newVertex: Vertex(label: 'u'),
@@ -24,7 +24,7 @@ void main() {
 
     expect(
       myGraph,
-      OrientedGraph(
+      AdjacencyList.oriented(
         adjacencyList: [
           Vertex(
             label: 'u',
@@ -70,7 +70,7 @@ void main() {
   });
 
   test('oriented graph with edge weight and null - test', () {
-    final myGraph = OrientedGraph();
+    final myGraph = AdjacencyList.oriented();
 
     myGraph.addVertex(
         newVertex: Vertex(label: 'u'),
@@ -90,7 +90,7 @@ void main() {
 
     expect(
       myGraph,
-      OrientedGraph(
+      AdjacencyList.oriented(
         adjacencyList: [
           Vertex(
             label: 'u',
@@ -136,7 +136,7 @@ void main() {
   });
 
   test('not oriented graph with edge weight - test', () {
-    final myGraph = NotOrientedGraph();
+    final myGraph = AdjacencyList.notOriented();
 
     myGraph.addVertex(
         newVertex: Vertex(label: 'u'),
@@ -160,7 +160,7 @@ void main() {
 
     expect(
       myGraph,
-      NotOrientedGraph(
+      AdjacencyList.notOriented(
         adjacencyList: [
           Vertex(
             label: 'u',
@@ -212,7 +212,7 @@ void main() {
   });
 
   test('not oriented graph with edge weight and null - test', () {
-    final myGraph = NotOrientedGraph();
+    final myGraph = AdjacencyList.notOriented();
 
     myGraph.addVertex(
         newVertex: Vertex(label: 'u'),
@@ -236,7 +236,7 @@ void main() {
 
     expect(
       myGraph,
-      NotOrientedGraph(
+      AdjacencyList.notOriented(
         adjacencyList: [
           Vertex(
             label: 'u',
@@ -288,7 +288,7 @@ void main() {
   });
 
   test('oriented graph with edge weight omiting null at the end - test', () {
-    final myGraph = OrientedGraph();
+    final myGraph = AdjacencyList.oriented();
 
     myGraph.addVertex(
         newVertex: Vertex(label: 'u'),
@@ -309,7 +309,7 @@ void main() {
 
     expect(
       myGraph,
-      OrientedGraph(
+      AdjacencyList.oriented(
         adjacencyList: [
           Vertex(
             label: 'u',
@@ -356,7 +356,7 @@ void main() {
 
   test('not oriented graph with edge weight omiting null at the end - test',
       () {
-    final myGraph = NotOrientedGraph();
+    final myGraph = AdjacencyList.notOriented();
 
     myGraph.addVertex(
         newVertex: Vertex(label: 'u'),
@@ -380,7 +380,7 @@ void main() {
 
     expect(
       myGraph,
-      NotOrientedGraph(
+      AdjacencyList.notOriented(
         adjacencyList: [
           Vertex(
             label: 'u',

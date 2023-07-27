@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   test('not oriented graph add vertex basic method - test', () {
-    final myGraph = NotOrientedGraph();
+    final myGraph = AdjacencyList.notOriented();
 
     myGraph.adjacencyList.add(Vertex(label: 'u'));
     myGraph.adjacencyList.add(Vertex(label: 'v'));
@@ -35,7 +35,7 @@ void main() {
 
     expect(
       myGraph,
-      NotOrientedGraph(
+      AdjacencyList.notOriented(
         adjacencyList: [
           Vertex(
             label: 'u',
@@ -87,7 +87,7 @@ void main() {
   });
 
   test('not oriented graph with add vertex method - test', () {
-    final myGraph = NotOrientedGraph();
+    final myGraph = AdjacencyList.notOriented();
 
     myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
     myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y', 'x']);
@@ -98,7 +98,7 @@ void main() {
 
     expect(
       myGraph,
-      NotOrientedGraph(
+      AdjacencyList.notOriented(
         adjacencyList: [
           Vertex(
             label: 'u',

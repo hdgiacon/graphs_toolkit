@@ -1,6 +1,6 @@
 part of '../graphs_toolkit_base.dart';
 
-class OrientedGraph extends _AdjacencyList implements _Oriented {
+class _OrientedGraph extends AdjacencyList implements _Oriented {
   /// Type of graph in which the edges have a definite way
   /// ```
   ///   | u |<---| v |
@@ -16,9 +16,9 @@ class OrientedGraph extends _AdjacencyList implements _Oriented {
   /// ```
   ///   final myGraph = OrientedGraph(vertices:[Vertex(label: 'u'), Vertex(label: 'v')])
   /// ```
-  OrientedGraph({
+  _OrientedGraph({
     List<Vertex>? adjacencyList,
-  }) : super._(adjacencyList: adjacencyList ?? []);
+  }) : super(adjacencyList: adjacencyList ?? []);
 
   @override
   void addVertex({

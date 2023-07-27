@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   test('toString function - not oriented 1 - test', () {
-    final myGraph = NotOrientedGraph();
+    final myGraph = AdjacencyList.notOriented();
 
     myGraph.addVertex(newVertex: Vertex(label: '1'), connectedTo: ['2', '3']);
     myGraph.addVertex(newVertex: Vertex(label: '2'));
@@ -16,7 +16,7 @@ void main() {
   });
 
   test('toString function - not oriented 2 - test', () {
-    final myGraph = NotOrientedGraph();
+    final myGraph = AdjacencyList.notOriented();
 
     myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
     myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y', 'x']);
@@ -30,7 +30,7 @@ void main() {
   });
 
   test('toString function - not oriented 3 - test', () {
-    final myGraph = NotOrientedGraph();
+    final myGraph = AdjacencyList.notOriented();
 
     myGraph.addVertex(
         newVertex: Vertex(label: 'u', value: 1),
@@ -56,7 +56,7 @@ void main() {
   });
 
   test('toString function - oriented 1 - test', () {
-    final myGraph = OrientedGraph();
+    final myGraph = AdjacencyList.oriented();
 
     myGraph.addVertex(newVertex: Vertex(label: '1'), connectedTo: ['2', '3']);
     myGraph.addVertex(newVertex: Vertex(label: '2'));
@@ -69,7 +69,7 @@ void main() {
   });
 
   test('toString function - oriented 2 - test', () {
-    final myGraph = OrientedGraph();
+    final myGraph = AdjacencyList.oriented();
 
     myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
     myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y']);
@@ -83,7 +83,7 @@ void main() {
   });
 
   test('toString function - oriented 3 - test', () {
-    final myGraph = OrientedGraph();
+    final myGraph = AdjacencyList.oriented();
 
     myGraph.addVertex(
         newVertex: Vertex(label: 'u', value: 1),

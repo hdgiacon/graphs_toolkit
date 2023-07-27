@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   test('exclude vertex - oriented graph - test', () {
-    final myGraph = OrientedGraph();
+    final myGraph = AdjacencyList.oriented();
 
     myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
     myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y']);
@@ -16,7 +16,7 @@ void main() {
 
     expect(
       myGraph,
-      OrientedGraph(
+      AdjacencyList.oriented(
         adjacencyList: [
           Vertex(
             label: 'u',
@@ -53,7 +53,7 @@ void main() {
   });
 
   test('exclude vertex - oriented graph weight value - test', () {
-    final myGraph = OrientedGraph();
+    final myGraph = AdjacencyList.oriented();
 
     myGraph.addVertex(
         newVertex: Vertex(label: 'u', value: 1),
@@ -84,7 +84,7 @@ void main() {
 
     expect(
       myGraph,
-      OrientedGraph(
+      AdjacencyList.oriented(
         adjacencyList: [
           Vertex(
             label: 'u',
@@ -126,7 +126,7 @@ void main() {
   });
 
   test('exclude vertex not found - oriented graph - test', () {
-    final myGraph = OrientedGraph();
+    final myGraph = AdjacencyList.oriented();
 
     myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
     myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y']);
@@ -140,7 +140,7 @@ void main() {
   });
 
   test('exclude vertex - not oriented graph - test', () {
-    final myGraph = NotOrientedGraph();
+    final myGraph = AdjacencyList.notOriented();
 
     myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
     myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y', 'x']);
@@ -153,7 +153,7 @@ void main() {
 
     expect(
       myGraph,
-      NotOrientedGraph(
+      AdjacencyList.notOriented(
         adjacencyList: [
           Vertex(
             label: 'u',
@@ -194,7 +194,7 @@ void main() {
   });
 
   test('exclude vertex - not oriented graph weight value - test', () {
-    final myGraph = NotOrientedGraph();
+    final myGraph = AdjacencyList.notOriented();
 
     myGraph.addVertex(
         newVertex: Vertex(label: 'u', value: 1),
@@ -219,7 +219,7 @@ void main() {
 
     expect(
       myGraph,
-      NotOrientedGraph(
+      AdjacencyList.notOriented(
         adjacencyList: [
           Vertex(
             label: 'u',
@@ -265,7 +265,7 @@ void main() {
   });
 
   test('exclude vertex not found - not oriented graph - test', () {
-    final myGraph = NotOrientedGraph();
+    final myGraph = AdjacencyList.notOriented();
 
     myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
     myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y', 'x']);

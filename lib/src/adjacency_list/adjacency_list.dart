@@ -1,14 +1,22 @@
 part of '../graphs_toolkit_base.dart';
 
+///
 typedef AdjacencyListT = List<Vertex>;
 
 /// <Vertex,ConnectedFrom,EdgeWeigth>
 typedef _WaitType = (Vertex, Vertex, num?);
 
-abstract class _AdjacencyList implements _GraphBase {
+abstract class AdjacencyList implements _GraphBase {
   final AdjacencyListT adjacencyList;
 
-  _AdjacencyList._({required this.adjacencyList});
+  AdjacencyList({required this.adjacencyList});
+
+  factory AdjacencyList.oriented({AdjacencyListT? adjacencyList}) {
+    return _OrientedGraph(adjacencyList: adjacencyList);
+  }
+  factory AdjacencyList.notOriented({AdjacencyListT? adjacencyList}) {
+    return _NotOrientedGraph(adjacencyList: adjacencyList);
+  }
 
   /// List used for the `addVertex` method, in which a `vertex` not yet created is added here
   final _waitList = <_WaitType>[];
@@ -68,7 +76,7 @@ abstract class _AdjacencyList implements _GraphBase {
   void addVertex({
     required Vertex newVertex,
     List<String>? connectedTo,
-    List<num>? edgeWeigth,
+    List<num?>? edgeWeigth,
   });
 
   /// removes a vertex by its `label` along with the edges that arrived at it from its adjacent ones
@@ -203,7 +211,7 @@ abstract class _AdjacencyList implements _GraphBase {
     if (identical(this, other)) return true;
     final listEquals = const DeepCollectionEquality().equals;
 
-    return other is _AdjacencyList &&
+    return other is AdjacencyList &&
         listEquals(other.adjacencyList, adjacencyList);
   }
 

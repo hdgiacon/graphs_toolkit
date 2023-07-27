@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   test('oriented graph add vertex basic method - test', () {
-    final myGraph = OrientedGraph();
+    final myGraph = AdjacencyList.oriented();
 
     myGraph.adjacencyList.add(Vertex(label: 'u'));
     myGraph.adjacencyList.add(Vertex(label: 'v'));
@@ -28,7 +28,7 @@ void main() {
 
     expect(
       myGraph,
-      OrientedGraph(
+      AdjacencyList.oriented(
         adjacencyList: [
           Vertex(
             label: 'u',
@@ -88,7 +88,7 @@ void main() {
   });
 
   test('oriented graph with add vertex method - test', () {
-    final myGraph = OrientedGraph();
+    final myGraph = AdjacencyList.oriented();
 
     myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
     myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y']);
@@ -99,7 +99,7 @@ void main() {
 
     expect(
       myGraph,
-      OrientedGraph(
+      AdjacencyList.oriented(
         adjacencyList: [
           Vertex(
             label: 'u',
