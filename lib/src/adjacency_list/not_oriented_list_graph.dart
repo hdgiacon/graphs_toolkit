@@ -1,6 +1,6 @@
-part of '../graphs_toolkit_base.dart';
+part of '../interfaces/graph_base.dart';
 
-class _NotOrientedGraph extends AdjacencyList implements _NotOriented {
+class _NotOrientedListGraph extends AdjacencyList implements _NotOriented {
   /// Type of graph in which the edges have no definite way
   /// ```
   /// | u |----| v |
@@ -16,9 +16,9 @@ class _NotOrientedGraph extends AdjacencyList implements _NotOriented {
   /// ```
   /// final myGraph = NotOrientedGraph(vertices:[Vertex(label: 'u'), Vertex(label: 'v')])
   /// ```
-  _NotOrientedGraph({
+  _NotOrientedListGraph({
     List<Vertex>? adjacencyList,
-  }) : super(adjacencyList: adjacencyList ?? []);
+  }) : super._(adjacencyList: adjacencyList ?? [], graphType: _NotOriented);
 
   @override
   void addVertex({
@@ -30,7 +30,7 @@ class _NotOrientedGraph extends AdjacencyList implements _NotOriented {
       _removeFromWaitList(newVertex);
     }
 
-    newVertex.vertexType = _NotOrientedGraph;
+    newVertex.vertexType = _NotOrientedListGraph;
     adjacencyList.add(newVertex);
 
     if (connectedTo != null) {
@@ -143,13 +143,13 @@ class _NotOrientedGraph extends AdjacencyList implements _NotOriented {
 
     for (var vertex in adjacencyList) {
       if (!vertex.visited) {
-        setInitialValues();
+        _setInitialValues();
 
         return false;
       }
     }
 
-    setInitialValues();
+    _setInitialValues();
 
     return true;
   }

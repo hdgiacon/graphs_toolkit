@@ -1,13 +1,10 @@
-/// Support for `Graph` data structure based on adjacency lists
-/*
+/// Support for `Graph` data structure based on adjacency lists and adjacency matrix
 library graphs_toolkit;
 
-export 'src/graphs_toolkit_base.dart'
+export 'src/interfaces/graph_base.dart'
     show
         Edge,
-        NotOrientedGraph,
-        OrientedGraph,
         Vertex,
+        AdjacencyList,
         EdgeAlreadyExistsException,
         EdgeNotFoundException;
-*/

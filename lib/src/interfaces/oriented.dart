@@ -1,4 +1,4 @@
-part of '../graphs_toolkit_base.dart';
+part of 'graph_base.dart';
 
 abstract interface class _Oriented {
   /// get the number of edges on a Oriented Graph

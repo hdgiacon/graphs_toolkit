@@ -1,4 +1,4 @@
-import 'package:graphs_toolkit/src/graphs_toolkit_base.dart';
+import 'package:graphs_toolkit/src/interfaces/graph_base.dart';
 
 void main() {
   final myGraph = AdjacencyList.notOriented();
@@ -40,5 +40,5 @@ void main() {
   myGraph2.getV('w').addEdge(connectedTo: myGraph.getV('z'));
   myGraph2.getV('z').addEdge(connectedTo: myGraph.getV('w'));
 
-  myGraph == myGraph2; // true
+  print(myGraph == myGraph2); // true
 }

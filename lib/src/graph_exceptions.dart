@@ -1,4 +1,4 @@
-part of 'graphs_toolkit_base.dart';
+part of 'interfaces/graph_base.dart';
 
 class EdgeNotFoundException implements Exception {
   final String cause;

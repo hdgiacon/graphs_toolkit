@@ -1,3 +1,3 @@
-part of '../graphs_toolkit_base.dart';
+part of '../interfaces/graph_base.dart';
 
 abstract class AdjacencyMatrix implements _GraphBase {}

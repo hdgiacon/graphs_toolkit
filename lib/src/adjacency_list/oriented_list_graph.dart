@@ -1,6 +1,6 @@
-part of '../graphs_toolkit_base.dart';
+part of '../interfaces/graph_base.dart';
 
-class _OrientedGraph extends AdjacencyList implements _Oriented {
+class _OrientedListGraph extends AdjacencyList implements _Oriented {
   /// Type of graph in which the edges have a definite way
   /// ```
   ///   | u |<---| v |
@@ -16,9 +16,9 @@ class _OrientedGraph extends AdjacencyList implements _Oriented {
   /// ```
   ///   final myGraph = OrientedGraph(vertices:[Vertex(label: 'u'), Vertex(label: 'v')])
   /// ```
-  _OrientedGraph({
+  _OrientedListGraph({
     List<Vertex>? adjacencyList,
-  }) : super(adjacencyList: adjacencyList ?? []);
+  }) : super._(adjacencyList: adjacencyList ?? [], graphType: _Oriented);
 
   @override
   void addVertex({
@@ -149,7 +149,7 @@ class _OrientedGraph extends AdjacencyList implements _Oriented {
       }
     }
 
-    setInitialValues();
+    _setInitialValues();
 
     return true;
   }
@@ -180,43 +180,6 @@ class _OrientedGraph extends AdjacencyList implements _Oriented {
     return graphString.substring(0, graphString.length - 1);
   }
 
-  //TODO: criar um doc comment para print graph, mesclar oriented com not oriented e colocar na base
-
-  /// Show the graph in ajacencies list mode
-  /// ```
-  ///   myGraph.printGraph();
-  ///
-  ///   (1) -----> (2)
-  ///       -----> (3)
-  ///
-  ///   (2)
-  ///
-  ///   (3) -----> (3)
-  /// ```
-  /// The values ​​contained in the vertices can be shown with vertexValue :> `(label,value)`
-  /// ```
-  ///   myGraph.printGraph(vertexValue: true);
-  ///
-  ///   (1:5) -----> (2:4)
-  ///         -----> (3:10)
-  ///
-  ///   (2:4)
-  ///
-  ///   (3:10) -----> (3:10)
-  /// ```
-  /// Edge weights can be shown with edgeWeight
-  /// ```
-  ///   myGraph.printGraph(edgeWeigth: true);
-  ///
-  ///   (1) --1--> (2)
-  ///       --2--> (3)
-  ///
-  ///   (2)
-  ///
-  ///   (3) --8--> (3)
-  /// ```
-  ///
-  /// `null` values ​​are not shown
   @override
   String printGraph({bool vertexValue = false, bool edgeWeigth = false}) {
     var graphString = "";
