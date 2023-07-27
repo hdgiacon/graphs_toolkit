@@ -1,7 +1,7 @@
+import 'package:graphs_toolkit/src/graphs_toolkit_base.dart';
 import 'package:test/test.dart';
 import 'dart:developer';
 import 'package:logger/logger.dart';
-import 'package:graphs_toolkit/graphs_toolkit.dart';
 
 void main() {
   test('exclude oriented edge not found - test', () {

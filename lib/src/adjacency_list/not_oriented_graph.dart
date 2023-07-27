@@ -1,6 +1,6 @@
-part of 'graphs_toolkit_base.dart';
+part of '../graphs_toolkit_base.dart';
 
-class NotOrientedGraph extends _Graph {
+class NotOrientedGraph extends _AdjacencyList implements _NotOriented {
   /// Type of graph in which the edges have no definite way
   /// ```
   /// | u |----| v |
@@ -17,64 +17,9 @@ class NotOrientedGraph extends _Graph {
   /// final myGraph = NotOrientedGraph(vertices:[Vertex(label: 'u'), Vertex(label: 'v')])
   /// ```
   NotOrientedGraph({
-    List<Vertex>? vertices,
-  }) : super._(vertices: vertices ?? []);
+    List<Vertex>? adjacencyList,
+  }) : super._(adjacencyList: adjacencyList ?? []);
 
-  /// Add a new vertex to the graph
-  ///
-  /// if it has adjacents, their `labels` can be passed in `connectedTo`
-  /// if such vertices have not yet been created, they will be stored in a waiting list until their declaration occurs,
-  /// edges will be created automatically
-  /// ```
-  ///
-  ///   myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
-  ///   myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['x']);
-  ///   myGraph.addVertex(newVertex: Vertex(label: 'x'));
-  ///
-  ///
-  /// ```
-  /// The weights of both forward and back edges can be passed in `edgeWeight`
-  /// ```
-  ///   myGraph.addVertex(newVertex: Vertex(label: 'u'),
-  ///        connectedTo: ['v', 'x'],
-  ///        edgeWeigth: [1, 2]);
-  /// ```
-  /// The values ​​are processed `positionally`, so:
-  /// ```
-  ///   | u |--1--| v |
-  ///   | u |--2--| x |
-  ///
-  ///   | v |--1--| u |
-  ///   | x |--2--| u |
-  /// ```
-  /// Weights can take on `null` values explicitly
-  /// ```
-  ///   myGraph.addVertex(newVertex: Vertex(label: 'u'),
-  ///        connectedTo: ['v', 'x'],
-  ///        edgeWeigth: [1, null]);
-  /// ```
-  /// So
-  /// ```
-  ///   | u |--1--| v |
-  ///   | u |--null--| x |
-  ///
-  ///   | v |--1--| u |
-  ///   | x |--null--| u |
-  /// ```
-  /// Or omitting the `null` value at the end
-  /// ```
-  ///   myGraph.addVertex(newVertex: Vertex(label: 'u'),
-  ///        connectedTo: ['v', 'x'],
-  ///        edgeWeigth: [1]);
-  ///
-  ///   | u |--1--| v |
-  ///   | u |--null--| x |
-  ///
-  ///   | v |--1--| u |
-  ///   | x |--null--| u |
-  ///
-  ///
-  /// ```
   @override
   void addVertex({
     required Vertex newVertex,
@@ -86,7 +31,7 @@ class NotOrientedGraph extends _Graph {
     }
 
     newVertex.vertexType = NotOrientedGraph;
-    vertices.add(newVertex);
+    adjacencyList.add(newVertex);
 
     if (connectedTo != null) {
       edgeWeigth = _listFillIfNecessaryWithNull(connectedTo, edgeWeigth);
@@ -113,11 +58,9 @@ class NotOrientedGraph extends _Graph {
 
   void _removeFromWaitList(Vertex newVertex) {
     _waitList.removeWhere((element) {
-      if (element.vertex.label == newVertex.label) {
-        element.connectedFrom
-            .addEdge(connectedTo: newVertex, weight: element.edgeWeigth);
-        newVertex.addEdge(
-            connectedTo: element.connectedFrom, weight: element.edgeWeigth);
+      if (element.$1.label == newVertex.label) {
+        element.$2.addEdge(connectedTo: newVertex, weight: element.$3);
+        newVertex.addEdge(connectedTo: element.$2, weight: element.$3);
         return true;
       }
       return false;
@@ -152,12 +95,6 @@ class NotOrientedGraph extends _Graph {
     }
   }
 
-  /// Removes a vertex by its `label` along with the edges that arrived at it from its adjacent ones
-  ///
-  /// If the vertex is `not found`, a `log` message will be displayed.
-  ///
-  /// In *`run`* mode only the message will be shown, for more information about the exception and stack
-  /// status (StackTrace), run in *`debug`* mode.
   @override
   void excludeVertex({required String vertexLabel}) {
     final logger = Logger();
@@ -169,7 +106,7 @@ class NotOrientedGraph extends _Graph {
         edge.destiny.excludeEdge(destinyLabel: vertexLabel);
       }
 
-      vertices.removeWhere((vertex) => vertex.label == vertexLabel);
+      adjacencyList.removeWhere((vertex) => vertex.label == vertexLabel);
     } on StateError catch (e, s) {
       logger.e('(Vertex $vertexLabel) not found for exclusion!!!!!!');
 
@@ -181,61 +118,43 @@ class NotOrientedGraph extends _Graph {
     }
   }
 
-  /// get the number of edges on a Not Oriented Graph
+  @override
   int get numOfEdges {
     var cont = 0;
 
-    for (var vertex in vertices) {
+    for (var vertex in adjacencyList) {
       cont += vertex.edgesList.length;
     }
 
     return cont ~/ 2;
   }
 
-  /// List with all existing edges in the graph
+  @override
   List<Edge> get getAllEdges {
     return [
-      for (var vertex in vertices)
+      for (var vertex in adjacencyList)
         for (var edge in vertex.edgesList) edge
     ];
   }
 
-  /// An not oriented graph is said to be connected if from one vertex it can be reached all others.
-  /// ```
-  ///   | u |----| v |    | w |
-  ///     |      / |      / |
-  ///     |    /   |    /   |
-  ///     |  /     |  /     |
-  ///   | x |----| y |    | z |
-  /// ```
-  ///
+  @override
   bool isConnected() {
     bfs(first);
 
-    for (var vertex in vertices) {
+    for (var vertex in adjacencyList) {
       if (!vertex.visited) {
-        _setInitialValues();
+        setInitialValues();
 
         return false;
       }
     }
 
-    _setInitialValues();
+    setInitialValues();
 
     return true;
   }
 
-  /// If its a not oriented, acyclic and connected graph
-  /// ```
-  ///
-  ///       | u |-----| t |
-  ///       /   \
-  ///      /     \
-  ///   | v |   | w |
-  ///              \
-  ///               \
-  ///             | x |
-  /// ```
+  @override
   bool isTree() {
     if (hasCycle()) {
       return false;
@@ -244,17 +163,7 @@ class NotOrientedGraph extends _Graph {
     return isConnected();
   }
 
-  /// If its a not oriented and acyclic graph
-  /// ```
-  ///
-  ///       | u |             | y |----| b |
-  ///       /   \             /   \
-  ///      /     \           /     \
-  ///   | v |   | w |     | z |   | a |
-  ///              \
-  ///               \
-  ///             | x |
-  /// ```
+  @override
   bool isForest() {
     if (hasCycle()) {
       return false;
@@ -267,7 +176,7 @@ class NotOrientedGraph extends _Graph {
   String toString() {
     var graphString = "";
 
-    for (var vertex in vertices) {
+    for (var vertex in adjacencyList) {
       graphString = "$graphString(${vertex.label}) -- [";
 
       for (var adj in vertex.edgesList) {
@@ -319,7 +228,7 @@ class NotOrientedGraph extends _Graph {
     var graphString = "";
     var cont = 1;
 
-    for (var vertex in vertices) {
+    for (var vertex in adjacencyList) {
       // first vertex
       graphString =
           "$graphString(${vertex.label}${vertexValue ? ":" : ""}${vertexValue ? _printNum(vertex.value) : ""})";

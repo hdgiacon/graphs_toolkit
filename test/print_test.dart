@@ -1,4 +1,4 @@
-import 'package:graphs_toolkit/graphs_toolkit.dart';
+import 'package:graphs_toolkit/src/graphs_toolkit_base.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -151,7 +151,7 @@ void main() {
     expect(
       myGraph,
       OrientedGraph(
-        vertices: [
+        adjacencyList: [
           Vertex(
             label: 'u',
             edgesList: [
@@ -234,7 +234,7 @@ void main() {
     expect(
       myGraph,
       OrientedGraph(
-        vertices: [
+        adjacencyList: [
           Vertex(
             label: 'u',
             edgesList: [
@@ -313,7 +313,7 @@ void main() {
     expect(
       myGraph,
       OrientedGraph(
-        vertices: [
+        adjacencyList: [
           Vertex(
             label: 'u',
             value: 1,
@@ -414,7 +414,7 @@ void main() {
     expect(
       myGraph,
       OrientedGraph(
-        vertices: [
+        adjacencyList: [
           Vertex(
             label: 'u',
             value: 1,
@@ -497,7 +497,7 @@ void main() {
     expect(
       myGraph,
       NotOrientedGraph(
-        vertices: [
+        adjacencyList: [
           Vertex(
             label: 'u',
             edgesList: [
@@ -572,7 +572,7 @@ void main() {
     expect(
       myGraph,
       NotOrientedGraph(
-        vertices: [
+        adjacencyList: [
           Vertex(
             label: 'u',
             edgesList: [
@@ -641,7 +641,7 @@ void main() {
     expect(
       myGraph,
       NotOrientedGraph(
-        vertices: [
+        adjacencyList: [
           Vertex(
             label: 'u',
             value: 1,
@@ -724,7 +724,7 @@ void main() {
     expect(
       myGraph,
       NotOrientedGraph(
-        vertices: [
+        adjacencyList: [
           Vertex(
             label: 'u',
             value: 1,

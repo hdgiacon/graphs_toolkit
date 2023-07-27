@@ -1,4 +1,4 @@
-import 'package:graphs_toolkit/graphs_toolkit.dart';
+import 'package:graphs_toolkit/src/graphs_toolkit_base.dart';
 
 void main() {
   final myGraph = NotOrientedGraph();
@@ -12,12 +12,12 @@ void main() {
 
   final myGraph2 = NotOrientedGraph();
 
-  myGraph2.vertices.add(Vertex(label: 'u'));
-  myGraph2.vertices.add(Vertex(label: 'v'));
-  myGraph2.vertices.add(Vertex(label: 'y'));
-  myGraph2.vertices.add(Vertex(label: 'x'));
-  myGraph2.vertices.add(Vertex(label: 'w'));
-  myGraph2.vertices.add(Vertex(label: 'z'));
+  myGraph2.adjacencyList.add(Vertex(label: 'u'));
+  myGraph2.adjacencyList.add(Vertex(label: 'v'));
+  myGraph2.adjacencyList.add(Vertex(label: 'y'));
+  myGraph2.adjacencyList.add(Vertex(label: 'x'));
+  myGraph2.adjacencyList.add(Vertex(label: 'w'));
+  myGraph2.adjacencyList.add(Vertex(label: 'z'));
 
   myGraph2.getV('u').addEdge(connectedTo: myGraph.getV('v'));
   myGraph2.getV('v').addEdge(connectedTo: myGraph.getV('u'));

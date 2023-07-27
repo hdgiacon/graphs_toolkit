@@ -1,16 +1,16 @@
-import 'package:graphs_toolkit/graphs_toolkit.dart';
+import 'package:graphs_toolkit/src/graphs_toolkit_base.dart';
 import 'package:test/test.dart';
 
 void main() {
   test('not oriented graph add vertex basic method - test', () {
     final myGraph = NotOrientedGraph();
 
-    myGraph.vertices.add(Vertex(label: 'u'));
-    myGraph.vertices.add(Vertex(label: 'v'));
-    myGraph.vertices.add(Vertex(label: 'y'));
-    myGraph.vertices.add(Vertex(label: 'x'));
-    myGraph.vertices.add(Vertex(label: 'w'));
-    myGraph.vertices.add(Vertex(label: 'z'));
+    myGraph.adjacencyList.add(Vertex(label: 'u'));
+    myGraph.adjacencyList.add(Vertex(label: 'v'));
+    myGraph.adjacencyList.add(Vertex(label: 'y'));
+    myGraph.adjacencyList.add(Vertex(label: 'x'));
+    myGraph.adjacencyList.add(Vertex(label: 'w'));
+    myGraph.adjacencyList.add(Vertex(label: 'z'));
 
     myGraph.getV('u').addEdge(connectedTo: myGraph.getV('v'));
     myGraph.getV('v').addEdge(connectedTo: myGraph.getV('u'));
@@ -36,7 +36,7 @@ void main() {
     expect(
       myGraph,
       NotOrientedGraph(
-        vertices: [
+        adjacencyList: [
           Vertex(
             label: 'u',
             edgesList: [
@@ -99,7 +99,7 @@ void main() {
     expect(
       myGraph,
       NotOrientedGraph(
-        vertices: [
+        adjacencyList: [
           Vertex(
             label: 'u',
             edgesList: [

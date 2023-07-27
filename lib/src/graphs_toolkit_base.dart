@@ -3,58 +3,33 @@ import 'dart:developer' show log;
 import 'package:collection/collection.dart' show DeepCollectionEquality;
 import 'package:logger/logger.dart' show Logger;
 
-part "edge.dart";
-part "vertex.dart";
-
-part 'not_oriented_graph.dart';
-part 'oriented_graph.dart';
-
 part 'graph_exceptions.dart';
 
-/// <Vertex,ConnectedFrom,EdgeWeigth>
-typedef _WaitType = (Vertex, Vertex, num?);
+part 'vertex.dart';
+part 'edge.dart';
 
-/// Graph model for oriented and not oriented, with the common functionalities to both
-abstract class _Graph {
-  /// List containing all existing `vertices` in the graph
-  final List<Vertex> vertices;
+part 'interfaces/oriented.dart';
+part 'interfaces/not_oriented.dart';
 
-  _Graph._({required this.vertices});
+part 'adjacency_list/adjacency_list.dart';
+part 'adjacency_list/oriented_graph.dart';
+part 'adjacency_list/not_oriented_graph.dart';
 
-  /// List used for the `addVertex` method, in which a `vertex` not yet created is added here
-  final _waitList = <_WaitType>[];
+part 'adjacency_matrix/adjacency_matrix.dart';
 
-  void addVertex({
-    required Vertex newVertex,
-    List<String>? connectedTo,
-    List<num>? edgeWeigth,
-  });
-
-  void excludeVertex({required String vertexLabel});
-
+abstract interface class _GraphBase {
   /// Returns a `vertex` from vertices list according to its label
   ///
   /// If the searched vertex is not found, throws a `[StateError]`
-  Vertex getV(String label) {
-    return vertices.firstWhere(
-      (element) => element.label == label,
-    );
-  }
+  Vertex getV(String label);
 
-  void _setInitialValues() {
-    for (var vertex in vertices) {
-      vertex
-        ..visited = false
-        ..ancestor = null
-        ..value = 0;
-    }
-  }
+  void setInitialValues();
 
   /// First vertex of the list of vertices
-  Vertex get first => vertices.first;
+  Vertex get first;
 
   /// Last vertex of the list of vertices
-  Vertex get last => vertices.last;
+  Vertex get last;
 
   /// Breadth First Search
   ///
@@ -69,31 +44,7 @@ abstract class _Graph {
   /// `ancestor` saves the previous vertex
   ///
   /// `visited` becomes true
-  void bfs(Vertex initialNode) {
-    _setInitialValues();
-
-    initialNode.visited = true;
-
-    final queueWait = ListQueue<Vertex>();
-    queueWait.addLast(initialNode);
-
-    Vertex dequeuedVertex;
-
-    while (queueWait.isNotEmpty) {
-      dequeuedVertex = queueWait.removeFirst();
-
-      for (var vertex in dequeuedVertex.verticesOfEdgesList) {
-        if (!vertex.visited) {
-          vertex
-            ..visited = true
-            ..ancestor = dequeuedVertex
-            ..value = dequeuedVertex.value + 1;
-
-          queueWait.add(vertex);
-        }
-      }
-    }
-  }
+  void bfs(Vertex initialNode);
 
   /// Depth-first search
   ///
@@ -108,38 +59,9 @@ abstract class _Graph {
   /// `ancestor` saves the previous vertex
   ///
   /// `visited` becomes true
-  void dfs() {
-    _setInitialValues();
+  void dfs();
 
-    var time = 0;
-
-    for (var vertex in vertices) {
-      if (!vertex.visited) {
-        _dfsVisit(vertex, time, false);
-      }
-    }
-  }
-
-  int _dfsVisit(Vertex actual, int time, bool cicleSearch) {
-    time += 1;
-    actual.value = time;
-    actual.visited = true;
-
-    for (var vertexAdj in actual.verticesOfEdgesList) {
-      if (!vertexAdj.visited) {
-        vertexAdj.ancestor = actual;
-        time = _dfsVisit(vertexAdj, time, cicleSearch);
-      } else if (cicleSearch && vertexAdj.visited) {
-        return -1;
-      }
-    }
-
-    actual.visited = true;
-    time += 1;
-    actual.value = time;
-
-    return time;
-  }
+  int dfsVisit(Vertex actual, int time, bool cicleSearch);
 
   /// Checks if there are any cycles in the whole graph
   ///
@@ -163,52 +85,10 @@ abstract class _Graph {
   ///
   ///
   /// ```
-  bool hasCycle() {
-    _setInitialValues();
-
-    var time = 0;
-
-    for (var vertex in vertices) {
-      if (!vertex.visited) {
-        if (_dfsVisit(vertex, time, true) == -1) {
-          _setInitialValues();
-
-          return true;
-        }
-      }
-    }
-
-    _setInitialValues();
-
-    return false;
-  }
-
-  bool _searchWaitList(String label) {
-    try {
-      _waitList.firstWhere((element) => element.vertex.label == label);
-
-      return true;
-    } on StateError catch (_) {
-      return false;
-    }
-  }
+  bool hasCycle();
 
   String printGraph({bool vertexValue = false, bool edgeWeigth = false});
 
   @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    final listEquals = const DeepCollectionEquality().equals;
-
-    return other is _Graph && listEquals(other.vertices, vertices);
-  }
-
-  @override
-  int get hashCode => vertices.hashCode;
-}
-
-extension _Tuple3Extension on _WaitType {
-  Vertex get vertex => $1;
-  Vertex get connectedFrom => $2;
-  num? get edgeWeigth => $3;
+  String toString();
 }

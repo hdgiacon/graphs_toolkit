@@ -1,6 +1,6 @@
-part of 'graphs_toolkit_base.dart';
+part of '../graphs_toolkit_base.dart';
 
-class OrientedGraph extends _Graph {
+class OrientedGraph extends _AdjacencyList implements _Oriented {
   /// Type of graph in which the edges have a definite way
   /// ```
   ///   | u |<---| v |
@@ -17,61 +17,9 @@ class OrientedGraph extends _Graph {
   ///   final myGraph = OrientedGraph(vertices:[Vertex(label: 'u'), Vertex(label: 'v')])
   /// ```
   OrientedGraph({
-    List<Vertex>? vertices,
-  }) : super._(vertices: vertices ?? []);
+    List<Vertex>? adjacencyList,
+  }) : super._(adjacencyList: adjacencyList ?? []);
 
-  /// Add a new vertex to the graph
-  ///
-  /// if it has adjacents, their `labels` can be passed in `connectedTo`
-  /// if such vertices have not yet been created, they will be stored in a waiting list until their declaration occurs,
-  /// edges will be created automatically
-  /// ```
-  ///
-  /// myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
-  /// myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['x']);
-  /// myGraph.addVertex(newVertex: Vertex(label: 'x'));
-  ///
-  ///
-  /// ```
-  /// The weight of the edges can be passed on `edgeWeight`
-  /// ```
-  /// myGraph.addVertex(newVertex: Vertex(label: 'u'),
-  ///      connectedTo: ['v', 'x'],
-  ///      edgeWeigth: [1, 2]);
-  /// ```
-  /// The values ​​are processed `positionally`, so:
-  /// ```
-  ///   | u |--1-->| v |
-  ///   | u |--2-->| x |
-  ///
-  /// ```
-  /// Weights can take on `null` values explicitly
-  /// ```
-  /// myGraph.addVertex(newVertex: Vertex(label: 'u'),
-  ///      connectedTo: ['v', 'x'],
-  ///      edgeWeigth: [1, null]);
-  /// ```
-  /// So
-  /// ```
-  ///   | u |--1-->| v |
-  ///   | u |----->| x |
-  /// ```
-  /// Or omitting the `null` value at the end
-  /// ```
-  /// myGraph.addVertex(newVertex: Vertex(label: 'u'),
-  ///      connectedTo: ['v', 'x', 'y'],
-  ///      edgeWeigth: [1]);  // will be [1, null, null]
-  ///
-  ///   | u |--1-->| v |
-  ///   | u |----->| x |
-  ///
-  ///
-  /// ```
-  ///
-  /// May have edges that leave a vertex and arrive at it.
-  /// ```
-  ///   | u |----->| u |
-  /// ```
   @override
   void addVertex({
     required Vertex newVertex,
@@ -83,7 +31,7 @@ class OrientedGraph extends _Graph {
     }
 
     newVertex.vertexType = super.runtimeType;
-    vertices.add(newVertex);
+    adjacencyList.add(newVertex);
 
     if (connectedTo != null) {
       edgeWeigth = _listFillIfNecessaryWithNull(connectedTo, edgeWeigth);
@@ -105,18 +53,15 @@ class OrientedGraph extends _Graph {
       }
     }
 
-    // TODO: avisar se houverem pesos sobrando?
-
     return edgeWeigth;
   }
 
   void _removeFromWaitList(Vertex newVertex) {
     _waitList.removeWhere((element) {
-      if (element.vertex.label == newVertex.label) {
-        element.connectedFrom
-            .addEdge(connectedTo: newVertex, weight: element.edgeWeigth);
+      if (element.$1.label == newVertex.label) {
+        element.$2.addEdge(connectedTo: newVertex, weight: element.$3);
 
-        newVertex.connectedFrom.add(element.connectedFrom);
+        newVertex.connectedFrom.add(element.$2);
 
         return true;
       }
@@ -152,12 +97,6 @@ class OrientedGraph extends _Graph {
     }
   }
 
-  /// removes a vertex by its `label` along with the edges that arrived at it from its adjacent ones
-  ///
-  /// If the vertex is `not found`, a `log` message will be displayed.
-  ///
-  /// In *`run`* mode only the message will be shown, for more information about the exception and stack
-  /// status (StackTrace), run in *`debug`* mode.
   @override
   void excludeVertex({required String vertexLabel}) {
     final logger = Logger();
@@ -169,7 +108,7 @@ class OrientedGraph extends _Graph {
         vertex.excludeEdge(destinyLabel: vertexLabel);
       }
 
-      vertices.removeWhere((vertex) => vertex.label == vertexLabel);
+      adjacencyList.removeWhere((vertex) => vertex.label == vertexLabel);
     } on StateError catch (e, s) {
       logger.e('(Vertex $vertexLabel) not found for exclusion!!!!!!');
 
@@ -181,60 +120,41 @@ class OrientedGraph extends _Graph {
     }
   }
 
-  /// get the number of edges on a Oriented Graph
+  @override
   int get numOfEdges {
     var cont = 0;
 
-    for (var vertex in vertices) {
+    for (var vertex in adjacencyList) {
       cont += vertex.edgesList.length;
     }
 
     return cont;
   }
 
-  /// List with all existing edges in the graph
+  @override
   List<Edge> get getAllEdges {
     return [
-      for (var vertex in vertices)
+      for (var vertex in adjacencyList)
         for (var edge in vertex.edgesList) edge
     ];
   }
 
-  /// A oriented graph is strongly connected if for every pair of `vertices(u, v)`, `v` is accessible from `u`
-  /// ```
-  ///   | u |---->| v |
-  ///     ^       / |
-  ///     |     /   |
-  ///     |  </    \|/
-  ///   | x |<----| y |
-  ///
-  ///
-  /// ```
+  @override
   bool get isStronglyConnected {
     bfs(first);
 
-    for (var vertex in vertices) {
+    for (var vertex in adjacencyList) {
       if (!vertex.visited) {
         return false;
       }
     }
 
-    _setInitialValues();
+    setInitialValues();
 
     return true;
   }
 
-  /// If its a oriented and acyclic graph
-  /// ```
-  ///
-  /// | v |----->| u |<-----| t |
-  ///              ^          ^
-  ///              |          |
-  ///              |          |
-  ///            | w |      | x |
-  ///
-  ///
-  /// ```
+  @override
   bool isDAG() {
     if (hasCycle()) {
       return false;
@@ -247,7 +167,7 @@ class OrientedGraph extends _Graph {
   String toString() {
     var graphString = "";
 
-    for (var vertex in vertices) {
+    for (var vertex in adjacencyList) {
       graphString = "$graphString(${vertex.label}) -> [";
 
       for (var adj in vertex.edgesList) {
@@ -259,6 +179,8 @@ class OrientedGraph extends _Graph {
 
     return graphString.substring(0, graphString.length - 1);
   }
+
+  //TODO: criar um doc comment para print graph, mesclar oriented com not oriented e colocar na base
 
   /// Show the graph in ajacencies list mode
   /// ```
@@ -300,7 +222,7 @@ class OrientedGraph extends _Graph {
     var graphString = "";
     var cont = 1;
 
-    for (var vertex in vertices) {
+    for (var vertex in adjacencyList) {
       // first vertex
       graphString =
           "$graphString(${vertex.label}${vertexValue ? ":" : ""}${vertexValue ? _printNum(vertex.value) : ""})";
