@@ -5,9 +5,10 @@ void main() {
   test('print function - oriented - no weight - test', () {
     final myGraph = AdjacencyList.oriented();
 
-    myGraph.addVertex(newVertex: Vertex(label: '1'), connectedTo: ['2', '3']);
-    myGraph.addVertex(newVertex: Vertex(label: '2'));
-    myGraph.addVertex(newVertex: Vertex(label: '3'));
+    myGraph
+      ..addVertex(newVertex: Vertex(label: '1'), connectedTo: ['2', '3'])
+      ..addVertex(newVertex: Vertex(label: '2'))
+      ..addVertex(newVertex: Vertex(label: '3'));
 
     print(myGraph.printGraph());
 
@@ -38,9 +39,10 @@ void main() {
   test('print function - not oriented - no weight - test', () {
     final myGraph = AdjacencyList.notOriented();
 
-    myGraph.addVertex(newVertex: Vertex(label: '1'), connectedTo: ['2', '3']);
-    myGraph.addVertex(newVertex: Vertex(label: '2'));
-    myGraph.addVertex(newVertex: Vertex(label: '3'));
+    myGraph
+      ..addVertex(newVertex: Vertex(label: '1'), connectedTo: ['2', '3'])
+      ..addVertex(newVertex: Vertex(label: '2'))
+      ..addVertex(newVertex: Vertex(label: '3'));
 
     print(myGraph.printGraph());
 
@@ -71,10 +73,11 @@ void main() {
   test('print function - oriented - vertex value - no weight - test', () {
     final myGraph = AdjacencyList.oriented();
 
-    myGraph.addVertex(
-        newVertex: Vertex(label: '1', value: 1), connectedTo: ['2', '3']);
-    myGraph.addVertex(newVertex: Vertex(label: '2', value: 2));
-    myGraph.addVertex(newVertex: Vertex(label: '3', value: 3));
+    myGraph
+      ..addVertex(
+          newVertex: Vertex(label: '1', value: 1), connectedTo: ['2', '3'])
+      ..addVertex(newVertex: Vertex(label: '2', value: 2))
+      ..addVertex(newVertex: Vertex(label: '3', value: 3));
 
     print(myGraph.printGraph(vertexValue: true));
 
@@ -105,10 +108,11 @@ void main() {
   test('print function - not oriented - vertex value - no weight - test', () {
     final myGraph = AdjacencyList.notOriented();
 
-    myGraph.addVertex(
-        newVertex: Vertex(label: '1', value: 1), connectedTo: ['2', '3']);
-    myGraph.addVertex(newVertex: Vertex(label: '2', value: 2));
-    myGraph.addVertex(newVertex: Vertex(label: '3', value: 3));
+    myGraph
+      ..addVertex(
+          newVertex: Vertex(label: '1', value: 1), connectedTo: ['2', '3'])
+      ..addVertex(newVertex: Vertex(label: '2', value: 2))
+      ..addVertex(newVertex: Vertex(label: '3', value: 3));
 
     print(myGraph.printGraph(vertexValue: true));
 
@@ -139,12 +143,13 @@ void main() {
   test('oriented graph no weight and value - test', () {
     final myGraph = AdjacencyList.oriented();
 
-    myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
-    myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y']);
-    myGraph.addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x']);
-    myGraph.addVertex(newVertex: Vertex(label: 'x'), connectedTo: ['v']);
-    myGraph.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z']);
-    myGraph.addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z']);
+    myGraph
+      ..addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x'])
+      ..addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y'])
+      ..addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x'])
+      ..addVertex(newVertex: Vertex(label: 'x'), connectedTo: ['v'])
+      ..addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z'])
+      ..addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z']);
 
     print(myGraph.printGraph());
 
@@ -485,12 +490,13 @@ void main() {
   test('not oriented graph no weight and value - test', () {
     final myGraph = AdjacencyList.notOriented();
 
-    myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
-    myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y', 'x']);
-    myGraph.addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x', 'w']);
-    myGraph.addVertex(newVertex: Vertex(label: 'x'));
-    myGraph.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['z']);
-    myGraph.addVertex(newVertex: Vertex(label: 'z'));
+    myGraph
+      ..addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x'])
+      ..addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y', 'x'])
+      ..addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x', 'w'])
+      ..addVertex(newVertex: Vertex(label: 'x'))
+      ..addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['z'])
+      ..addVertex(newVertex: Vertex(label: 'z'));
 
     print(myGraph.printGraph());
 

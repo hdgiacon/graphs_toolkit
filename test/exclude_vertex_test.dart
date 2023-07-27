@@ -5,12 +5,13 @@ void main() {
   test('exclude vertex - oriented graph - test', () {
     final myGraph = AdjacencyList.oriented();
 
-    myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
-    myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y']);
-    myGraph.addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x']);
-    myGraph.addVertex(newVertex: Vertex(label: 'x'), connectedTo: ['v']);
-    myGraph.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z']);
-    myGraph.addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z']);
+    myGraph
+      ..addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x'])
+      ..addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y'])
+      ..addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x'])
+      ..addVertex(newVertex: Vertex(label: 'x'), connectedTo: ['v'])
+      ..addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z'])
+      ..addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z']);
 
     myGraph.excludeVertex(vertexLabel: 'v');
 
@@ -128,12 +129,13 @@ void main() {
   test('exclude vertex not found - oriented graph - test', () {
     final myGraph = AdjacencyList.oriented();
 
-    myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
-    myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y']);
-    myGraph.addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x']);
-    myGraph.addVertex(newVertex: Vertex(label: 'x'), connectedTo: ['v']);
-    myGraph.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z']);
-    myGraph.addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z']);
+    myGraph
+      ..addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x'])
+      ..addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y'])
+      ..addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x'])
+      ..addVertex(newVertex: Vertex(label: 'x'), connectedTo: ['v'])
+      ..addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z'])
+      ..addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z']);
 
     myGraph.excludeVertex(vertexLabel: '1');
     /* prints a error message */
@@ -142,12 +144,13 @@ void main() {
   test('exclude vertex - not oriented graph - test', () {
     final myGraph = AdjacencyList.notOriented();
 
-    myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
-    myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y', 'x']);
-    myGraph.addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x', 'w']);
-    myGraph.addVertex(newVertex: Vertex(label: 'x'));
-    myGraph.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['z']);
-    myGraph.addVertex(newVertex: Vertex(label: 'z'));
+    myGraph
+      ..addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x'])
+      ..addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y', 'x'])
+      ..addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x', 'w'])
+      ..addVertex(newVertex: Vertex(label: 'x'))
+      ..addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['z'])
+      ..addVertex(newVertex: Vertex(label: 'z'));
 
     myGraph.excludeVertex(vertexLabel: 'v');
 
@@ -267,12 +270,13 @@ void main() {
   test('exclude vertex not found - not oriented graph - test', () {
     final myGraph = AdjacencyList.notOriented();
 
-    myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
-    myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y', 'x']);
-    myGraph.addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x', 'w']);
-    myGraph.addVertex(newVertex: Vertex(label: 'x'));
-    myGraph.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['z']);
-    myGraph.addVertex(newVertex: Vertex(label: 'z'));
+    myGraph
+      ..addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x'])
+      ..addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y', 'x'])
+      ..addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x', 'w'])
+      ..addVertex(newVertex: Vertex(label: 'x'))
+      ..addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['z'])
+      ..addVertex(newVertex: Vertex(label: 'z'));
 
     myGraph.excludeVertex(vertexLabel: '5');
     /* prints a error message */

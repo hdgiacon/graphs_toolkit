@@ -7,9 +7,10 @@ void main() {
   test('exclude oriented edge not found - test', () {
     final myGraph = AdjacencyList.oriented();
 
-    myGraph.addVertex(newVertex: Vertex(label: '1'), connectedTo: ['2', '3']);
-    myGraph.addVertex(newVertex: Vertex(label: '2'));
-    myGraph.addVertex(newVertex: Vertex(label: '3'));
+    myGraph
+      ..addVertex(newVertex: Vertex(label: '1'), connectedTo: ['2', '3'])
+      ..addVertex(newVertex: Vertex(label: '2'))
+      ..addVertex(newVertex: Vertex(label: '3'));
 
     try {
       myGraph.getV('3').excludeEdge(destinyLabel: '2');
@@ -24,9 +25,10 @@ void main() {
   test('exclude oriented edge - test', () {
     final myGraph = AdjacencyList.oriented();
 
-    myGraph.addVertex(newVertex: Vertex(label: '1'), connectedTo: ['2', '3']);
-    myGraph.addVertex(newVertex: Vertex(label: '2'));
-    myGraph.addVertex(newVertex: Vertex(label: '3'));
+    myGraph
+      ..addVertex(newVertex: Vertex(label: '1'), connectedTo: ['2', '3'])
+      ..addVertex(newVertex: Vertex(label: '2'))
+      ..addVertex(newVertex: Vertex(label: '3'));
 
     try {
       myGraph.getV('1').excludeEdge(destinyLabel: '2');
@@ -41,9 +43,10 @@ void main() {
   test('exclude not oriented edge not found - test', () {
     final myGraph = AdjacencyList.notOriented();
 
-    myGraph.addVertex(newVertex: Vertex(label: '1'), connectedTo: ['2', '3']);
-    myGraph.addVertex(newVertex: Vertex(label: '2'));
-    myGraph.addVertex(newVertex: Vertex(label: '3'));
+    myGraph
+      ..addVertex(newVertex: Vertex(label: '1'), connectedTo: ['2', '3'])
+      ..addVertex(newVertex: Vertex(label: '2'))
+      ..addVertex(newVertex: Vertex(label: '3'));
 
     try {
       myGraph.getV('2').excludeEdge(destinyLabel: '3');
@@ -58,9 +61,10 @@ void main() {
   test('exclude not oriented edge - test', () {
     final myGraph = AdjacencyList.notOriented();
 
-    myGraph.addVertex(newVertex: Vertex(label: '1'), connectedTo: ['2', '3']);
-    myGraph.addVertex(newVertex: Vertex(label: '2'));
-    myGraph.addVertex(newVertex: Vertex(label: '3'));
+    myGraph
+      ..addVertex(newVertex: Vertex(label: '1'), connectedTo: ['2', '3'])
+      ..addVertex(newVertex: Vertex(label: '2'))
+      ..addVertex(newVertex: Vertex(label: '3'));
 
     try {
       myGraph.getV('3').excludeEdge(destinyLabel: '1');

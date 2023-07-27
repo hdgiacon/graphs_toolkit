@@ -5,26 +5,23 @@ void main() {
   test('oriented graph add vertex basic method - test', () {
     final myGraph = AdjacencyList.oriented();
 
-    myGraph.adjacencyList.add(Vertex(label: 'u'));
-    myGraph.adjacencyList.add(Vertex(label: 'v'));
-    myGraph.adjacencyList.add(Vertex(label: 'y'));
-    myGraph.adjacencyList.add(Vertex(label: 'x'));
-    myGraph.adjacencyList.add(Vertex(label: 'w'));
-    myGraph.adjacencyList.add(Vertex(label: 'z'));
+    myGraph
+      ..adjacencyList.add(Vertex(label: 'u'))
+      ..adjacencyList.add(Vertex(label: 'v'))
+      ..adjacencyList.add(Vertex(label: 'y'))
+      ..adjacencyList.add(Vertex(label: 'x'))
+      ..adjacencyList.add(Vertex(label: 'w'))
+      ..adjacencyList.add(Vertex(label: 'z'));
 
-    myGraph.getV('u').addEdge(connectedTo: myGraph.getV('v'));
-    myGraph.getV('u').addEdge(connectedTo: myGraph.getV('x'));
-
-    myGraph.getV('v').addEdge(connectedTo: myGraph.getV('y'));
-
-    myGraph.getV('y').addEdge(connectedTo: myGraph.getV('x'));
-
-    myGraph.getV('x').addEdge(connectedTo: myGraph.getV('v'));
-
-    myGraph.getV('w').addEdge(connectedTo: myGraph.getV('y'));
-    myGraph.getV('w').addEdge(connectedTo: myGraph.getV('z'));
-
-    myGraph.getV('z').addEdge(connectedTo: myGraph.getV('z'));
+    myGraph
+      ..getV('u').addEdge(connectedTo: myGraph.getV('v'))
+      ..getV('u').addEdge(connectedTo: myGraph.getV('x'))
+      ..getV('v').addEdge(connectedTo: myGraph.getV('y'))
+      ..getV('y').addEdge(connectedTo: myGraph.getV('x'))
+      ..getV('x').addEdge(connectedTo: myGraph.getV('v'))
+      ..getV('w').addEdge(connectedTo: myGraph.getV('y'))
+      ..getV('w').addEdge(connectedTo: myGraph.getV('z'))
+      ..getV('z').addEdge(connectedTo: myGraph.getV('z'));
 
     expect(
       myGraph,
@@ -90,12 +87,13 @@ void main() {
   test('oriented graph with add vertex method - test', () {
     final myGraph = AdjacencyList.oriented();
 
-    myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
-    myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y']);
-    myGraph.addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x']);
-    myGraph.addVertex(newVertex: Vertex(label: 'x'), connectedTo: ['v']);
-    myGraph.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z']);
-    myGraph.addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z']);
+    myGraph
+      ..addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x'])
+      ..addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y'])
+      ..addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x'])
+      ..addVertex(newVertex: Vertex(label: 'x'), connectedTo: ['v'])
+      ..addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['y', 'z'])
+      ..addVertex(newVertex: Vertex(label: 'z'), connectedTo: ['z']);
 
     expect(
       myGraph,

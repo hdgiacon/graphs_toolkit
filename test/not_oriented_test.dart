@@ -5,33 +5,29 @@ void main() {
   test('not oriented graph add vertex basic method - test', () {
     final myGraph = AdjacencyList.notOriented();
 
-    myGraph.adjacencyList.add(Vertex(label: 'u'));
-    myGraph.adjacencyList.add(Vertex(label: 'v'));
-    myGraph.adjacencyList.add(Vertex(label: 'y'));
-    myGraph.adjacencyList.add(Vertex(label: 'x'));
-    myGraph.adjacencyList.add(Vertex(label: 'w'));
-    myGraph.adjacencyList.add(Vertex(label: 'z'));
+    myGraph
+      ..adjacencyList.add(Vertex(label: 'u'))
+      ..adjacencyList.add(Vertex(label: 'v'))
+      ..adjacencyList.add(Vertex(label: 'y'))
+      ..adjacencyList.add(Vertex(label: 'x'))
+      ..adjacencyList.add(Vertex(label: 'w'))
+      ..adjacencyList.add(Vertex(label: 'z'));
 
-    myGraph.getV('u').addEdge(connectedTo: myGraph.getV('v'));
-    myGraph.getV('v').addEdge(connectedTo: myGraph.getV('u'));
-
-    myGraph.getV('u').addEdge(connectedTo: myGraph.getV('x'));
-    myGraph.getV('x').addEdge(connectedTo: myGraph.getV('u'));
-
-    myGraph.getV('v').addEdge(connectedTo: myGraph.getV('y'));
-    myGraph.getV('y').addEdge(connectedTo: myGraph.getV('v'));
-
-    myGraph.getV('y').addEdge(connectedTo: myGraph.getV('x'));
-    myGraph.getV('x').addEdge(connectedTo: myGraph.getV('y'));
-
-    myGraph.getV('x').addEdge(connectedTo: myGraph.getV('v'));
-    myGraph.getV('v').addEdge(connectedTo: myGraph.getV('x'));
-
-    myGraph.getV('w').addEdge(connectedTo: myGraph.getV('y'));
-    myGraph.getV('y').addEdge(connectedTo: myGraph.getV('w'));
-
-    myGraph.getV('w').addEdge(connectedTo: myGraph.getV('z'));
-    myGraph.getV('z').addEdge(connectedTo: myGraph.getV('w'));
+    myGraph
+      ..getV('u').addEdge(connectedTo: myGraph.getV('v'))
+      ..getV('v').addEdge(connectedTo: myGraph.getV('u'))
+      ..getV('u').addEdge(connectedTo: myGraph.getV('x'))
+      ..getV('x').addEdge(connectedTo: myGraph.getV('u'))
+      ..getV('v').addEdge(connectedTo: myGraph.getV('y'))
+      ..getV('y').addEdge(connectedTo: myGraph.getV('v'))
+      ..getV('y').addEdge(connectedTo: myGraph.getV('x'))
+      ..getV('x').addEdge(connectedTo: myGraph.getV('y'))
+      ..getV('x').addEdge(connectedTo: myGraph.getV('v'))
+      ..getV('v').addEdge(connectedTo: myGraph.getV('x'))
+      ..getV('w').addEdge(connectedTo: myGraph.getV('y'))
+      ..getV('y').addEdge(connectedTo: myGraph.getV('w'))
+      ..getV('w').addEdge(connectedTo: myGraph.getV('z'))
+      ..getV('z').addEdge(connectedTo: myGraph.getV('w'));
 
     expect(
       myGraph,
@@ -89,12 +85,13 @@ void main() {
   test('not oriented graph with add vertex method - test', () {
     final myGraph = AdjacencyList.notOriented();
 
-    myGraph.addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x']);
-    myGraph.addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y', 'x']);
-    myGraph.addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x', 'w']);
-    myGraph.addVertex(newVertex: Vertex(label: 'x'));
-    myGraph.addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['z']);
-    myGraph.addVertex(newVertex: Vertex(label: 'z'));
+    myGraph
+      ..addVertex(newVertex: Vertex(label: 'u'), connectedTo: ['v', 'x'])
+      ..addVertex(newVertex: Vertex(label: 'v'), connectedTo: ['y', 'x'])
+      ..addVertex(newVertex: Vertex(label: 'y'), connectedTo: ['x', 'w'])
+      ..addVertex(newVertex: Vertex(label: 'x'))
+      ..addVertex(newVertex: Vertex(label: 'w'), connectedTo: ['z'])
+      ..addVertex(newVertex: Vertex(label: 'z'));
 
     expect(
       myGraph,
