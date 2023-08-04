@@ -1,5 +1,6 @@
 import 'dart:collection' show ListQueue;
 import 'dart:developer' show log;
+import 'dart:typed_data';
 import 'package:collection/collection.dart' show DeepCollectionEquality;
 import 'package:logger/logger.dart' show Logger;
 
